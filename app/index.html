@@ -26,15 +26,15 @@
         <div class="container">
           <div class="navbar-header">
 
-            <a class="navbar-brand" href="#/">privateTable</a>
+            <a ui-sref="home" class="large button">Private Table</a>
           </div>
 
           <div class="collapse">
 
             <ul class="nav navbar-nav">
-              <li class="active"><a href="#/">Home</a></li>
-              <li><a ng-href="#/about">About</a></li>
-              <li><a ng-href="#/">Contact</a></li>
+              <li class="active"><a ui-sref="home" class="large button">Home</a></li>
+              <li><a ui-sref="about" class="large button">About</a></li>
+              <li><a ui-sref="contact" class="large button">Contact</a></li>
             </ul>
           </div>
         </div>
@@ -42,7 +42,7 @@
     </div>
 
     <div class="container">
-    <div ng-view=""></div>
+    <div ui-view=""></div>
     </div>
 
     <div class="footer">
@@ -76,6 +76,7 @@
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="bower_components/fastclick/lib/fastclick.js"></script>
     <script src="bower_components/jquery.cookie/jquery.cookie.js"></script>
     <script src="bower_components/jquery-placeholder/jquery.placeholder.js"></script>
