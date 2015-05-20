@@ -1,0 +1,49 @@
+<div class="row">
+    <div class="clean-button-tiny top-cta right deleteService">&nbsp; delete <%= service.name%>&nbsp;<i class="fi-trash"></i>
+    </div>
+    <div class="clean-button-tiny top-cta right saveService">
+        &nbsp; save &nbsp;<i class="fi-save"></i>
+    </div>
+    <div class="clean-button-tiny top-cta right cancelService">cancel</div>
+    <h4>SERVICES <small><%= service.name ? (' | '+service.name) : '' %></small></h4>
+    <hr>
+    <form class="form-service" data-abide>
+        <div class="columns large-6">
+            <label>Service Name
+                <input type="text" placeholder="eg Premium Open Bar" name="name" value="<%= service.name %>" required>
+            </label>
+            <label>Description</label>
+            <textarea name="description" cols="30" rows="3" value="<%= service.description %>"><%= service.description %></textarea>
+            <label>Unit Pricing Method
+                <select name="unitMethod">
+                    <%
+                        _.each(UNIT_METHODS, function(v,k){
+                    %>    
+
+                        <option value="<%= k %>" <% service.unitMethod==k ? 'selected' : '' %>><%= v %></option>
+                    <%    
+                        });
+                    %>
+
+                </select>
+            </label>
+            <label>Unit Rate
+                <input type="number" placeholder="$ 20.0" name="unitRate" value="<%= service.unitRate %>" min="0">
+            </label>
+        </div>
+        <div class="columns large-6">
+            <div class="row collapse">
+                <div class="columns large-3">
+                    <div class="switch round tiny">
+                        <input name="isActive" type="checkbox" id="isActiveService" <%= service.isActive ? 'checked' : '' %>>
+                        <label for="isActiveService"></label>
+                    </div>
+                </div>
+                <div class="columns large-9">
+                    <h6 class="subheader">Currently Active</h6>
+                </div>
+            </div>
+        
+    </form>
+    </div>
+</div>

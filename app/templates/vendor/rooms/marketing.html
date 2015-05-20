@@ -1,0 +1,21 @@
+<div class="form-wrap dualTagBox">
+
+    <div class="row">
+        <h4>ROOM 
+            <small><%= room.name ? ('| '+room.name) : '' %></small>
+
+        </h4>
+        <hr>
+        <div class="columns large-12">
+            <h6>Tags</h6>
+            <div class="room-tokens clearfix">
+                <% _.each(room.marketing, function(name){%>
+                    <div class="token left">
+                        <%= name %> &nbsp; <i class="fi-x removeTag" data-name="<%= name %>"></i>
+                    </div>
+                <% }); %>
+            </div>
+            <div class="clean-button-tiny addTag">add tags</div>
+        </div>
+    </div>
+</div>

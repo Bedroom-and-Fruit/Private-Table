@@ -1,0 +1,39 @@
+<div class="form-wrap">
+    <div class="row">
+        <h4>
+            ROOM
+            <small>| Sophia Room Menus</small>
+        </h4>
+        <hr>
+
+        <%
+            _.each(menus, function(menu){
+        %>
+        <div class="row menus-wrap">
+            <div class="columns large-3">
+                <div class="row collapse">
+                    <div class="columns large-8">
+                        <div class="switch round tiny">
+                            <input class="toggleMenu" data-id="<%= menu._id %>
+                            " type="checkbox" id="ispobactive
+                            <%= menu._id %>
+                            "
+                            <%= (room.menus && room.menus.indexOf(menu._id) >
+                            =0) ? 'checked' : '' %> >
+                            <label for="ispobactive<%= menu._id %>"></label>
+                        </div>
+                    </div>
+                    <div class="columns large-4"></div>
+                </div>
+            </div>
+            <div class="columns large-9">
+                <!--img(src='assets/images/image.png')-->
+                <span>
+                    <%= menu.name %></span>
+            </div>
+        </div>
+
+        <%
+            });
+        %></div>
+</div>

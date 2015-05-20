@@ -1,0 +1,39 @@
+<div class="columns large-3">
+    <div class="silo verticalmenu">
+        <div class="menu-wrap menu-secondary">
+            <ul>
+                <li class="active">
+                    <a data-nav="general">General</a>
+                </li>
+                <%
+                    if(!room.isNew()){
+                %>
+                    <li>
+                        <a data-nav="layouts">Layouts</a>
+                    </li>
+                    <li>
+                        <a data-nav="revenue">Revenue Management</a>
+                    </li>
+                    <li>
+                        <a data-nav="amenities"> Amenities</a>
+                    </li>
+                    <li>
+                        <a data-nav="services"> Services</a>
+                    </li>
+                    <li> 
+                        <a data-nav="menu">Menu</a>
+                    </li>
+                    <li>
+                        <a data-nav="marketing">Marketing</a>
+                    </li>
+                <% } %>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="columns large-9 right-col">
+    <div class="roomContent">
+
+    </div>
+</div>

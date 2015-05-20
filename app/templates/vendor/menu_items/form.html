@@ -1,0 +1,127 @@
+<div class="formItem dualTagBox">
+    <div class="clean-button-tiny top-cta right saveMenuItem">
+        &nbsp; save &nbsp; <i class="fi-save"></i>
+    </div>
+    <div class="clean-button-tiny top-cta right cancelMenuItem">cancel</div>
+    <h4>
+        MENU ITEM
+        <small>
+            <%= item.name ? '| '+item.name : '' %></small>
+    </h4>
+    <hr>
+    <div class="columns large-4">
+        <label>
+            Menu Item Name
+            <input name="name" type="text" placeholder="eg My Hotel" value="<%= item.name %>"></label>
+        <label>
+            Description
+            <span class="right">120/200</span>
+        </label>
+        <textarea name="description" cols="30" rows="4">
+            <%= item.description %></textarea>
+        <div class="row collapse">
+            <div class="columns large-3">
+                <div class="switch round tiny">
+                    <input name="isActive" type="checkbox" id="isActive" <%= item.isActive ? 'checked' : '' %>
+                    >
+                    <label for="isActive"></label>
+                </div>
+            </div>
+            <div class="columns large-9">
+                <h6 class="subheader">Currently Active</h6>
+            </div>
+        </div>
+    </div>
+    <div class="columns large-4">
+        <label>
+            How is this menu item served? (subcategory)
+            <select name="subcategory">
+                <% _.each(SUBCATEGORIES, function(v,k){ %>
+                <option value="<%= k %>
+                    "
+                    <%= item.subcategory && k==item.subcategory ? 'selected' : '' %>
+                    >
+                    <%= v %></option>
+                <%})%></select>
+        </label>
+        <div class="row collapse">
+            <label>Price</label>
+            <div class="columns large-5">
+                <div class="padding1pxsides">
+                    <div class="row collapse">
+                        <div class="columns large-4">
+                            <span class="postfix">$</span>
+                        </div>
+                        <div class="columns large-8">
+                            <input name="priceValue" type="number" placeholder="eg 20" value="<%= item.price.value %>"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="columns large-7">
+                <div class="padding1pxsides">
+                    <select name="priceUnit">
+                        <% _.each(PRICE_UNITS, function(v,k){ %>
+                        <option value="<%= k %>
+                            "
+                            <%= item.price && k==item.price.unit ? 'selected' : '' %>
+                            >
+                            <%= v %></option>
+                        <%})%></select>
+                </div>
+            </div>
+        </div>
+        <div class="row collapse">
+            <div class="columns large-3">
+                <div class="switch round tiny">
+                    <input name="guestCountRequired" type="checkbox" id="isRequired" <%= item.guest.countRequired ? 'checked' : '' %>
+                    >
+                    <label for="isRequired"></label>
+                </div>
+            </div>
+            <div class="columns large-6">
+                <h6 class="subheader">Guest Count Required</h6>
+            </div>
+            <div class="columns large-3">
+                <input name="guestCountValue" type="number" placeholder="eg 20" value="<%= item.guest.countValue %>"></div>
+        </div>
+    </div>
+    <div class="columns large-4">
+        <h6 class="dietary">Ingredients</h6>
+        <div class="ingredient-tokens clearfix">
+            <% _.each(item.ingredients, function(name){%>
+                <div class="token left">
+                    <%= name %> &nbsp; <i class="fi-x removeTag" data-name="<%= name %>"></i>
+                </div>            
+            <% }); %>
+        </div>
+        <div class="clean-button-tiny">
+            <a class="addIngredient">Add Ingredients</a>
+        </div>
+        <h6 class="dietary">Dietary Preferences</h6>
+        <div class="preference-tokens clearfix">
+            <% _.each(item.dietaryPreferences, function(name){%>
+                <div class="token left">
+                    <%= name %> &nbsp; <i class="fi-x removeTag" data-name="<%= name %>"></i>
+                </div>            
+            <% }); %>
+        </div>
+        <div class="clean-button-tiny">
+            <a class="addPreference">Add Dietary Preferences</a>
+        </div>
+    </div>
+    <hr>
+    <div class="clean-button-tiny top-cta right">
+        &nbsp; upload image &nbsp;
+        <i class="fi-upload"></i>
+    </div>
+    <div class="clean-button-tiny top-cta right">&nbsp; hide dropzone &nbsp;</div>
+    <h5 class="subheader">IMAGES</h5>
+    <ul class="inline-list">
+        <li>
+            <div style="width:160px;height:90px;background-color:#444" class="img-place-holder"></div>
+        </li>
+        <li>
+            <div style="width:160px;height:90px;background-color:#444" class="img-place-holder"></div>
+        </li>
+    </ul>
+</div>

@@ -1,0 +1,28 @@
+<div class="form-wrap">
+    <div class="row">
+        <div class="clean-button-tiny top-cta right saveSettings">
+            &nbsp; save &nbsp; <i class="fi-save"></i>
+        </div>
+        <div class="clean-button-tiny top-cta right cancelSettings">cancel</div>
+        <h4>
+            SETTINGS
+            <small>| Copy, Intros, Success</small>
+        </h4>
+        <hr>
+        <div class="columns large-6">
+            <label>
+                Intro Email Message
+                <textarea name="introEmail" rows="4" placeholder="Enter intro email message" ><%= settings.introEmail %></textarea>
+            </label>
+            <label>
+                Marketplace Introduction Message
+                <textarea name="marketIntro" rows="4" placeholder=""><%= settings.marketIntro %></textarea>
+            </label>
+            <label>
+                Intro Email Success Page Message
+                <textarea name="emailSuccess" rows="4" placeholder=""><%= settings.emailSuccess %></textarea>
+            </label>
+        </div>
+        <div class="columns large-6"></div>
+    </div>
+</div>

@@ -1,0 +1,241 @@
+<div class="row">
+    <div class="clean-button-tiny top-cta right deleteRoom">
+        &nbsp; delete room &nbsp; <i class="fi-trash"></i>
+    </div>
+    <div class="clean-button-tiny top-cta right saveRoom">
+        &nbsp; save &nbsp; <i class="fi-save"></i>
+    </div>
+    <div class="clean-button-tiny top-cta right cancelRoom">cancel</div>
+    <h4>
+        ROOM
+        <small><%= room.name ? ('| '+room.name) : '' %></small>
+    </h4>
+    <hr>
+    <form data-abide>
+        <div class="columns large-4">
+            <div>
+                <label>
+                    Room Name
+                    <input name="name" type="text" placeholder="eg My Hotel" value="<%= room.name %>" required></label>
+                
+            </div>
+            <label>
+                Room Type
+                <select name="roomType">
+                    <%
+                    _.each(ROOM_TYPES, function(v,k){
+                %>
+                    <option value="<%= k %>
+                        "
+                        <%= k==room.roomType ? 'selected' : '' %>
+                        >
+                        <%= v %></option>
+                    <%    
+                    })
+                %></select>
+            </label>
+            <div class="row collapse">
+                <label>Room Size</label>
+                <div class="columns large-4">
+                    <input name="roomSizeValue" type="text" placeholder="eg 9,000" value="<%= room.roomSize.value %>"></div>
+                <div class="columns large-8">
+                    <select name="roomSizeUnit">
+                        <%
+                        _.each(ROOM_SIZE_UNITS, function(v,k){
+                    %>
+                        <option value="<%= k %>
+                            "
+                            <%= (room.roomSize && k==room.roomSize.unit) ? 'selected' : '' %>
+                            >
+                            <%= v %></option>
+                        <%    
+                        })
+                    %></select>
+                </div>
+            </div>
+            <label>
+                Description
+                <textarea name="description" rows="4" placeholder="">
+                    <%= room.description %></textarea>
+            </label>
+        </div>
+        <div class="columns large-4">
+            <div class="row collapse">
+                <div class="columns large-3">
+                    <div class="switch round tiny">
+                        <input name="isActive" type="checkbox" id="isroomactive" <%= room.isActive ? 'checked' : '' %>
+                        >
+                        <label for="isroomactive"></label>
+                    </div>
+                </div>
+                <div class="columns large-9">
+                    <h6 class="subheader">Room is active</h6>
+                </div>
+            </div>
+            <div class="row collapse">
+                <div class="columns large-3">
+                    <div class="switch round tiny">
+                        <input name="requireApproval" type="checkbox" id="isbookingapproval" <%= room.requireApproval ? 'checked' : '' %>
+                        >
+                        <label for="isbookingapproval"></label>
+                    </div>
+                </div>
+                <div class="columns large-9">
+                    <h6 class="subheader">Booking requires approval</h6>
+                </div>
+            </div>
+            <div class="row collapse">
+                <div class="columns large-3">
+                    <div class="switch round tiny">
+                        <input name="revenueOn" type="checkbox" id="isrevmanagement" <%= room.revenueOn ? 'checked' : '' %>
+                        >
+                        <label for="isrevmanagement"></label>
+                    </div>
+                </div>
+                <div class="columns large-9">
+                    <h6 class="subheader">Revenue management is on</h6>
+                </div>
+            </div>
+            <hr>
+            <h5 class="subheader">DEFAULT RATE &amp; FEES</h5>
+            <div class="row collapse">
+                <div class="columns large-6">
+                    <div class="padding1pxsides">
+                        <label>Day Rate</label>
+                        <div class="row collapse">
+                            <div class="columns large-4">
+                                <span class="postfix">$</span>
+                            </div>
+                            <div class="columns large-8">
+                                <input name="rateDay" type="number" placeholder="eg 4000" value="<%= room.rate.day%>"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="columns large-6">
+                    <div class="padding1pxsides">
+                        <label>Night Rate</label>
+                        <div class="row collapse">
+                            <div class="columns large-4">
+                                <span class="postfix">$</span>
+                            </div>
+                            <div class="columns large-8">
+                                <input name="rateNight" type="number" placeholder="eg 2000" value="<%= room.rate.night %>" ></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row collapse">
+                <div class="columns large-6">
+                    <div class="padding1pxsides">
+                        <label>Rental Fee</label>
+                        <div class="row collapse">
+                            <div class="columns large-4">
+                                <span class="postfix">$</span>
+                            </div>
+                            <div class="columns large-8">
+                                <input name="feeRental" type="number" placeholder="eg 4000" value="<%= room.fee.rental%>" ></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="columns large-6">
+                    <div class="padding1pxsides">
+                        <label>Cleaning Fee</label>
+                        <div class="row collapse">
+                            <div class="columns large-4">
+                                <span class="postfix">$</span>
+                            </div>
+                            <div class="columns large-8">
+                                <input name="feeCleaning" type="number" placeholder="eg 2000" value="<%= room.fee.cleaning %>" ></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row collapse">
+                <label>Overage</label>
+                <div class="columns large-6">
+                    <div class="row collapse">
+                        <div class="columns large-4">
+                            <span class="postfix">$</span>
+                        </div>
+                        <div class="columns large-8">
+                            <input name="overageValue" type="number" placeholder="eg 2000" value="<%= room.overage.value %>" ></div>
+                    </div>
+                </div>
+                <div class="columns large-6">
+                    <select name="overageUnit">
+                        <%
+                        _.each(OVERAGE_UNITS, function(v,k){
+                    %>
+                        <option value="<%= k %>
+                            "
+                            <%= (room.overage && k==room.overage.unit) ? 'selected' : '' %>
+                            >
+                            <%= v %></option>
+
+                        <%    
+                        })
+                    %></select>
+                </div>
+            </div>
+        </div>
+        <div class="columns large-4">
+            <h5 class="subheader">RULES</h5>
+            <label>
+                House Rules
+                <select name="houseRule" >
+                    <%
+                    _.each(HOUSE_RULES, function(v,k){
+                %>
+                    <option value="<%= k %>
+                        "
+                        <%= k==room.houseRule ? 'selected' : '' %>
+                        >
+                        <%= v %></option>
+
+                    <%    
+                    })
+                %></select>
+            </label>
+            <label>
+                Cancellation Policy
+                <select name="cancelPolicy">
+                    <%
+                    _.each(CANCELLATIONS, function(v,k){
+                %>
+                    <option value="<%= k %>
+                        "
+                        <%= k==room.cancelPolicy ? 'selected' : '' %>
+                        >
+                        <%= v %></option>
+
+                    <%    
+                    })
+                %></select>
+            </label>
+            <label>
+                Lead Time
+                <select name="leadTime">
+                    <%
+                    _.each(LEAD_TIMES, function(v,k){
+                %>
+                    <option value="<%= k %>
+                        "
+                        <%= k==room.leadTime ? 'selected' : '' %>
+                        >
+                        <%= v %></option>
+
+                    <%    
+                    })
+                %></select>
+            </label>
+        </div>
+    </form>
+</div>
+<div class="row">
+    <div class="columns small-12">
+        <p>This room has 3 images. Select the hero image.</p>
+        <p>
+            {return images for this layout. user simply clicks on desired images to select as hero}
+        </p>
+    </div>
+</div>

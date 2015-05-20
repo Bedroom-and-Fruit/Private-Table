@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "normalize.css",
+  "sources": [
+    "normalize.scss"
+  ],
+  "names": [],
+  "mappings": "",
+  "sourceRoot": ""
+}

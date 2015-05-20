@@ -1,0 +1,34 @@
+<div class="form-wrap">
+    <div class="row">
+        <h4>
+            ROOM
+            <small>
+                <%= room.name ? ('| '+room.name) : '' %></small>
+
+        </h4>
+        <hr>
+        <%
+            _.each(services, function(service){
+        %>
+        <div class="row services-wrap">
+            <div class="columns large-3">
+                <div class="row collapse">
+                    <div class="columns large-8">
+                        <div class="switch round tiny">
+                            <input class="toggleService" data-id="<%= service._id %>" type="checkbox" id="ischefactive<%= service._id %>" <%= (room.services && room.services.indexOf(service._id) >=0) ? 'checked' : '' %> >
+                            <label for="ischefactive<%= service._id %>"></label>
+                        </div>
+                    </div>
+                    <div class="columns large-4"></div>
+                </div>
+            </div>
+            <div class="columns large-9">
+                <img src="assets/images/image.png">
+                <span>
+                    <%= service.name %></span>
+            </div>
+        </div>
+        <%
+            });
+        %></div>
+</div>

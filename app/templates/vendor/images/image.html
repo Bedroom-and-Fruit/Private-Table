@@ -1,0 +1,20 @@
+<td valign="middle">
+    <img src="<%= image.fileUrl %>" alt="<%= image.fileName %>"></td>
+<td valign="middle">
+    <h6><%= image.fileName %></h6>
+</td>
+<td valign="middle" class="tags">
+    <% _.each(image.tags, function(tag){ %>
+        <div class="token left">
+            <%= tag %>&nbsp; <i class="fi-x removeTag" data-name="<%= tag %>"></i>
+        </div>
+    <% }); %>
+    <% if(!image.tags || image.tags.length == 0){ %>
+        not set tag yet
+    <% } %>
+</td>
+<td>
+    <div class="clean-button-tiny addTag">add tags</div>
+    &nbsp;&nbsp;&nbsp;
+    <a class="removeImage" title="remove"> <i class="fi-trash"></i></a>
+</td>
