@@ -1,0 +1,77 @@
+<div class="form-wrap terminologyPanel">
+    <div class="row">
+        <a href="javascript:;" style="display:none;" class="clean-button-tiny top-cta right closeSlideout">close slideout</a>
+        <h4>
+            TERMINOLOGY
+            <small>| Customize Your Venue</small>
+        </h4>
+        <hr>
+        <div class="columns large-12">
+            <h6>Room Type</h6>
+            <div class="room-tokens clearfix">
+                <%
+                    _.each(setting.roomType, function(roomType){
+
+                %>
+                    <div class="token left">
+                        <%= roomType %> &nbsp;
+                        <i class="fi-x removeTerm" data-name="<%= roomType %>" data-kind="roomType" ></i>
+                    </div>                
+                <%
+                    });
+                %>
+            </div>
+            <a class="clean-button-tiny addType" data-kind="roomType">Add Room Type</a>
+            <hr>
+            <h6>Course Type</h6>
+            <div class="room-tokens clearfix">
+                <%
+                    _.each(setting.courseType, function(courseType){
+
+                %>
+                    <div class="token left">
+                        <%= courseType %> &nbsp;
+                        <i class="fi-x removeTerm" data-name="<%= courseType %>" data-kind="courseType" ></i>
+                    </div>                
+                <%
+                    });
+                %>            
+        
+            </div>
+            <a class="clean-button-tiny addType" data-kind="courseType">Add Course Type</a>
+            <hr>
+            <h6>Job Role Type</h6>
+            <div class="room-tokens clearfix">
+                <%
+                    _.each(setting.jobRoleType, function(jobRoleType){
+
+                %>
+                    <div class="token left">
+                        <%= jobRoleType %> &nbsp;
+                        <i class="fi-x removeTerm" data-name="<%= jobRoleType %>" data-kind="jobRoleType" ></i>
+                    </div>                
+                <%
+                    });
+                %>
+            </div>
+            <a class="clean-button-tiny addType" data-kind="jobRoleType">Add Job Role Type</a>
+            <hr>
+            <h6>Ammenities</h6>
+            <div class="room-tokens clearfix">
+                <%
+                    _.each(setting.ammenityType, function(ammenityType){
+
+                %>
+                    <div class="token left">
+                        <%= ammenityType %> &nbsp;
+                        <i class="fi-x removeTerm" data-name="<%= ammenityType %>" data-kind="ammenityType" ></i>
+                    </div>                
+                <%
+                    });
+                %>
+            </div>
+            <a class="clean-button-tiny addType" data-kind="ammenityType">Add Ammenities Type</a>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,9 @@
+<%
+  _.each(services, function(service){
+%>
+  <li class="item">
+    <a href="javascript:;" data-service_id="<%= service._id %>"><%= service.name %></a>
+  </li>
+<%
+    })
+%>

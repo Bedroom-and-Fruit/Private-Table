@@ -1,0 +1,169 @@
+<div class="form-wrap">
+    <div class="row">
+
+        <div class="clean-button-tiny top-cta right updateVenue">
+            &nbsp; save &nbsp; <i class="fi-save"></i>
+        </div>
+        <div class="clean-button-tiny top-cta right cancelVenue">cancel</div>
+        <h4>
+            VENUE
+            <small>| General Setup Information</small>
+        </h4>
+        <hr>
+        <form data-abide>
+            <div class="columns large-4">
+                <div>
+                    <label>
+                        Venue Name
+                        <input required name="name" type="text" placeholder="eg My Hotel" value="<%= venue.name %>"></label>
+
+                </div>
+                <div>
+                    <label>
+                        Address
+                        <input name="address" type="text" placeholder=""  value="<%= venue.address %>"></label>
+
+                </div>
+                <div>
+                    <label>
+                        Phone Number
+                        <input name="phone" type="text" placeholder="(555) 555-5555" value="<%= venue.phone %>"></label>
+                </div>
+                <div>
+                    <label>
+                        Fax Number
+                        <input name="fax" type="text" placeholder="(555) 555-5555" value="<%= venue.fax %>"></label>
+                </div>
+                <div>
+                    <label>
+                        url
+                        <input name="url" type="text" placeholder="eg www.name.com" value="<%= venue.url %>" pattern="domain"></label>
+                </div>
+                <div>
+                    <label>
+                        Email
+                        <input required name="email" type="text" placeholder="eg joe@name.com" value="<%= venue.email %>" pattern="email"></label>
+                </div>
+            </div>
+            <div class="columns large-4">
+                <div class="row collapse">
+                    <div class="columns large-3">
+                        <div class="switch round tiny">
+                            <input name="taxInMenu" type="checkbox" id="includeTaxGratuity" <%= venue.taxInMenu ? 'checked' : ''%>
+                            >
+                            <label for="includeTaxGratuity"></label>
+                        </div>
+                    </div>
+                    <div class="columns large-9">
+                        <h6 class="subheader">Include Tax and Gratuity in Menu Price</h6>
+                    </div>
+                </div>
+                <hr>
+                <div class="row collapse">
+                    <div class="columns large-6">
+                        <div class="padding1pxsides">
+                            <label>
+                                Tax Rate
+                                <div class="row collapse">
+                                    <div class="columns large-8">
+                                        <input name="tax" type="number" placeholder="eg 9.00%" value="<%= venue.tax %>" min="0" max="100" pattern="integer"></div>
+                                    <div class="columns large-4">
+                                        <span class="postfix">%</span>
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="columns large-6">
+                        <div class="padding1pxsides">
+                            <label>
+                                Gratuity
+                                <div class="row collapse">
+                                    <div class="columns large-8">
+                                        <input name="gratuity" type="number" placeholder="eg 22.0" value="<%= venue.gratuity %>" min="0"  max="100" pattern="integer"></div>
+                                    <div class="columns large-4">
+                                        <span class="postfix">%</span>
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row collapse">
+                    <label>Business Hours</label>
+                    <div class="columns large-6">
+                        <div class="padding1pxsides">
+                            <select name="businessHourOpen">
+                                <%
+                            _.each(BUSINESS_HOURS.OPEN, function(v, k){
+                            %>
+                                <option value="<%= k %>
+                                    "
+                                    <%= venue.businessHour && venue.businessHour.openTime == k ? 'selected' : '' %>
+                                    >
+                                    <%= v %></option>
+                                <%
+                            })
+                            %></select>
+                        </div>
+                    </div>
+                    <div class="columns large-6">
+                        <div class="padding1pxsides">
+                            <select name="businessHourClose">
+                                <%
+                            _.each(BUSINESS_HOURS.CLOSE, function(v, k){
+                            %>
+                                <option value="<%= k %>
+                                    "
+                                    <%= venue.businessHour && venue.businessHour.closeTime == k ? 'selected' : '' %>
+                                    >
+                                    <%= v %></option>
+                                <%
+                            })
+                            %></select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="columns large-4">
+                <label>
+                    Time Zone
+                    <select name="timeZone">
+                        <%
+                    _.each(TIME_ZONES, function(v, k){
+                    %>
+                        <option value="<%= k %>" <%= venue.timeZone==k ? 'selected' : '' %> >
+                            <%= v %></option>
+                        <%
+                    })
+                    %></select>
+                </label>
+                <label>
+                    Currency
+                    <select name="currency">
+                        <%
+                    _.each(CURRENCY, function(v, k){
+                    %>
+                        <option value="<%= k %>" <%= venue.currency==k ? 'selected' : '' %> >
+                            <%= v %></option>
+                        <%
+                    })
+                    %></select>
+                </label>
+                <label>
+                    Cuisine Type
+                    <select name="cuisineType">
+                        <%
+                    _.each(CUISINE_TYPES, function(v, k){
+                    %>
+                        <option value="<%= k %>
+                            " <%= venue.cuisineType==k ? 'selected' : '' %> >
+                            <%= v %></option>
+                        <%
+                    })
+                    %></select>
+                </label>
+            </div>
+        </form>
+    </div>
+</div>

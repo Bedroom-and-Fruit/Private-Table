@@ -1,0 +1,825 @@
+.nomargin{margin:0;}
+.content-wrapper{
+    padding-bottom:2em;
+}
+.white-bg{
+    background-color:#fff;
+}
+.eee-bg{
+    background-color:#eee;
+}
+.ddd-bg{
+    background-color:#ddd;
+}
+#main-calendar{
+    table{
+        border-collapse: collapse;
+        margin:0;
+        thead{
+            td{
+                font-weight:400;
+                text-align: center;
+            }
+        }
+        tbody{
+            td{
+                height:100px;
+                width:14.28%;
+                border:1px solid #ddd;
+                
+                //inner table for Days
+                table{
+                    border:none;
+                    td{
+                        height:auto;
+                        padding:0;
+                        border:none;
+                    }
+                
+                }
+            }
+        }        
+    }
+}
+
+#ranking{
+    table{
+        border-collapse: collapse;
+        margin:0;  //removes bottom margin 
+        border: none;
+        thead{
+            background-color:#fff;
+            border-bottom:1px solid #ccc;
+            th{
+                font-weight:400;
+                text-align: left;
+                font-size:0.8em;
+            }
+        }
+        tbody{
+            td{
+                height:40px;
+                //width:14.28%;
+                border-bottom:1px solid #ddd;
+                
+            }
+        }        
+    }
+}
+
+th{
+    background-color:transparent;
+}
+
+.truncate {
+  width: 250px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.clean-button {
+  @include button(
+    // $padding - Used to build padding for buttons Default: $button-med or rem-calc(12)
+    rem-calc(3),
+    // Background color. We can set $bg:false for a transparent background. Default: $primary-color.
+    #fff,
+    // If true, set to button radius which is $global-radius or explicitly set radius amount in px (ex. $radius:10px). Default:false.
+    rem-calc(2),
+    // We can set $full-width:true to remove side padding extend width. Default:false
+    false,
+    // We can set $disabled:true to create a disabled transparent button. Default:false
+    false,
+    // $is-input - <input>s and <button>s take on strange padding. We added this to help fix that. Default:false
+    false
+  );
+  border: 1px solid #222;
+  font-size: rem-calc(10);
+}
+.clean-button-tiny {
+  @include button(
+    rem-calc(3),
+    #fff,
+    rem-calc(2),
+    false,
+    false,
+    false
+  );
+  border: 1px solid #222;
+  font-size: rem-calc(10);
+}
+.clean-button-inverse {
+  @include button( rem-calc(12), #444, rem-calc(2), false, false, false);
+  //border: 1px solid #222;
+  //font-size: rem-calc(10);
+}
+.clean-button-regular {
+    @include button( rem-calc(12), #fff, rem-calc(2), false, false, false);
+    border: 1px solid #222;
+    margin:0;
+  //font-size: rem-calc(10);
+}
+.clean-button-regular-secondary {
+    @include button( rem-calc(10), #fff, rem-calc(2), false, false, false);
+    border: 1px solid #aaa;
+    margin:0;
+    color:#888;
+    font-size:0.85em;
+  //font-size: rem-calc(10);
+}
+
+
+// marketplace
+.filter-wrapper{
+    label{
+        font-size:0.75rem;
+    }
+    input, select{
+        padding:4px 8px;
+        height:29px;
+    }
+}
+.search-results{
+    
+}
+
+.hero {
+    carousel ul li a img{width:100%}
+}
+
+
+// PDP 
+//subnav fixed - data-magellan-explorer
+#dme{
+    border-bottom:1px solid #aaa;
+    .dme-wrap{
+        height:50px;
+        background-color:#fff;
+        padding:7px 32px 0;
+        overflow:hidden;
+        position:relative;
+        
+            
+        .progress-steps{
+            font-size:0.8em;
+            color:#aaa;
+        }
+        .room-item{
+            img{
+                margin:0 0 6px 0;
+            }
+            h6{
+            
+            }
+        }
+        .subnav{
+            margin:0;
+            padding:0;
+            background-color: transparent;
+            position:absolute;
+            left:32px;
+            bottom:0px;
+            li{
+                transition: border-bottom;
+                margin:0 2em 0 0;
+                border-bottom:3px solid #fff;
+                a{
+                    color:#aaa
+                }
+            }
+            li.active
+            {
+                border-bottom:3px solid #f77;
+                a{
+                    color:#f77;
+                }
+            }
+            li:last-child{margin-right:0;}
+        }
+    }
+}
+
+[data-magellan-expedition-clone] { display: none; }
+// PDP Table
+table.pdp-summary{
+    margin:0;
+    border:none;
+    tr{
+        border-bottom:1px solid #ddd;
+        td:nth-child(1){
+            padding-right:0;width:24px;
+            img{
+                height:16px;
+                width:16px;
+            }
+        }
+        td:nth-child(2){
+            width:80px;
+        }
+        td:nth-child(3){
+            img{
+                height:10px;
+                width:10px;
+            }
+            h6 {margin:0}
+        }
+    }
+    tr.select-line{
+        background-color:#fff;
+        td:nth-child(3){
+            display:none
+        }
+    }
+    tr.summary-line{
+        background-color:#e4e4e4;
+    }
+    tr.header-display{
+        border-bottom:1px solid #ddd;
+        td{
+            padding-right:0;
+            background-color:#333;
+            padding: 2px 0;
+            h6{
+                color:#fff;
+            }
+        }
+    }
+}
+// PDP Form
+.form-wrap{
+    .form-block{
+        background-color:#fff;
+        
+        .line-item{
+            padding:1em 0 0 0;
+        }
+        .hide-item, selection-made{
+            display:none;
+        }
+        button{
+            margin-top:0.5em;
+        }
+    }
+    .secondary-cta-wrap{
+        margin-top:0.5em;
+    }
+    p.share-wrap{
+        margin:0.5em 0 0;
+        a{
+            color:#888;
+            i{
+                font-size:24px;
+                margin-right:8px
+            }
+        }
+        a:hover{
+            color:#f77;
+        }
+    }
+}
+// PDP Form
+.configurator{
+    label{
+        font-size:0.75rem;
+        margin:0;
+    }
+    input, select{
+        padding:4px 8px;
+        height:29px;
+        margin:0;
+    }
+}
+// PDP Room
+#room{
+    h1{
+        font-family:serif;
+        margin-bottom:0;
+    }
+    h6{
+        margin:0 0 2em;
+    }
+
+    .signal{
+        text-align: center;
+        img{opacity:0.55}
+        h6{color:#888}
+    }
+    .story {
+       -moz-column-count: 3;
+       -moz-column-gap: 20px;
+       -webkit-column-count: 3;
+       -webkit-column-gap: 20px;
+    }
+    .room-details{
+        img{
+            width:14px;
+            height:14px;
+            margin:0 8px 2px 0;
+        }
+        font-size:0.8em;
+        b{
+            color:#444;
+            font-weight:400;
+        }
+        span{
+            color:#888;
+            font-weight:200;
+            img{
+                height:10px;
+                width:10px;
+                margin:0 2px 2px;
+                opacity:0.75;
+            }
+        }
+        small{
+            font-size:0.8em;
+            color:#888
+        }
+    }
+    .white-bg{
+        width:100%;
+        background-color:#fff;
+    }
+}
+#layouts{
+    margin-top:60px;
+    .white-bg{
+        width:100%;
+        background-color:#fff;
+    }
+    .pad {padding:24px 0;}
+    .navigate {
+        p {
+            line-height:32px;
+        }
+    }
+    .highlight{
+        h5 {}
+        h6 {color:#888;}
+        img {
+            margin:0 auto;
+            width:24px;
+            height:24px;
+        }
+    }
+    .photo-wrap{
+        position:relative;
+        width:100%;
+        height:300px;
+        overflow: hidden;
+        
+        .right-pointer{
+            position:absolute;
+            top:50%;
+            margin-top:-16px;
+            right:24px;
+            width:32px;
+            height:32px;
+            background: transparent url(../images/pointer-right-fff.png) 0 0 no-repeat;
+            //border:1px solid #fff;
+        }
+        .left-pointer{
+            position:absolute;
+            top:50%;
+            margin-top:-16px;
+            left:24px;
+            width:32px;
+            height:32px;
+            background: transparent url(../images/pointer-left-fff.png) 0 0 no-repeat;
+            //border:1px solid #fff;
+        }
+    }
+    
+    .room-details{
+        img{
+            width:14px;
+            height:14px;
+            margin:0 8px 2px 0;
+        }
+        font-size:0.8em;
+        b{
+            color:#444;
+            font-weight:400;
+        }
+        span{
+            color:#888;
+            font-weight:200;
+            img{
+                height:10px;
+                width:10px;
+                margin:0 2px 2px;
+                opacity:0.75;
+            }
+        }
+        small{
+            font-size:0.8em;
+            color:#888
+        }
+    }
+
+}
+#services{
+    margin-top:60px;
+    .white-bg{
+        width:100%;
+        background-color:#fff;
+        border:1px solid #ccc;
+        margin-bottom:1em;
+        
+        .pad{ padding: 24px 0 24px 24px;}
+        img {width:24px;height:24px}
+    }
+}
+#menus{
+    margin-top:60px;
+    .white-bg{
+        width:100%;
+        background-color:#fff;
+    }
+    .pad {padding:24px 0;}
+    .navigate {
+        p {
+            line-height:32px;
+        }
+    }
+    .highlight{
+        h5 {}
+        h6 {color:#888;}
+        img {
+            margin:0 auto;
+            width:24px;
+            height:24px;
+        }
+    }
+    .photo-wrap{
+        position:relative;
+        width:100%;
+        height:300px;
+        overflow: hidden;
+        
+        .right-pointer{
+            position:absolute;
+            top:50%;
+            margin-top:-16px;
+            right:24px;
+            width:32px;
+            height:32px;
+            background: transparent url(../images/pointer-right-fff.png) 0 0 no-repeat;
+            //border:1px solid #fff;
+        }
+        .left-pointer{
+            position:absolute;
+            top:50%;
+            margin-top:-16px;
+            left:24px;
+            width:32px;
+            height:32px;
+            background: transparent url(../images/pointer-left-fff.png) 0 0 no-repeat;
+            //border:1px solid #fff;
+        }
+    }
+    .menu-details{
+        color:#555;
+        h5{font-weight:200;}
+        h6{}
+    
+    }
+    .story {
+       -moz-column-count: 3;
+       -moz-column-gap: 20px;
+       -webkit-column-count: 3;
+       -webkit-column-gap: 20px;
+    }
+    .course{
+        margin-top:1.5em;
+        width:100%;
+        
+        .course-name{
+            color: #ccc;
+            font-size:0.85em;
+            font-weight: 100;
+            font-family: helvetica;
+        }
+        .menu-item{
+            position:relative;
+            margin-top:0.5em;
+            padding:3px;
+            background-color: #fff;
+            transition: background-color 0.3s ease;
+            
+            .item-name{
+                color: #333;
+                font-size:0.85em;
+                font-weight: 400;
+                font-family: helvetica;
+            }
+            .item-description{
+                color: #888;
+                font-size:0.7em;
+                font-weight: 200;
+                font-family: sans-serif;
+            }
+        }
+        .menu-item:hover{background-color:#f4f4f4;}
+    }
+}
+
+// checkout
+#payments-wrap{
+    .security-label{
+        img{width:14px;height:14px;opacity:0.5;margin-bottom:3px;}
+        font-size:0.8em;
+    }
+}
+#confirmation-wrap{
+
+}
+
+
+//menu item list
+ul.menu-item-list{
+    list-style:none;
+    li {
+        
+    
+    }
+}
+
+//menus
+.menu-form-wrap{
+    .course {
+
+        h5{
+            color:#aaa;
+            font-weight:100;
+    
+        }
+        .course-number{}
+        .course-name{
+            color:#66625b;
+        
+        }
+    }
+    
+    .menu-item{
+    
+    
+    
+    }
+}
+
+// amenities
+ul.amenities-wrap{
+    list-style: none;
+    
+    li.item {
+        margin-bottom:8px;
+        
+        img {
+            width:16px;
+            height:16px;
+            margin: 0 6px 0 0;
+        }
+    }
+}
+
+// services
+
+.services-wrap{
+    img {
+        width:20px;
+        height:20px;
+        margin-right:6px;
+    }
+
+}
+
+// available menus
+.available-menus-wrap {
+
+    ul.available-menus-list {
+        list-style: none;
+
+        li.item {
+            margin-bottom:8px;
+
+            img {
+                width:16px;
+                height:16px;
+                margin: 0 6px 0 0;
+            }
+        }
+    }
+}
+
+// revenue management
+.revenue-management-wrap{
+
+
+}
+#med-calendar{
+    table{
+        border-collapse: collapse;
+        margin:0;
+        thead{
+            th{
+                font-size:0.75em;
+                font-weight:400;
+                text-align: center;
+            }
+        }
+        tbody{
+            tr {
+                background-color: #fff;
+            }
+            td{
+                color:#aaa;
+                height:60px;
+                width:14.28%;
+                border:1px solid #ddd;
+                
+                p{
+                    margin:0;
+                }
+                
+                //inner table for Days
+                table{
+                    border:none;
+                    td{
+                        height:auto;
+                        padding:0;
+                        border:none;
+                    }
+                
+                }
+            }
+            td.selected{
+                background-color:#444;
+                color:#fff;
+                
+            }
+        }        
+    }
+}
+
+//venue
+
+.silo{
+    width:100%;
+    height:500px;
+    overflow:scroll;
+    border-bottom:1px #ddd solid;
+}
+
+#venue{
+    input{
+    
+    }
+    //top in-line horizontal nav
+    .subnav{
+        ul{
+            margin:1em 0;
+            
+            li{
+            
+            }
+            li.active{
+                color:#333;
+                font-weight:600;
+            }
+        }
+    }
+    .content-wrapper{
+        .left-col{
+            background-color:#e4e4e4;
+        }
+        
+        .right-col{
+            background-color:#fff;
+        }    
+    }
+    
+    //left col styles
+    .verticalmenu{
+        
+        // right vertical nav
+        .menu-wrap{
+            padding:16px;
+            ul{
+                list-style: none;
+                li{
+                    padding:8px 0;
+                }
+                li.active{
+                    color:#333;
+                    font-weight:600;
+                }
+            }
+        }
+        .menu-primary{
+            padding:16px 4px;            
+        }
+        .menu-secondary{
+            padding:16px;
+            height:100%;
+            background-color:#ddd;
+        }
+    }
+    
+    //right col styles
+    .form-wrap{
+        position:relative;
+        padding: 16px 32px;
+        hr{
+            
+        }
+        h4{
+            color:#333;
+            margin:0;
+        }
+        .top-cta{
+            margin-left:4px;
+            i{
+                color:#ddd;
+            }
+        }
+    }
+    
+    // slide out menu
+    .slideout-menu{
+        //height:100%;
+        .panel{
+            margin-bottom:0;
+        }
+        ul.menu-list{
+            list-style:none;
+            margin:0;
+        
+            li.item{
+                cursor: pointer;
+                background-color: #333;
+                padding:12px ;
+                margin:0;
+                color:#eee;
+                //border-top:1px solid #444;
+                transition: background-color 0.2s ease, color 0.2s ease;
+            }
+            
+            li.item:hover{
+                background-color:#fff;
+                color:#333;                
+            }
+        }    
+    }
+    
+    //table
+    .notification{
+        th{
+            font-size:1em;
+        }
+        i{
+            color:#ddd;
+            cursor: pointer;
+        }
+        i.active{
+            color:green;
+        }
+    }
+    
+    // dropzone | drag and upload image
+    .dropzone{
+        padding: 80px 0px;
+        border:1px dotted #bbb;
+        background-color:#fff;
+        text-align: center;
+    }
+}
+
+//venue
+
+.padding1pxsides{
+    padding:0 1px;
+}
+
+//tokens
+.token{
+    cursor: pointer;
+    margin:2px;
+    padding:4px 6px;
+    border:1px solid #ddd;
+    background-color:#eee;
+    color:#888;
+    font-size:0.85em;    
+    .i{
+        color:red;
+    }
+    transition: background-color 0.2s ease, border 0.2s ease, color 0.2s ease;
+}
+.token:hover{
+    background-color:#333;
+    color:#fff;
+    border:1px solid #333; 
+    .i{
+        color:#fff;
+    }
+}

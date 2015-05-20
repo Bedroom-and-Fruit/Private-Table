@@ -1,0 +1,94 @@
+<div class="row">
+    <div class="clean-button-tiny top-cta right deleteMenu">
+        &nbsp; delete menu &nbsp; <i class="fi-trash"></i>
+    </div>
+    <div class="clean-button-tiny top-cta right saveMenu">
+        &nbsp; save &nbsp; <i class="fi-save"></i>
+    </div>
+    <div class="clean-button-tiny top-cta right cancelMenu">cancel</div>
+    <% if(!isNew){ %>
+        <div class="clean-button-tiny top-cta right addCourse">add a course</div>
+    <%}%>
+    <h4>
+        MENUS
+        <small>
+            <%= menu.name ? '| '+menu.name : '' %></small>
+    </h4>
+    <hr>
+    <div class="row">
+        <div class="columns large-5">
+            <label>
+                menu name
+                <input name="name" type="text" value="<%= menu.name %>"></label>            
+        </div>
+        <div class="columns large-3">
+            <label>Product Type
+                <select name="productType">
+                    <% _.each(PRODUCT_TYPES, function(v,k){ %>
+                        <option value="<%= k %>"
+                            <%= menu.productType == k ? 'selected' : '' %>
+                            >
+                            <%= v %></option>
+                    <%})%></select>
+            </label>
+        </div>
+
+        <div class="columns large-4">
+            <div class="row collapse">
+                <label>Price</label>
+                <div class="columns large-6">
+                    <div class="row collapse">
+                        <div class="columns large-4">
+                            <span class="postfix">$</span>
+                        </div>
+                        <div class="columns large-8">
+                            <input name="priceValue" type="number" placeholder="eg 24" value="<%= menu.price.value %>"></div>
+                    </div>
+                </div>
+                <div class="columns large-6">
+                    <select name="priceUnit">
+                        <% _.each(PRICE_UNITS, function(v,k){ %>
+                            <option value="<%= k %>"
+                                <%= menu.price && menu.price.unit == k ? 'selected' : '' %>
+                                >
+                                <%= v %></option>
+                        <%})%></select>
+                </div>
+            </div>
+            
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="columns large-4">
+            <div class="row collapse">
+                <div class="columns large-4">
+                    
+                </div>
+                <div class="columns large-4">
+                    <div class="switch round tiny">
+                        <input name="isActive" id="isStatusOn" type="checkbox" <%= menu.isActive ? 'checked' : '' %> >
+                        <label for="isStatusOn"></label>
+                    </div>
+                </div>
+                <div class="columns large-8">
+                    <h6 class="subheader">
+                        <span id="statusText">menu is active</span>
+                    </h6>
+                </div>
+            </div>            
+        </div>
+
+    </div>
+
+    <div class="">
+        <hr>
+        <div class="columns large-12">
+            Tap on 
+            <a class="addCourse">Add a Course</a>
+            to add courses to this menu
+        </div>
+        <div class="listCourses">
+        </div>
+    </div>
+</div>
