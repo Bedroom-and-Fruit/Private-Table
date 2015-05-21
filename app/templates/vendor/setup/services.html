@@ -1,0 +1,21 @@
+<div data-equalizer-watch class="columns large-3">
+    <div class="silo verticalmenu">
+        <div class="menu-wrap menu-secondary">
+            <div class="clean-button-tiny right addNewService">add new service</div>
+            <h6>Services</h6>
+            <div ng-controller="VenueController">
+                <input type="search" placeholder="find a service" ng-model="query">
+                <ul class="menu-list">
+                    <li ng-repeat="item in data.services | filter: query" class="item">{{item.name}}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div data-equalizer-watch class="columns large-9 right-col">
+    <div class="silo">
+        <div class="form-wrap">
+         
+        </div>
+    </div>
+</div>

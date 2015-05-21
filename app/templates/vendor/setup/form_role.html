@@ -1,0 +1,139 @@
+<div class='row'>
+    <div class="clean-button-tiny top-cta right deleteRole">
+        &nbsp; delete <%= role.name %> &nbsp; <i class="fi-trash"></i>
+    </div>
+    <div class="clean-button-tiny top-cta right saveRole">
+        &nbsp; save &nbsp; <i class="fi-save"></i>
+    </div>
+    <div class="clean-button-tiny top-cta right cancelRole">cancel</div>
+    <h4>
+        ROLE
+        <small><%= role.name %></small>
+    </h4>
+    <hr></div>
+
+<div class="row">
+    <div class="columns large-5">
+        <label>
+            Name
+            <input type="text" name="name" placeholder="eg Craig Smith" value="<%= role.name %>"></label>
+        <label>
+            Role
+            <select name="role">
+                <option value=""></option>
+                <%
+                    _.each(setting.jobRoleType, function(v){
+                %>
+                    <option value="<%= v %>" <%= v==role.role ? 'selected' : '' %>><%= v %></option>
+                <%
+                    });
+                %>
+            </select>
+        </label>
+        <label>
+            Email
+            <input type="email" name="email" placeholder="eg joe@name.com" value="<%= role.email %>"></label>
+        <label>
+            Phone Number
+            <input type="text" name="phone" placeholder="555 555-5555" value="<%= role.phone %>"></label>
+        <div class="row collapse">
+            <div class="columns large-3">
+                <div class="switch round tiny">
+                    <input type="checkbox" name="isActive" id="isActive" <%= role.isActive ? 'checked' : '' %> >
+                    <label for="isActive"></label>
+                </div>
+            </div>
+            <div class="columns large-9">
+                <h6 class="subheader">Currently Active</h6>
+            </div>
+        </div>
+    </div>
+    <div class="columns large-7">
+        <h6>
+            NOTIFICATION
+            <table width="100%" class="notification">
+                <thead>
+                    <tr>
+                        <th id="event">event</th>
+                        <th width="40" id="email">email</th>
+                        <th width="40" id="phone">phone</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th id="event1" header="event">new prospect</th>
+                        <td headers="event1 email">
+                            <div class="switch round tiny">
+                                <input name="notificationsNewProspectEmail" id="new-prospect-email" type="checkbox" <%= role.notifications.newProspect.email ? 'checked' : '' %>>
+                                <label for="new-prospect-email">
+                                </label>
+                            </div>
+
+                        </td>
+                        <td headers="event1 phone">
+                            <div class="switch round tiny">
+                                <input  name="notificationsNewProspectPhone" id="new-prospect-phone" type="checkbox" <%= role.notifications.newProspect.phone ? 'checked' : '' %>>
+                                <label for="new-prospect-phone">
+                                </label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th id="event2" header="event">new message</th>
+
+                        <td headers="event2 email">
+                            <div class="switch round tiny">
+                                <input  name="notificationsNewMessageEmail"  id="new-message-email" type="checkbox" <%= role.notifications.newMessage.email ? 'checked' : '' %> >
+                                <label for="new-message-email">
+                                </label>
+                            </div>
+                        </td>
+                        <td headers="event2 phone">
+                            <div class="switch round tiny">
+                                <input  name="notificationsNewMessagePhone"  id="new-message-phone" type="checkbox" <%= role.notifications.newMessage.phone ? 'checked' : '' %>>
+                                <label for="new-message-phone">
+                                </label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th id="event2" header="event">new event</th>
+
+                        <td headers="event3 email">
+                            <div class="switch round tiny">
+                                <input   name="notificationsNewEventEmail"   id="new-event-email" type="checkbox" <%= role.notifications.newEvent.email ? 'checked' : '' %>>
+                                <label for="new-event-email">
+                                </label>
+                            </div>
+                        </td>
+                        <td headers="event3 phone">
+                            <div class="switch round tiny">
+                                <input  name="notificationsNewEventPhone"  id="new-event-phone" type="checkbox" <%= role.notifications.newEvent.phone ? 'checked' : '' %>>
+                                <label for="new-event-phone">
+                                </label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th id="event2" header="event">abandon cart</th>
+
+                        <td headers="event4 email">
+                            <div class="switch round tiny">
+                                <input  name="notificationsAbandonCartEmail"  id="abandon-cart-email" type="checkbox"  <%= role.notifications.abandonCart.email ? 'checked' : '' %> >
+                                <label for="abandon-cart-email">
+                                </label>
+                            </div>
+                        </td>
+                        <td headers="event4 phone">
+                            <div class="switch round tiny">
+                                <input  name="notificationsAbandonCartPhone"   id="new-abandon-cart-phone" type="checkbox"  <%= role.notifications.abandonCart.phone ? 'checked' : '' %> >
+                                <label for="new-abandon-cart-phone">
+                                </label>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </h6>
+    </div>
+</div>

@@ -1,0 +1,10 @@
+<div class="alert-box <%= type %> radius">
+  <a href="#" class="close">&times;</a>
+  <%
+    _.each(messages, function(message){
+    %>
+      <%= message %>  
+  <%
+      });
+  %>
+</div>

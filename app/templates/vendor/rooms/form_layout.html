@@ -1,0 +1,88 @@
+<div class="silo">
+    <div class="form-wrap">
+        <!-- venue-->
+        <div class="row">
+            <div class="clean-button-tiny top-cta right deleteLayout">
+                &nbsp; delete layout &nbsp; <i class="fi-trash"></i>
+            </div>
+            <div class="clean-button-tiny top-cta right saveLayout">
+                &nbsp; save &nbsp; <i class="fi-save"></i>
+            </div>
+            <div class="clean-button-tiny top-cta right cancelLayout">cancel</div>
+            <h4>
+                ROOM
+                <small>
+                    <%= layout.name ? ('|'+layout.name) : '' %></small>
+            </h4>
+            <hr>
+            <form data-abide>
+                <div class="columns large-6">
+                    <div>
+                    <label>
+                        Layout Name
+                        <input name="name" type="text" placeholder="eg My Hotel" value="<%= layout.name %>"  required></label>
+                    </div>
+                    <label>
+                        Product Type
+                        <select name="productType">
+                            <%
+                            _.each(PRODUCT_TYPES, function(v,k){
+
+                        %>
+                            <option <%= k==layout.productType ? 'selected' : '' %>
+                                value="
+                                <%= k %>
+                                ">
+                                <%= v %></option>
+                            <%
+                                })
+                        %></select>
+                    </label>
+                    <div class="row collapse">
+                        <div class="columns large-6">
+                            <div class="padding1pxsides">
+                                <label>
+                                    Maximum Guests
+                                    <input name="maxGuest" type="number" placeholder="eg 24" value="<%= layout.maxGuest %>" min='0'></label>
+                            </div>
+                        </div>
+                        <div class="columns large-6">
+                            <div class="padding1pxsides">
+                                <label>
+                                    Minimum Hours
+                                    <input name="minHour" type="number" placeholder="eg 3" value="<%= layout.minHour %>" min='0'></label>
+                            </div>
+                        </div>
+                    </div>
+                    <label>
+                        Description
+                        <textarea name="description" rows="4" placeholder="">
+                            <%= layout.description %></textarea>
+                    </label>
+                </div>
+                <div class="columns large-6">
+                    <div class="row collapse">
+                        <div class="columns large-3">
+                            <div class="switch round tiny">
+                                <input name="isActive" type="checkbox" id="islayoutactive" <%= layout.isActive ? 'checked' : '' %>
+                                >
+                                <label for="islayoutactive"></label>
+                            </div>
+                        </div>
+                        <div class="columns large-9">
+                            <h6 class="subheader">Layout is active</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="row">
+            <div class="columns small-12">
+                <p>This layout has 3 images. Select the hero image.</p>
+                <p>
+                    {return images for this layout. user simply clicks on desired images to select as hero}
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
