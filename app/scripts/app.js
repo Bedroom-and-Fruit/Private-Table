@@ -18,22 +18,21 @@ angular
     'ngSanitize',
     'ui.router',
     'ngTouch',
-    'searchResultsFactory'
+    'searchBarFactory'
   ])
   .config(function ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('/');
 
     $stateProvider
-      .state('dashboard', {
-        url: '/dashboard',
-        templateUrl: 'views/dashboard.html'
+      .state('searchBar', {
+        url: '/searchbar',
+        views: {
+          '': {templateUrl: 'views/searchBar.html'},
+          'searchResults': {templateUrl: 'views/searchBar/searchResults.html'}
+        }
       })
       .state('landing', {
         url: '/',
         templateUrl: 'views/landing.html'
-      })
-      .state('about', {
-        url:'/about',
-        templateUrl: 'views/about.html'
       });
   });

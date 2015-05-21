@@ -1,10 +1,10 @@
 'use strict';
 
-angular.module('searchResultsFactory', [])
+angular.module('searchBarFactory', [])
 
-.factory('SearchResults', ['$http', '$location', function($http, $location) {
+.factory('SearchBar', ['$http', '$location', function($http, $location) {
   // Your code here
-  var searchParams = {time: 'Time'};
+  var searchParams;
   var searchResults;
   var setSearchParams = function (information) {
     searchParams = information;
@@ -16,7 +16,7 @@ angular.module('searchResultsFactory', [])
     // .then(function (response) {
     //   searchResults = response.data;
     //move this into dashboard subview controller
-    $location.path('/dashboard');
+    $location.path('/searchbar');
     //   return searchResults;
     // });
   };
