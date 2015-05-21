@@ -7,12 +7,12 @@
     </div>
     <div class="large-2 columns">
     <input id="datepicker" placeholder="Date" type="text" ng-model="searchParams.date"/>
-    <script> $('#datepicker').datetimepicker({timepicker:false}) </script>
+    <script> $('#datepicker').datetimepicker({timepicker:false, closeOnDateSelect:true}) </script>
     </div>
 
     <div class="large-2 columns">
       <input id="timepicker" placeholder="Time" type="text" ng-model="searchParams.time">
-      <script> $('#timepicker').datetimepicker({datepicker:false, format:'H:i'}) </script>
+      <script> $('#timepicker').datetimepicker({datepicker:false, formatTime: 'g:i A', step: 30}) </script>
     </div>
 
     <div class="large-2 columns">
