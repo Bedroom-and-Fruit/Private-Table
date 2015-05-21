@@ -1,0 +1,48 @@
+
+<div ng-controller="searchResultsController" class="row">
+  <form name="searchForm" id="form1" novalidate>
+    <div class="small-2 columns">
+      <input type="text" placeholder="Location" class="form-control" id="string" name="string" required ng-model="searchParams.location">
+    </div>
+    <div class="small-2 columns">
+      <input placeholder="{{params.date}}" class="textbox-n" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" id="date" ng-model="params.date">
+    </div>
+    <div class="small-2 columns">
+      <input placeholder="Time" class="textbox-n" type="text" onfocus="(this.type='time')" onblur="(this.type='text')" id="date" ng-model="searchParams.time">
+    </div>
+    <div class="small-2 columns">
+    <!-- ng-model="searchParams.eventType" -->
+      <select ng-model="searchParams.eventType">
+        <option selected disabled>Select Event Type</option>
+        <option value="Reception">Reception</option>
+        <option value="Banquet">Banquet</option>
+        <option value="Reception and Banquet">Reception and Banquet</option>
+      </select>
+    </div>
+
+    <div class="small-2 columns">
+        <input type="text" placeholder="Guests" ng-model="searchParams.guests">
+    </div>
+
+    <div class="small-2 columns">
+        <input type="text" placeholder="Budget" ng-model="searchParams.budget">
+    </div>
+  </form>
+   <button type="submit" form="form1" ng-click="submitSearch()">Search</button>
+
+  <div ng-repeat="info in data.information">
+  <div> {{info.title}} </div>
+  </div>
+
+  <div ng-repeat="room in roomResults">
+    <div> <a href="{{room.url}}">{{room.property}}</a></div>
+    <div> <a href="{{room.url}}">{{room.venue}}</a></div>
+    <!-- define styles for preview-image-container, preview-image-container a, and for contact assets below -->
+    <div class="preview-image-container" style="background-image:url({{room.venueImage}})">
+      <div> <a href="{{room.url}}"> VIEW </a></div>
+      <img src="{{room.contactImage}}">
+      <div>{{room.contactName}}</div>
+      <div>{{room.contactTitle}}</div>
+    </div>
+  </div>
+</div>
