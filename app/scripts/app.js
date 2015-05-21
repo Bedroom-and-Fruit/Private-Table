@@ -1,5 +1,6 @@
 'use strict';
 $(document).foundation();
+
 /**
  * @ngdoc overview
  * @name privateTableApp
@@ -17,15 +18,20 @@ angular
     'ngResource',
     'ngSanitize',
     'ui.router',
-    'ngTouch'
+    'ngTouch',
+    'searchResultsFactory'
   ])
   .config(function ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('/');
 
     $stateProvider
-      .state('home', {
+      .state('dashboard', {
+        url: '/dashboard',
+        templateUrl: 'views/dashboard.html'
+      })
+      .state('landing', {
         url: '/',
-        templateUrl: 'views/main.html'
+        templateUrl: 'views/landing.html'
       })
       .state('about', {
         url:'/about',
