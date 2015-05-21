@@ -9,6 +9,7 @@
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/foundation/css/foundation.css" />
+    <link rel="stylesheet" href="bower_components/datetimepicker/jquery.datetimepicker.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
@@ -25,21 +26,22 @@
       <div class="navbar navbar-default" role="navigation">
         <div class="container">
           <div class="navbar-header">
-
-            <a ui-sref="home" class="large button">Private Table</a>
+            <a ui-sref="landing" class="large button">Private Table</a>
+            <a ui-sref="landing" class="large button">Home</a>
+            <a ui-sref="about" class="large button">About</a>
+            <a ui-sref="dashboard" class="large button">Dashboard</a>
           </div>
 
           <div class="collapse">
 
             <ul class="nav navbar-nav">
-              <li class="active"><a ui-sref="home" class="large button">Home</a></li>
-              <li><a ui-sref="about" class="large button">About</a></li>
-              <li><a ui-sref="contact" class="large button">Contact</a></li>
             </ul>
           </div>
         </div>
       </div>
     </div>
+
+
 
     <div class="container">
     <div ui-view=""></div>
@@ -47,7 +49,7 @@
 
     <div class="footer">
       <div class="container">
-        <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
+        <p><span class="glyphicon glyphicon-heart"></span> Give us Feedback!</p>
       </div>
     </div>
 
@@ -63,6 +65,8 @@
        ga('send', 'pageview');
     </script>
 
+    <!-- Google Maps Autocomplete -->
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
     <script src="bower_components/modernizr/modernizr.js"></script>
@@ -81,13 +85,22 @@
     <script src="bower_components/jquery.cookie/jquery.cookie.js"></script>
     <script src="bower_components/jquery-placeholder/jquery.placeholder.js"></script>
     <script src="bower_components/foundation/js/foundation.js"></script>
+    <script src="bower_components/datetimepicker/jquery.datetimepicker.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/main.js"></script>
-        <script src="scripts/controllers/about.js"></script>
+
+        <!--factories -->
+        <script src="scripts/factory/searchResultsFactory.js"></script>
+
+        <!--controllers -->
+        <script src="scripts/controllers/landing.js"></script>
+        <script src="scripts/controllers/dashboard.js"></script>
+
+        <!--directives -->
+        <script src="scripts/directives/landing.js"></script>
         <!-- endbuild -->
 </body>
 </html>
