@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('privateTableApp')
-  .controller('landingController', ['$scope', 'SearchResults', function($scope, $location, SearchResults) {
-    $scope.searchParams;
+  .controller('landingController', ['$scope', '$location', 'SearchResults', function($scope, $location, SearchResults) {
+    $scope.searchParams = {};
     $scope.submitSearch = function() {
       //check that all forms are filled before initiating request
       SearchResults.getResults(this.searchParams);

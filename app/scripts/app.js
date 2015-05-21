@@ -1,6 +1,5 @@
 'use strict';
 $(document).foundation();
-
 /**
  * @ngdoc overview
  * @name privateTableApp
