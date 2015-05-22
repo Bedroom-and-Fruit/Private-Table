@@ -1,18 +1,12 @@
 'use strict';
 
 angular.module('privateTableApp')
-  .controller('searchBarController', ['$scope', 'SearchBar', function($scope, SearchBar) {
-    $scope.data = {};
-    $scope.roomResults = [];
+  .controller('searchBarController', ['$scope', 'SearchBar', 'SearchResults', function($scope, SearchBar, SearchResults) {
     $scope.params;
-    $scope.getSearchResults = function() {
-      // $scope.data.information = SearchResults.searchResults.hits;
-      // $scope.params = SearchResults.searchParams;
-      // SearchResults.getResults().then(function(information) {
-      //   $scope.data.information = information.hits;
-      //});
+
+    $scope.newSearch = function() {
+      SearchBar.setSearchParams(this.params);
     };
-    
 
     $scope.init = function () {
       SearchBar.searchFormInit();

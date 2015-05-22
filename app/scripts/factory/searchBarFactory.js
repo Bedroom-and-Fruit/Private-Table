@@ -2,28 +2,22 @@
 
 angular.module('searchBarFactory', [])
 
-.factory('SearchBar', ['$http', '$location', function($http, $location) {
+.factory('SearchBar', ['SearchResults', '$location', function(SearchResults, $location) {
   // Your code here
   var searchParams;
-  var searchResults;
-  var setSearchParams = function (information) {
-    searchParams = information;
-    // return $http({
-    //   method: 'GET',
-    //   url: 'http://hn.algolia.com/api/v1/search?tags=front_page',
-    //   data: information
-    // })
-    // .then(function (response) {
-    //   searchResults = response.data;
-    //move this into dashboard subview controller
-    $location.path('/searchbar');
-    //   return searchResults;
-    // });
+  var setSearchParams = function (params, callback) {
+    searchParams = params;
+    // this is where our previous reroute was
+    if (callback) {
+      SearchResults.getSearchResults(searchParams, callback);
+    } else {
+      SearchResults.getSearchResults(searchParams);
+    }
   };
 
   var getSearchParams = function() {
     return searchParams;
-  }
+  };
 
   var searchFormInit = function () {
     $('#timepicker').datetimepicker({datepicker:false, formatTime: 'g:i A', step: 30});
@@ -31,9 +25,7 @@ angular.module('searchBarFactory', [])
   };
 
   return {
-    // getResults: getResults,
     searchParams: searchParams,
-    searchResults: searchResults,
     searchFormInit: searchFormInit,
     getSearchParams: getSearchParams,
     setSearchParams: setSearchParams

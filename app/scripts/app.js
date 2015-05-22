@@ -18,7 +18,8 @@ angular
     'ngSanitize',
     'ui.router',
     'ngTouch',
-    'searchBarFactory'
+    'searchBarFactory',
+    'searchResultsFactory'
   ])
   .config(function ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('/');
@@ -28,7 +29,10 @@ angular
         url: '/searchbar',
         views: {
           '': {templateUrl: 'views/searchBar.html'},
-          'searchResults': {templateUrl: 'views/searchBar/searchResults.html'}
+          'searchResults@searchBar': {
+            templateUrl: 'views/searchBar/searchResults.html',
+            controller: 'searchResultsController'
+          }
         }
       })
       .state('landing', {

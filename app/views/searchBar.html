@@ -1,7 +1,7 @@
 
-<div ng-controller="searchBarController" class="row">
-  <form name="searchForm" id="form1" novalidate>
-    <div class="large-5 columns">
+<div ng-controller="searchBarController" class="rwow">
+  <form name="searchForm" id="form1" ng-submit="newSearch()" novalidate>
+        <div class="large-5 columns">
       <input type="text" placeholder="Location" class="form-control" id="string" name="string" required ng-model="params.location" ng-model="chosenPlace" googleplace>
     </div>
     <div class="small-2 columns">
@@ -30,6 +30,4 @@
   </form>
    <button type="submit" form="form1" ng-click="submitSearch()">Search</button>
    <div ui-view="searchResults"></div>
-
-  
 </div>
