@@ -14,3 +14,7 @@ Room.belongsTo(Venue, {foreignKey: 'venue_id'});
 //relationship between venue and menu
 Venue.hasMany(Menu, {foreignKey:'venue'});
 Menu.belongsTo(Venue, {foreignKey: 'venue'});
+
+// relationship between room and image
+Room.hasMany(Image, {foreignKey:'room'});
+Image.belongsTo(Room, {foreignKey: 'room'});
