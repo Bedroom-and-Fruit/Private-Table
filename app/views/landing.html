@@ -1,35 +1,36 @@
-<!--set up controller to be landingController -->
-<div ng-controller="landingController">
+
+<div ng-controller="landingController" id="centersearchbar">
 
   <form name="searchForm" id="form1" novalidate>
-    <div class="large-5 columns">
+
+    <div class="large-2 columns">
       <input type="text" placeholder="Location" class="form-control" id="string" name="string" required ng-model="searchParams.location" ng-model="chosenPlace" googleplace>
     </div>
-    <div class="large-5 columns">
+    <div class="large-1 columns">
     <input id="datepicker" placeholder="Date" type="text" ng-model="searchParams.date"/>
     </div>
 
-    <div class="large-5 columns">
+    <div class="large-1 columns">
       <input id="timepicker" placeholder="Time" type="text" ng-model="searchParams.time">
     </div>
 
-    <div class="large-5 columns">
+    <div class="large-2 columns">
     <!-- ng-model="searchParams.eventType" -->
       <select ng-model="searchParams.eventType">
-        <option selected disabled>Select Event Type</option>
+        <option value="" selected disabled>Select Event Type</option>
         <option value="Reception">Reception</option>
         <option value="Banquet">Banquet</option>
         <option value="Reception and Banquet">Reception and Banquet</option>
       </select>
     </div>
 
-    <div class="large-5 columns">
+    <div class="large-1 columns">
         <input type="text" placeholder="Guests" ng-model="searchParams.guests">
     </div>
 
-    <div class="large-5 columns">
+    <div class="large-1 columns">
         <input type="text" placeholder="Budget" ng-model="searchParams.budget">
     </div>
+    <button type="submit" class="button small" ng-click="submitSearch()">Search</button>
   </form>
-   <button type="submit" form="form1" ng-click="submitSearch()">Search</button>
 <div>
