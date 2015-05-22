@@ -8,14 +8,14 @@ var MenuItem = require('./menuItems.js');
 var db = require('../config/dbConfig.js');
 
 //relationship between venue and room
-Venue.hasMany(Room, {foreignKey: 'venue_id'});
-Room.belongsTo(Venue, {foreignKey: 'venue_id'});
+Venue.hasMany(Room, {foreignKey: 'parentVenue'});
+Room.belongsTo(Venue, {foreignKey: 'parentVenue'});
 
 //relationship between venue and menu
-Venue.hasMany(Menu, {foreignKey:'venue'});
-Menu.belongsTo(Venue, {foreignKey: 'venue'});
+Venue.hasMany(Menu, {foreignKey:'parentVenue'});
+Menu.belongsTo(Venue, {foreignKey: 'parentVenue'});
 
 // relationship between room and image
-Room.hasMany(Image, {foreignKey:'room'});
-Image.belongsTo(Room, {foreignKey: 'room'});
+Room.hasMany(Image, {foreignKey:'pictureOf'});
+Image.belongsTo(Room, {foreignKey: 'pictureOf'});
 
