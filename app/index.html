@@ -14,6 +14,7 @@
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/scss/app.css">
     <!-- endbuild -->
   </head>
   <body ng-app="privateTableApp">
@@ -22,33 +23,9 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div class="header">
-      <div class="navbar navbar-default" role="navigation">
-        <div class="container">
-          <div class="navbar-header">
-            <a ui-sref="landing" class="large button">Private Table</a>
-            <a ui-sref="searchBar" class="large button">Search Bar</a>
-          </div>
-
-          <div class="collapse">
-
-            <ul class="nav navbar-nav">
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-
-    <div class="container">
     <div ui-view=""></div>
-    </div>
-
     <div class="footer">
-      <div class="container">
-        <p><span class="glyphicon glyphicon-heart"></span> Give us Feedback!</p>
-      </div>
+      <p>Give us Feedback!</p>
     </div>
 
 
