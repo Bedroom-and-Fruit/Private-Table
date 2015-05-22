@@ -20,7 +20,7 @@ angular.module('searchBarFactory', [])
   };
 
   var searchFormInit = function () {
-    $('#timepicker').datetimepicker({datepicker:false, format: 'g:i A', step: 30});
+    $('#timepicker').datetimepicker({datepicker:false, format: 'g:i A', formatTime: 'g:i A', step: 30});
     $('#datepicker').datetimepicker({timepicker:false, format: 'Y/m/d', closeOnDateSelect:true});
   };
 
