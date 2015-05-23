@@ -8,7 +8,7 @@
     </ul>
     <section class="top-bar-section">
       <ul class="right">
-        <li><a ui-sref="landing" target="_self">Log in</a>
+        <li><a ui-sref="checkout" target="_self">Log in</a>
         </li>
         <li><a ui-sref="landing" target="_self">Sign up</a>
         </li>
@@ -16,20 +16,20 @@
     </section>
     <form name="searchForm" id="form1" ng-submit="newSearch()" novalidate>
         <div class="large-2 columns">
-          <input type="text" placeholder="Location" class="form-control" id="string" name="string" required ng-model="params.location" ng-model="chosenPlace" googleplace>
+          <input type="text" placeholder="Location" class="form-control" id="string" name="string" required ng-model="params.location" ng-click="submitSearch()" ng-model="chosenPlace" googleplace>
         </div>
 
         <div class="large-1 columns">
-          <input id="datepicker" placeholder="Date" type="text" ng-model="params.date">
+          <input id="datepicker" ng-change="submitSearch()" placeholder="Date" type="text" ng-model="params.date">
         </div>
 
         <div class="large-1 columns">
-          <input id="timepicker" placeholder="Time" type="text" ng-model="params.time">
+          <input id="timepicker" ng-change="submitSearch()" placeholder="Time" type="text" ng-model="params.time">
         </div>
 
         <div class="small-2 columns">
         <!-- ng-model="searchParams.eventType" -->
-          <select ng-model="params.eventType">
+          <select ng-model="params.eventType" ng-change="submitSearch()">
             <option value="" selected disabled>Select Event Type</option>
             <option value="Reception">Reception</option>
             <option value="Banquet">Banquet</option>
