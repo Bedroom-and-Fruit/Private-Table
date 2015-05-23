@@ -1,12 +1,12 @@
 var db = require('../config/dbConfig.js');
 var Sequelize = require('sequelize');
 
-var Course = db.define('Course',
+var Amenity = db.define('Amenity',
   {
-    name: Sequelize.STRING,
+    name: Sequelize.STRING
   }
 );
 
 db.sync();
 
-module.exports = Course;
+module.exports = Amenity;
