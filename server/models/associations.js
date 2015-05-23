@@ -23,3 +23,32 @@ Menu.belongsTo(Venue, {foreignKey: 'parentVenue'});
 Room.hasMany(Image, {foreignKey:'pictureOf'});
 Image.belongsTo(Room, {foreignKey: 'pictureOf'});
 
+// relationship between room and image
+Room.hasMany(Image, {foreignKey:'pictureOf'});
+Image.belongsTo(Room, {foreignKey: 'pictureOf'});
+
+// relationship between room and image
+Room.hasMany(Image, {foreignKey:'pictureOf'});
+Image.belongsTo(Room, {foreignKey: 'pictureOf'});
+
+// relationship between room and image
+Room.hasMany(Image, {foreignKey:'pictureOf'});
+Image.belongsTo(Room, {foreignKey: 'pictureOf'});
+
+// relationship between room and image
+Room.hasMany(Image, {foreignKey:'pictureOf'});
+Image.belongsTo(Room, {foreignKey: 'pictureOf'});
+
+// relationship between room and image
+Room.hasMany(Image, {foreignKey:'pictureOf'});
+Image.belongsTo(Room, {foreignKey: 'pictureOf'});
+
+// relationship between room and image
+Room.hasMany(Image, {foreignKey:'pictureOf'});
+Image.belongsTo(Room, {foreignKey: 'pictureOf'});
+
+// relationship between room and image
+Room.hasMany(Image, {foreignKey:'pictureOf'});
+Image.belongsTo(Room, {foreignKey: 'pictureOf'});
+
+
