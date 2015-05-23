@@ -45,22 +45,20 @@ angular
       })
       .state('checkout.menu', {
         url: '/menu',
-        templateUrl: 'views/checkout/menu.html'
+        views: {
+          '': {templateUrl: 'views/checkout/menu.html'},
+          'checkoutbox@checkout.menu': {
+            templateUrl: 'views/checkout/checkoutbox.html'
+          }
+        }
       })
       .state('checkout.room', {
         url: '/room',
-        templateUrl: 'views/checkout/room.html'
-
-        // views: {
-        //   '': {templateUrl: 'views/checkout.html'},
-        //   'room@checkout': {
-        //     templateUrl: 'views/checkout/room.html',
-        //     controller: 'checkoutController'
-        //   },
-        //   'menu@checkout': {
-        //     templateUrl: 'views/checkout/menu.html',
-        //     controller: 'checkoutController'
-        //   }
-        // }
+        views: {
+          '': {templateUrl: 'views/checkout/room.html'},
+          'checkoutbox@checkout.room': {
+            templateUrl: 'views/checkout/checkoutbox.html'
+          }
+        }
       });
   });
