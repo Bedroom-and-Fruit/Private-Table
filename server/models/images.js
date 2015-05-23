@@ -4,11 +4,8 @@ var Room = require('./rooms.js');
 
 var Image = db.define('Image',
   {
-    comment: Sequelize.STRING,
-    unseenComment: Sequelize.BOOLEAN,
-    commenter: Sequelize.INTEGER,
-    contributionCommented: Sequelize.INTEGER
-
+    source: Sequelize.STRING,
+    pictureOf: Sequelize.INTEGER
   }
 );
 

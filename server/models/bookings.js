@@ -1,13 +1,13 @@
 var db = require('../config/dbConfig.js');
 var Sequelize = require('sequelize');
+var Room = require('./rooms.js');
 
 var Booking = db.define('Booking',
   {
-    comment: Sequelize.STRING,
-    unseenComment: Sequelize.BOOLEAN,
-    commenter: Sequelize.INTEGER,
-    contributionCommented: Sequelize.INTEGER
-
+    date: Sequelize.DATE,
+    start: Sequelize.TIME,
+    end: Sequelize.TIME,
+    room: Sequelize.INTEGER
   }
 );
 

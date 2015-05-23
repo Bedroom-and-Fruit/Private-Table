@@ -6,6 +6,10 @@ var Course = require('./courses.js');
 var Menu = require('./menus.js');
 var MenuItem = require('./menuItems.js');
 var db = require('../config/dbConfig.js');
+var CourseCombination = require('./courseCombinations.js');
+var CoursesInMenu = require('./coursesInMenus.js');
+var RoomAmenity = require('./roomAmenities.js');
+var Amenity = require('/.amenities.js');
 
 //relationship between venue and room
 Venue.hasMany(Room, {foreignKey: 'parentVenue'});

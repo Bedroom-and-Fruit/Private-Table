@@ -4,11 +4,11 @@ var Venue = require('./venue.js');
 
 var Menu = db.define('Menu',
   {
-    comment: Sequelize.STRING,
-    unseenComment: Sequelize.BOOLEAN,
-    commenter: Sequelize.INTEGER,
-    contributionCommented: Sequelize.INTEGER
-
+    name: Sequelize.STRING,
+    price: Sequelize.INTEGER,
+    availForBanquet: Sequelize.BOOLEAN,
+    availForReception: Sequelize.BOOLEAN,
+    parentVenue: Sequelize.INTEGER
   }
 );
 

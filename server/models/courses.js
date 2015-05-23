@@ -3,11 +3,7 @@ var Sequelize = require('sequelize');
 
 var Course = db.define('Course',
   {
-    comment: Sequelize.STRING,
-    unseenComment: Sequelize.BOOLEAN,
-    commenter: Sequelize.INTEGER,
-    contributionCommented: Sequelize.INTEGER
-
+    name: Sequelize.STRING,
   }
 );
 
