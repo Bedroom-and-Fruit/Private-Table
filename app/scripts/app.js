@@ -25,6 +25,10 @@ angular
     $urlRouterProvider.otherwise('/');
 
     $stateProvider
+      .state('landing', {
+        url: '/',
+        templateUrl: 'views/landing.html'
+      })
       .state('searchBar', {
         url: '/searchbar',
         views: {
@@ -35,8 +39,28 @@ angular
           }
         }
       })
-      .state('landing', {
-        url: '/',
-        templateUrl: 'views/landing.html'
+      .state('checkout', {
+        url: '/checkout',
+        templateUrl: 'views/checkout.html'
+      })
+      .state('checkout.menu', {
+        url: '/menu',
+        templateUrl: 'views/checkout/menu.html'
+      })
+      .state('checkout.room', {
+        url: '/room',
+        templateUrl: 'views/checkout/room.html'
+
+        // views: {
+        //   '': {templateUrl: 'views/checkout.html'},
+        //   'room@checkout': {
+        //     templateUrl: 'views/checkout/room.html',
+        //     controller: 'checkoutController'
+        //   },
+        //   'menu@checkout': {
+        //     templateUrl: 'views/checkout/menu.html',
+        //     controller: 'checkoutController'
+        //   }
+        // }
       });
   });

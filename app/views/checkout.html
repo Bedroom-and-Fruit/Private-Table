@@ -1,0 +1,26 @@
+<!-- navbar start -->
+<div ng-controller="checkoutController" class="fixed"> 
+  <nav data-topbar="" role="navigation" data-options="is_hover: true" class="top-bar">
+    <ul class="title-area">
+      <li class="name">
+        <h1><a ui-sref="landing" target="_self"><img src="../images/logo.png"></a></h1>
+      </li>
+    </ul>
+    <section class="top-bar-section">
+      <ul class="right">
+        <li><a ui-sref="checkout" target="_self">Log in</a>
+        </li>
+        <li><a ui-sref="landing" target="_self">Sign up</a>
+        </li>
+      </ul>
+      <ul class="left">
+        <li><a ui-sref="checkout.room" id="room" ng-click="select()" target="_self">Room</a>
+        </li>
+        <li><a ui-sref="checkout.menu" id="menu" ng-click="select()" target="_self">Menu</a>
+        </li>
+      </ul>
+    </section>
+  </nav>
+<div ui-view></div>
+</div>
+
