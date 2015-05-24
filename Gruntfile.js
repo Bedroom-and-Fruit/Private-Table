@@ -28,6 +28,8 @@ module.exports = function (grunt) {
     yeoman: appConfig,
 
     // Watches files for changes and runs tasks based on the changed files
+    //call server.options in tasks
+
     watch: {
       bower: {
         files: ['bower.json'],
@@ -64,55 +66,55 @@ module.exports = function (grunt) {
     },
 
     // The actual grunt server settings
-    connect: {
-      options: {
-        port: 9000,
-        // Change this to '0.0.0.0' to access the server from outside.
-        hostname: 'localhost',
-        livereload: 35729
-      },
-      livereload: {
-        options: {
-          open: true,
-          middleware: function (connect) {
-            return [
-              connect.static('.tmp'),
-              connect().use(
-                '/bower_components',
-                connect.static('./bower_components')
-              ),
-              connect().use(
-                '/app/styles',
-                connect.static('./app/styles')
-              ),
-              connect.static(appConfig.app)
-            ];
-          }
-        }
-      },
-      test: {
-        options: {
-          port: 9001,
-          middleware: function (connect) {
-            return [
-              connect.static('.tmp'),
-              connect.static('test'),
-              connect().use(
-                '/bower_components',
-                connect.static('./bower_components')
-              ),
-              connect.static(appConfig.app)
-            ];
-          }
-        }
-      },
-      dist: {
-        options: {
-          open: true,
-          base: '<%= yeoman.dist %>'
-        }
-      }
-    },
+    // connect: {
+    //   options: {
+    //     port: 9000,
+    //     // Change this to '0.0.0.0' to access the server from outside.
+    //     hostname: 'localhost',
+    //     livereload: 35729
+    //   },
+    //   livereload: {
+    //     options: {
+    //       open: true,
+    //       middleware: function (connect) {
+    //         return [
+    //           connect.static('.tmp'),
+    //           connect().use(
+    //             '/bower_components',
+    //             connect.static('./bower_components')
+    //           ),
+    //           connect().use(
+    //             '/app/styles',
+    //             connect.static('./app/styles')
+    //           ),
+    //           connect.static(appConfig.app)
+    //         ];
+    //       }
+    //     }
+    //   },
+    //   test: {
+    //     options: {
+    //       port: 9001,
+    //       middleware: function (connect) {
+    //         return [
+    //           connect.static('.tmp'),
+    //           connect.static('test'),
+    //           connect().use(
+    //             '/bower_components',
+    //             connect.static('./bower_components')
+    //           ),
+    //           connect.static(appConfig.app)
+    //         ];
+    //       }
+    //     }
+    //   },
+    //   dist: {
+    //     options: {
+    //       open: true,
+    //       base: '<%= yeoman.dist %>'
+    //     }
+    //   }
+    // },
 
     // Make sure code styles are up to par and there are no obvious mistakes
     jshint: {

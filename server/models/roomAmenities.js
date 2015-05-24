@@ -1,7 +1,7 @@
 var db = require('../config/dbConfig.js');
 var Sequelize = require('sequelize');
 var Room = require('./rooms.js');
-var Amenity = require('/.amenities.js');
+var Amenity = require('./amenities.js');
 
 var RoomAmenity = db.define('RoomAmenity',
   {
