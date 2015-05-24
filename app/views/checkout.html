@@ -8,7 +8,7 @@
     </ul>
     <section class="top-bar-section">
       <ul class="right">
-        <li><a ui-sref="checkout" target="_self">Log in</a>
+        <li><a ui-sref="checkout.room" target="_self">Log in</a>
         </li>
         <li><a ui-sref="landing" target="_self">Sign up</a>
         </li>
@@ -21,6 +21,32 @@
       </ul>
     </section>
   </nav>
-<div ui-view></div>
 </div>
-
+<div style="background-image:url('/images/hires/room/blux7.png'); background-repeat:repeat-x; width:100%; height:400px">
+  </div>
+  <div>
+  Text Container
+    <div>{{room.prop}}</div>
+    <div>{{room.venue}}</div>
+</div>
+  <div class="medium-1 columns">
+    <img src="/images/time.png"><br />
+    {{room.roomType}}
+  </div>
+  <div class="medium-1 columns">
+    <img src="/images/time.png"><br />
+    {{room.guestMin}} - {{room.guestMax}} Guests
+  </div>
+  <div class="medium-1 columns">
+    <img src="/images/time.png"><br />
+    ${{room.budgetMin}}
+  </div>
+  <div class="medium-1 columns">
+    <img src="/images/time.png"><br />
+    {{room.timeMin}} Hours
+  </div>
+  <div class="medium-1 columns end">
+    <img src="/images/tableround.png"><br />
+    {{room.layouts}} Layouts
+  </div>
+<div ui-view></div>
