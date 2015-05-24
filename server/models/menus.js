@@ -1,6 +1,6 @@
 var db = require('../config/dbConfig.js');
 var Sequelize = require('sequelize');
-var Venue = require('./venue.js');
+var Venue = require('./venues.js');
 
 var Menu = db.define('Menu',
   {

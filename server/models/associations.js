@@ -1,6 +1,6 @@
 var Booking = require('./bookings.js');
 var Image = require('./images.js');
-var Venue = require('./venue.js');
+var Venue = require('./venues.js');
 var Room = require('./rooms.js');
 var Course = require('./courses.js');
 var Menu = require('./menus.js');
@@ -9,7 +9,7 @@ var db = require('../config/dbConfig.js');
 var CourseCombination = require('./courseCombinations.js');
 var CoursesInMenu = require('./coursesInMenus.js');
 var RoomAmenity = require('./roomAmenities.js');
-var Amenity = require('/.amenities.js');
+var Amenity = require('./amenities.js');
 
 //relationship between venue and room
 Venue.hasMany(Room, {foreignKey: 'parentVenue'});
@@ -36,7 +36,7 @@ Amenity.hasMany(RoomAmenity, {foreignKey:'amenities_ID'});
 RoomAmenity.belongsTo(Amenity, {foreignKey: 'amenities_ID'});
 
 // relationship between courseCombination and course
-Course.hasMany(courseCombination, {foreignKey:'course_ID'});
+Course.hasMany(CourseCombination, {foreignKey:'course_ID'});
 CourseCombination.belongsTo(Course, {foreignKey: 'course_ID'});
 
 // relationship between coursesInMenu and menu

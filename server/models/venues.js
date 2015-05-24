@@ -23,27 +23,11 @@ var Venue = db.define('Venue',
     cuisineType: Sequelize.STRING,
     houseRules: Sequelize.STRING,
     cancelPolicy: Sequelize.STRING,
-    menuLeadTime: sequelize.INTEGER
+    menuLeadTime: Sequelize.INTEGER
   }
 );
 
 db.sync();
 
 module.exports = Venue;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

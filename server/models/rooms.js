@@ -1,6 +1,6 @@
 var db = require('../config/dbConfig.js');
 var Sequelize = require('sequelize');
-var Venue = require('./venue.js');
+var Venue = require('./venues.js');
 
 var Room = db.define('Room',
   {
@@ -24,19 +24,5 @@ var Room = db.define('Room',
 );
 
 db.sync();
-
-module.exports = Room;
-
-
-
-
-
-
-
-
-
-
-
-
 
 module.exports = Room;
