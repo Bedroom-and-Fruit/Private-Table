@@ -1,7 +1,105 @@
-<div ng-controller="checkoutController">
-<div ng-repeat="prop in data">
-<div>{{prop.hello}}</div>
-</div>
-<div ui-view="checkoutbox"></div>
-</div>
+<div ng-controller="roomController">
 
+    <div>
+      <div class="row">
+      {{room.description}}
+      </div>
+      <hr>
+      <div>
+        <div class="row">
+           <div class="medium-3 columns">The Space</div>
+           <div class="medium-9 columns">
+              <ul>
+                <li> Size: {{room.size}}</li>
+                <li> Room Type: {{room.roomType}}</li>
+                <li> Minimum Spend: {{room.minBudget}}</li> 
+                <li> Availability: {{room.time}}</li>
+              </ul>
+           </div>
+        </div>
+        <hr>
+        <div class="row">
+           <div class="medium-3 columns">House Rules</div>
+           <div class="medium-9 columns">
+             <div class="medium-4 columns">
+                <ul>
+                  <li> Cancellation: {{room.cancellation}}</li>
+                  <li> House Rules: {{room.houseRules}}</li>
+                  <li> Refund Policy: {{room.refundPolicy}}</li> 
+                </ul>
+              </div>
+              <div class="medium-4 columns end">
+                <ul>
+                  <li> {{room.menuPolicy}}</li>
+                  <li> {{room.petPolicy}}</li>
+                  <li> {{room.smokingPolicy}}</li> 
+                </ul>
+              </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+           <div class="medium-3 columns">Fees and Taxes</div>
+           <div class="medium-9 columns">
+             <div class="medium-4 columns">
+                <ul ng-repeat="fee in fees | limitTo:4">
+                  <li>fee: fee its $00</li>
+                  <li> {{fee.name}}: ${{fee.fee}}</li>
+                </ul>
+              </div>
+              <div class="medium-4 columns end">
+                <ul>
+                  <li>Overage: ${{room.overage}} per {{room.overageIncrement}} hour</li>
+                  <li>Gratuity: ${{room.gratuity}} included in menu price</li>
+                  <li>Tax: {{room.tax}}% included in menu price</li> 
+                </ul>
+                <span ng-show="feeMore" ng-click="feeMoreClick()">+More</span>
+              </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="medium-3 columns">Layouts</div>
+           <div class="medium-9 columns">
+             <div class="medium-4 columns">
+                
+              </div>
+              <div class="medium-4 columns end">
+               
+              </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+           <div class="medium-3 columns">Amenities</div>
+           <div class="medium-9 columns">
+             <div class="medium-4 columns">
+                <ul ng-repeat="amenity in amenities | limitTo: amenityLimit">
+                  <li> {{amenity.name}}: ${{amenity.fee}}</li>
+                </ul>
+                <span ng-if="amenityMore" ng-click="amenityMoreClick()">+More</span>
+              </div>
+              <div class="medium-4 columns end">
+                <ul>
+                  <li>Overage: ${{room.overage}} per {{room.overageIncrement}} hour</li>
+                  <li>Gratuity: ${{room.gratuity}} included in menu price</li>
+                  <li>Tax: {{room.tax}}% included in menu price</li> 
+                </ul>
+              </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+           <div class="medium-3 columns">Menus</div>
+           <div class="medium-9 columns">
+              <ul>
+                <li> Menus: {{room.menuNumber}}</li>
+                <li> Price: ${{room.menuMin}} to ${{room.menuMax}} per person</li>
+                <li> Customizable: {{room.customizable}}</li> 
+                <li> Chef's Menu: {{room.chefMenu}}</li>
+              </ul>
+           </div>
+        </div>
+      </div>
+    </div>
+</div>
