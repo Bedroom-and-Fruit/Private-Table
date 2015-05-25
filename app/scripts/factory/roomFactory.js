@@ -2,8 +2,7 @@
 
 angular.module('roomFactory', [])
 
-.factory('roomData', ['SearchResults', '$location', 'roomData', function(SearchResults, $location, roomData) {
-  // Your code here
+.factory('roomData', ['SearchResults', '$location', function(SearchResults, $location) {
   var currentRoom = {};
   var menus = [];
 
@@ -15,10 +14,10 @@ angular.module('roomFactory', [])
       data: params
     })
     .then(function(response){
-      currentRoom = response.data;
-      menus.splice(0, menus.length);
-      response.data.hits.forEach(function(val){
-        menus.push(val);
+      // currentRoom = response.data;
+      // menus.splice(0, menus.length);
+      // response.data.hits.forEach(function(val){
+      //   menus.push(val);
       });
       if (callback) { callback(); }
     });
