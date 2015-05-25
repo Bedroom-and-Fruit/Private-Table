@@ -2,9 +2,9 @@
 
 
 angular.module('privateTableApp')
-  .controller('roomController', ['$scope', 'SearchBar', 'SearchResults', function($scope, SearchBar, SearchResults) {
+  .controller('roomController', ['$scope', 'SearchBar', 'SearchResults', 'roomData', function($scope, SearchBar, SearchResults, roomData) {
 
-    $scope.room = {prop: "The Cliff Hotel"};
+    $scope.room = roomData.currentRoom;
     $scope.amenityMore = true;
     $scope.feeMore = true;
 
