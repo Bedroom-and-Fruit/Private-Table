@@ -5,3 +5,4 @@ dist
 bower_components
 .floo
 .flooignore
+app/bower_components
