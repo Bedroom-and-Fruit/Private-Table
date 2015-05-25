@@ -49,8 +49,7 @@ angular
       })
       .state('checkout.room', {
         url: '/room',
-        templateUrl: 'views/checkout/room.html'
-
+        templateUrl: 'views/checkout/room.html',
         // views: {
         //   '': {templateUrl: 'views/checkout.html'},
         //   'room@checkout': {
