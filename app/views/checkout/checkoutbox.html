@@ -1,24 +1,160 @@
 <div ng-controller="checkoutController">
+
+<!-- unactive box -->
 <div class="row">
-<div class="small-4 columns"></div>
-<div class="small-4 columns"></div>
-<h6 class="small-4 columns text-center">{{selectedVenue.roomName}}</h6>
+  <div class="small-3 columns">
+  </div>
+
+  <div class="small-3 columns">
+  </div>
+
+  <div class="small-3 columns">
+  </div>
+
+  <div id="prevcheckout" class="small-3 columns">
+    <div class="row">
+      <span class="small-4 columns">
+      </span>
+
+      <span class="small-4 columns">
+        <div class="row">
+          <span class="small-6 columns">
+            <img src="images/door.png" width="16" height="16"> 
+          </span>
+          <h5 class="small-6 columns dull">Room 
+          </h5>
+        </div>
+      </span>
+
+      <span id= "small-4 columns">
+        <div class="row">
+          <h5 class="small-6 columns dull">
+            {{selectedVenue.roomName}}
+          </h5>
+          <span class="small-6 columns">
+          </span>
+        </div>
+      </span>
+
+    </div>
+
+  </div>
 </div>
-<form name="searchForm" id="form1" ng-submit="" novalidate>
-  <div class="small-1 columns">
-    <input id="datepicker" ng-change="submitSearch()" placeholder="Date" type="text" ng-model="params.date">
+
+<!-- beginning of active box -->
+<div class="row">
+  <div class="small-3 columns">
   </div>
-  <div class="small-1 columns">
-    <input id="timepicker" ng-change="" placeholder="Time" type="text" ng-model="params.time">
+
+  <div class="small-3 columns">
   </div>
-  <div class="small-2 columns">
-    <select ng-model="params.eventType" ng-change="submitSearch()">
-      <option value="" selected disabled>Select Event Type</option>
-      <option value="Reception">Reception</option>
-      <option value="Banquet">Banquet</option>
-      <option value="Reception and Banquet">Reception and Banquet</option>
-    </select>
+
+  <div class="small-3 columns">
   </div>
-</form>
-  <div>{{selectedVenue.time}}</div>
+
+  <div id="activecheckout" class="small-3 columns">
+    <div class="row">
+      <span class="small-4 columns">
+      </span>
+
+      <span class="small-4 columns">
+        <div class="row">
+          <span class="small-6 columns">
+            <img src="images/calendar.png" width="16" height="16"> 
+          </span>
+          <h5 class="small-6 columns">Event 
+          </h5>
+        </div>
+      </span>
+
+      <span id= "small-4 columns">
+        <div class="row">
+          <span class="small-6 columns">
+          </span>
+          <span class="small-6 columns">
+          </span>
+        </div>
+      </span>
+
+    </div>
+
   </div>
+</div>
+
+
+<!-- beginning of form -->
+<div class="row">
+  <div class="small-3 columns">
+  </div>
+
+  <div class="small-3 columns">
+  </div>
+
+  <div class="small-3 columns">
+  </div>
+
+  <div id="activecheckout" class="small-3 columns">
+    <div class="row">
+      <span class="small-4 columns">
+        <input type="text" placeholder="Guests" ng-model="searchParams.guests">
+      </span>
+
+      <span class="small-4 columns">
+        <input id="datepicker" ng-change="submitSearch()" placeholder="Date" type="text" ng-model="params.date">
+      </span>
+
+      <span class= "small-4 columns">
+        <input id="timepicker" ng-change="" placeholder="Time" type="text" ng-model="params.time">
+      </span>
+
+    </div>
+
+  </div>
+</div>
+
+<!-- end of guests, date, time -->
+
+<!-- event type -->
+<div class="row">
+  <div class="small-3 columns">
+  </div>
+
+  <div class="small-3 columns">
+  </div>
+
+  <div class="small-3 columns">
+  </div>
+
+  <div id="activecheckout" class="small-3 columns">
+    <div class="row" id="addpadding">
+      <select ng-model="searchParams.eventType" >
+        <option value="" selected disabled>Select Event Type</option>
+        <option value="Reception">Reception</option>
+        <option value="Banquet">Banquet</option>
+        <option value="Reception and Banquet">Reception and Banquet</option>
+      </select>
+
+    </div>
+
+  </div>
+</div>
+
+<!-- next button-->
+<div class="row">
+  <div class="small-3 columns">
+  </div>
+
+  <div class="small-3 columns">
+  </div>
+
+  <div class="small-3 columns">
+  </div>
+
+  <div id="activecheckout" class="small-3 columns">
+  <button type="submit" class="button" ng-click="submitSearch()">Next</button>
+
+  </div>
+</div>
+
+
+</div>

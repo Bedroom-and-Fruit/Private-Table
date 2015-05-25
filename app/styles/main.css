@@ -1,5 +1,23 @@
-.activebutton{
+#prevcheckout {
+  background-color: darkgray;
+  color: white;
+}
 
-  background-color: #970b0e;
+.active {
+  
+  color: white;
+  text-align: center;
+}
 
+#activecheckout {
+  background-color: white;
+}
+
+.dull {
+  color: lightgray;
+  text-align: center;
+}
+
+#addpadding {
+  padding: 10px 10px;
 }
