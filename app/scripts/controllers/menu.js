@@ -2,13 +2,13 @@
 
 
 angular.module('privateTableApp')
-  .controller('menuController', ['$scope', 'SearchBar', 'SearchResults', function($scope, SearchBar, SearchResults) {
+  .controller('menuController', ['$scope', 'SearchBar', 'SearchResults', 'roomData', function($scope, SearchBar, SearchResults, roomData) {
 
-    $scope.currentMenu = {};
     $scope.currentMenu.number = 1;
     $scope.firstMenu = true;
     $scope.lastMenu = false;
-    $scope.menus = [];
+    $scope.menus = roomData.menus;
+    $this.currentMenu = this.menus[0];
 
     $scope.prevMenu = function() {
       var prevIndex = currentMenu.number-2;
@@ -24,7 +24,7 @@ angular.module('privateTableApp')
     };
 
     $scope.init = function () {
-      SearchBar.searchFormInit();
+      
     };
 
     $scope.init();
