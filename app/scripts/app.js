@@ -42,25 +42,21 @@ angular
       })
       .state('checkout', {
         url: '/checkout',
-        templateUrl: 'views/checkout.html'
-      })
-      .state('checkout.menu', {
-        url: '/menu',
         views: {
-          '': {templateUrl: 'views/checkout/menu.html'},
-          'checkoutbox@checkout.menu': {
+          '': {templateUrl: 'views/checkout.html'},
+          'checkoutbox@checkout': {
             templateUrl: 'views/checkout/checkoutbox.html'
           }
         }
       })
+
       .state('checkout.room', {
         url: '/room',
+        templateUrl: 'views/checkout/room.html'
+      })
 
-        views: {
-          '': {templateUrl: 'views/checkout/room.html'},
-          'checkoutbox@checkout.room': {
-            templateUrl: 'views/checkout/checkoutbox.html'
-          }
-        }
+      .state('checkout.menu', {
+        url: '/menu',
+        templateUrl: 'views/checkout/menu.html'
       });
   });
