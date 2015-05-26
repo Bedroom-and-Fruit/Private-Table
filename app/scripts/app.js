@@ -19,7 +19,8 @@ angular
     'ui.router',
     'ngTouch',
     'searchBarFactory',
-    'searchResultsFactory'
+    'searchResultsFactory',
+    'roomFactory'
   ])
   .config(function ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('/');
