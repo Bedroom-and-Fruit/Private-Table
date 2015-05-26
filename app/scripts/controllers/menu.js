@@ -4,22 +4,23 @@
 angular.module('privateTableApp')
   .controller('menuController', ['$scope', 'SearchBar', 'SearchResults', 'roomData', function($scope, SearchBar, SearchResults, roomData) {
 
-    $scope.currentMenu.number = 1;
+   
     $scope.firstMenu = true;
     $scope.lastMenu = false;
-    $scope.menus = roomData.menus;
-    $this.currentMenu = this.menus[0];
+    $scope.menus = roomData.menus || [];
+    $scope.currentMenu = $scope.menus[0] || {};
+    $scope.currentMenu.number = 1;
 
     $scope.prevMenu = function() {
       var prevIndex = currentMenu.number-2;
       this.currentMenu = this.menus[prevIndex];
-      $scope.currentMenu.number = prevIndex-1;
+      this.currentMenu.number++;
     };
 
     $scope.nextMenu = function() {
       var nextIndex = currentMenu.number+1;
       this.currentMenu = this.menus[prevIndex];
-      $scope.currentMenu.number = nextIndex-1;
+      $scope.currentMenu.number--;
 
     };
 

@@ -3,13 +3,12 @@
   color: white;
 }
 
-.active {
-  
+#active {
   color: white;
   text-align: center;
 }
 
-#activecheckout {
+.activecheckout {
   background-color: white;
 }
 
@@ -18,11 +17,9 @@
   text-align: center;
 }
 
-#addpadding {
-  padding: 10px 10px;
+.changepadding {
+  padding: 10px 5px;
 }
-
-
 
 /*# sourceMappingURL=main.css.map */
 
