@@ -38,17 +38,8 @@ var Association = require('./associations.js');
 //     )
 // };
 
-//city
-//start time
-//end time
-//event type
-//guests
-//budget
-// 'availFor'+eventType = true AND eventType+'Capacity' > guests
-
-
 //  sequelize.query(SELECT * FROM Rooms AS r
-//  WHERE city=city AND minSpend < budget AND r.id IN (
+//  WHERE r.id IN (
 //  SELECT b.room FROM bookings AS b
 //  WHERE (b.end < startTime )  
 //      OR
@@ -64,7 +55,49 @@ var Association = require('./associations.js');
 
 
 
-
+if (eventType === 'banquet'){
+  sequelize.query( 
+    SELECT venueName, roomName, heroImage, contactImage, contactFirstName, contactLastName, contactTitle
+    FROM Room
+    INNER JOIN Venue
+    ON parentVenue=id
+    WHERE Venue.city = '+params.city'
+    AND Room.minSpend >= "budget"
+    AND Room.banquetCapacity >= "guests"
+    AND Room.id IN (
+      SELECT Booking.room FROM Booking
+      WHERE Booking.end <= "startTimeStamp"
+      OR Booking.start >= "endTimeStamp")
+    )
+}else if (eventType === 'reception'){
+  sequelize.query( 
+    SELECT venueName, roomName, heroImage, contactImage, contactFirstName, contactLastName, contactTitle
+    FROM Room
+    INNER JOIN Venue
+    ON parentVenue=id
+    WHERE Venue.city = "city"
+    AND Room.minSpend >= "budget"
+    AND Room.receptionCapacity >= "guests"
+    AND Room.id IN (
+      SELECT Booking.room FROM Booking
+      WHERE Booking.end <= "startTimeStamp"
+      OR Booking.start >= "endTimeStamp")
+    )
+}else{
+  sequelize.query( 
+    SELECT venueName, roomName, heroImage, contactImage, contactFirstName, contactLastName, contactTitle
+    FROM Room
+    INNER JOIN Venue
+    ON parentVenue=id
+    WHERE Venue.city = "city"
+    AND Room.minSpend >= "budget"
+    AND Room.receptionAndBanquetCapacity >= "guests"
+    AND Room.id IN (
+      SELECT Booking.room FROM Booking
+      WHERE Booking.end <= "startTimeStamp"
+      OR Booking.start >= "endTimeStamp")
+    )
+}
 
 
 
