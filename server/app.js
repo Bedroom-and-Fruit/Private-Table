@@ -12,10 +12,9 @@ app.use(express.static(__dirname + '/../app'));
 
 
 //path for when users are created
-// app.get('/api/hello', function(req, res){
-//   console.log(req.body);
-//   helper.hello(req.body);
-// });
+app.get('/api/searchResults', function(req, res){
+  helper.getSearchResults(req, res);
+});
 
 // app.get('/', function(req, res){
 //   res.sendFile(path.join(__dirname+'../app/index.html'));
