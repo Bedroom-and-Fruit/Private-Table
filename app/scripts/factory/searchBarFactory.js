@@ -2,12 +2,13 @@
 
 angular.module('searchBarFactory', [])
 
-.factory('SearchBar', ['SearchResults', '$location', function(SearchResults, $location) {
+.factory('SearchBar', ['SearchResults', '$location', 'CheckoutOptions', function(SearchResults, $location, CheckoutOptions) {
   // Your code here
   var searchParams;
   var setSearchParams = function (params, callback) {
     searchParams = params;
     // this is where our previous reroute was
+    CheckoutOptions.setEventParams(searchParams);
     if (callback) {
       SearchResults.getSearchResults(searchParams, callback);
     } else {
