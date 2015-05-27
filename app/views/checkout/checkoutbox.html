@@ -1,29 +1,35 @@
 <!-- beginning of active box -->
 <div class="panel row" ng-controller="checkoutController">
+  <span class="small-4 columns">
+  </span>
+  <span class="small-4 columns">
+    <div class="row">
+      <span class="small-6 columns">
+        <img src="images/door.png"> 
+      </span>
+      <p class="small-6 columns dull">Room 
+      </p>
+    </div>
+  </span>
+
+  <span id= "small-4 columns">
+    <div class="row">
+      <p class="small-6 columns dull">
+        {{room.venue}}
+      </p>
+      <span class="small-6 columns">
+      </span>
+    </div>
+  </span>
+
+<hr>
+
+
+<!-- event part of panel start -->
+
 <span class="small-4 columns">
-</span>
-<span class="small-4 columns">
-  <div class="row">
-    <span class="small-6 columns">
-      <img src="images/door.png"> 
-    </span>
-    <p class="small-6 columns dull">Room 
-    </p>
-  </div>
 </span>
 
-<span id= "small-4 columns" class="hey">
-  <div class="row">
-    <p class="small-6 columns dull">
-      {{selectedVenue.roomName}}
-    </p>
-    <span class="small-6 columns">
-    </span>
-  </div>
-</span>
-<hr>
-<span class="small-4 columns">
-</span>
 
 <span class="small-4 columns">
   <div class="row">
@@ -44,34 +50,77 @@
   </div>
 </span>
 
-<span class="small-4 columns changepadding">
-  <label> Guests </label>
-  <input type="text"  placeholder="Guests" ng-model="searchParams.guests">
-</span>
+<!-- event part of panel end -->
 
-<span class="small-4 columns changepadding">
-  <label> Date </label>
-  <input id="datepicker" ng-change="submitSearch()" placeholder="Date" type="text" ng-model="params.date">
-</span>
 
-<span class= "small-4 columns changepadding">
-  <label> Time </label>
-  <input id="timepicker" ng-change="" placeholder="Time" type="text" ng-model="params.time">
-</span>
 
-<select ng-model="searchParams.eventType" class="changepadding">
-  <option value="" selected disabled>Select Event Type</option>
-  <option value="Reception">Reception</option>
-  <option value="Banquet">Banquet</option>
-  <option value="Reception and Banquet">Reception and Banquet</option>
-</select>
+<div ng-hide="eventConfirmed">
+  <span class="small-3 columns" id="changepadding">
+    <label> Guests </label>
+    <input type="text"  placeholder="Guests" ng-model="params.guests">
+  </span>
 
-<span class="small-2 columns">
-</span>
-<span class="small-8 columns">
-  <button type="submit" class="button" ng-click="hello(toMenu())">Next</button>
-</span>
-<span class="small-2 columns">
-</span>
+  <span class="small-3 columns" id="changepadding">
+    <label> Date </label>
+    <input id="datepicker" placeholder="Date" type="text" ng-model="params.date">
+  </span>
 
+  <span class= "small-3 columns" id="changepadding">
+    <label> Start Time </label>
+    <input class="timepicker" placeholder="Time" type="text" ng-model="params.startTime">
+  </span>
+
+  <span class= "small-3 columns" id="changepadding">
+    <label> End Time </label>
+    <input class="timepicker" placeholder="Time" type="text" ng-model="params.endTime">
+  </span>
+
+  <select ng-model="params.eventType">
+    <option value="" selected disabled>Select Event Type</option>
+    <option value="Reception">Reception</option>
+    <option value="Banquet">Banquet</option>
+    <option value="Reception and Banquet">Reception and Banquet</option>
+  </select>
+
+<!-- event part of panel end -->
+  <button type="submit" class="button changepadding" ng-click="toMenu()">Next</button>
+</div>
+
+
+  <div ng-hide="menuConfirmed">
+  <hr>
+    <span class="small-4 columns">
+    </span>
+
+    <span class="small-4 columns">
+      <div class="row">
+        <span class="small-6 columns">
+          <img src="images/menu.png"> 
+        </span>
+        <p class="small-6 columns"><strong>MENU</strong>
+        </p>
+      </div>
+    </span>
+
+    <span id= "small-4 columns">
+      <div class="row">
+        <span class="small-6 columns">
+        </span>
+        <span class="small-6 columns">
+        </span>
+      </div>
+    </span>
+
+      <select ng-model="params.eventType">
+        <option value="" selected disabled>Select a Menu</option>
+        <option value="Reception">Yummy</option>
+        <option value="Banquet">Yum</option>
+        <option value="Reception and Banquet">Yum</option>
+      </select>
+
+    <div class="row"> $3200
+    </div>
+
+    <button type="submit" class="button" ng-click="toMenu()">Reserve</button>
+  </div>
 </panel>

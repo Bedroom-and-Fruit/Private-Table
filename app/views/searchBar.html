@@ -16,19 +16,23 @@
     </section>
     <form name="searchForm" id="form1" ng-submit="newSearch()" novalidate>
         <div class="large-2 columns">
-          <input type="text" placeholder="Location" class="form-control" id="string" name="string" required ng-model="params.location" ng-click="submitSearch()" ng-model="chosenPlace" googleplace>
+          <input type="text" placeholder="Location" class="form-control" id="string" name="string" required ng-model="params.location" ng-change="newSearch()" ng-model="chosenPlace" googleplace>
         </div>
 
         <div class="large-1 columns">
-          <input id="datepicker" ng-change="submitSearch()" placeholder="Date" type="text" ng-model="params.date">
+          <input ng-change="newSearch()" id="datepicker" placeholder="Date" type="text" ng-model="params.date">
         </div>
 
         <div class="large-1 columns">
-          <input id="timepicker" ng-change="submitSearch()" placeholder="Time" type="text" ng-model="params.time">
+          <input class="timepicker" ng-change="newSearch()" placeholder="Start Time" type="text" ng-model="params.startTime">
+        </div>
+
+        <div class="large-1 columns">
+          <input class="timepicker" ng-change="newSearch()" placeholder="End Time" type="text" ng-model="params.endTime">
         </div>
 
         <div class="small-2 columns">
-          <select ng-model="params.eventType" ng-change="submitSearch()">
+          <select ng-model="params.eventType" ng-change="newSearch()">
             <option value="" selected disabled>Select Event Type</option>
             <option value="Reception">Reception</option>
             <option value="Banquet">Banquet</option>
@@ -36,12 +40,11 @@
           </select>
         </div>
         <div class="large-1 columns">
-            <input type="text" placeholder="Guests" ng-model="params.guests">
+            <input type="text" ng-change="newSearch()" placeholder="Guests" ng-model="params.guests">
         </div>
         <div class="large-1 columns">
-            <input type="text" placeholder="Budget" ng-model="params.budget">
+            <input type="text" ng-change="newSearch()" placeholder="Budget" ng-model="params.budget">
         </div>
-      <button type="submit" class="button small" ng-click="submitSearch()">Search</button>
     </form>
   </nav>
 </div>
