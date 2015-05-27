@@ -67,7 +67,7 @@ angular.module('searchResultsFactory', [])
         if (callback) { callback(params); }
       });
     } else {
-      alert('not working');
+      alert('Please enter a location!');
     }
   });
 
