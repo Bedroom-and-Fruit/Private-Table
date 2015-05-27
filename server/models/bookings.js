@@ -4,9 +4,8 @@ var Room = require('./rooms.js');
 
 var Booking = db.define('Booking',
   {
-    date: Sequelize.DATE,
-    start: Sequelize.TIME,
-    end: Sequelize.TIME,
+    start: Sequelize.DATE,
+    end: Sequelize.DATE,
     room: Sequelize.INTEGER
   }
 );
