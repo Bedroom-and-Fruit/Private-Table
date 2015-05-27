@@ -9,19 +9,30 @@ angular.module('searchResultsFactory', [])
     //location only city
     //time format: YYYY-MM-DD HH:MM:SS
     var data = {};
-    data.guests = params.guests;
-    data.budget = params.budget;
-    data.eventType = params.eventType;
-    var date = params.date.split('/');
-    var formattedDate = date[2]+ '-' + date[0] + '-' + date[1];
+    var startTimeStamp = "";
+    var endTimeStamp = "";
+    if (params.date) {
+      var date = params.date.split('/');
+      startTimeStamp += date[2]+ '-' + date[0] + '-' + date[1];
+      endTimeStamp += date[2]+ '-' + date[0] + '-' + date[1];
+    }
+    
+    if (params.startTime) {
+      var startTime = timeConverter(params.startTime);
+      startTimeStamp += ' ' + startTime;
+    }
 
-    var startTime = timeConverter(params.startTime);
-    var endTime = timeConverter(params.endTime);
+    if (params.endTime) {
+      var endTime = timeConverter(params.endTime);
+      endTimeStamp += ' ' + endTime;
+    }
 
-    var finalStartTime = formattedDate + ' '+startTime;
-    var finalEndTime = formattedDate + ' '+endTime;
-    data.startTime = finalStartTime;
-    data.endTime = finalEndTime;
+    if (startTimeStamp) {data.startTimeStamp = startTimeStamp;}
+    if (endTimeStamp) {data.endTimeStamp = endTimeStamp;}
+    if (params.guests) {data.guests = params.guests;}
+    if (params.budget) {data.budget = params.budget;}
+    if (params.eventType) {data.eventType = params.eventType;}
+
 
     var geocoder = new google.maps.Geocoder();
     geocoder.geocode({'address': params.location}, function(results, status) {
