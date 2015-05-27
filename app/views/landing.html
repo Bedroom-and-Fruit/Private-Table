@@ -3,18 +3,22 @@
   <form name="searchForm" id="form1" novalidate>
   
     <div class="large-2 columns">
-      <input type="text" placeholder="Location" class="form-control" id="string" name="string" required ng-model="searchParams.location" ng-model="chosenPlace" googleplace>
+      <input type="text" placeholder="Location" class="form-control" id="string" name="string" required ng-model="params.location" ng-model="chosenPlace" googleplace>
     </div>
     <div class="large-1 columns">
-    <input id="datepicker" placeholder="Date" type="text" ng-model="searchParams.date"/>
+    <input id="datepicker" placeholder="Date" type="text" ng-model="params.date"/>
     </div>
 
     <div class="large-1 columns">
-      <input id="timepicker" placeholder="Time" type="text" ng-model="searchParams.time">
+      <input class="timepicker" placeholder="Start Time" type="text" ng-model="params.startTime">
+    </div>
+
+    <div class="large-1 columns">
+      <input class="timepicker" placeholder="End Time" type="text" ng-model="params.endTime">
     </div>
 
     <div class="large-2 columns">
-      <select ng-model="searchParams.eventType">
+      <select ng-model="params.eventType">
         <option value="" selected disabled>Select Event Type</option>
         <option value="Reception">Reception</option>
         <option value="Banquet">Banquet</option>
@@ -23,11 +27,11 @@
     </div>
 
     <div class="large-1 columns">
-        <input type="text" placeholder="Guests" ng-model="searchParams.guests">
+        <input type="text" placeholder="Guests" ng-model="params.guests">
     </div>
 
     <div class="large-1 columns">
-        <input type="text" placeholder="Budget" ng-model="searchParams.budget">
+        <input type="text" placeholder="Budget" ng-model="params.budget">
     </div>
     <button type="submit" class="button small" ng-click="submitSearch()">Search</button>
   </form>
