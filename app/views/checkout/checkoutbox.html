@@ -55,22 +55,27 @@
 
 
 <div ng-hide="eventConfirmed">
-  <span class="small-4 columns changepadding">
+  <span class="small-3 columns" id="changepadding">
     <label> Guests </label>
     <input type="text"  placeholder="Guests" ng-model="params.guests">
   </span>
 
-  <span class="small-4 columns changepadding">
+  <span class="small-3 columns" id="changepadding">
     <label> Date </label>
     <input id="datepicker" placeholder="Date" type="text" ng-model="params.date">
   </span>
 
-  <span class= "small-4 columns changepadding">
-    <label> Time </label>
-    <input id="timepicker" placeholder="Time" type="text" ng-model="params.time">
+  <span class= "small-3 columns" id="changepadding">
+    <label> Start Time </label>
+    <input class="timepicker" placeholder="Time" type="text" ng-model="params.startTime">
   </span>
 
-  <select ng-model="params.eventType" class="changepadding">
+  <span class= "small-3 columns" id="changepadding">
+    <label> End Time </label>
+    <input class="timepicker" placeholder="Time" type="text" ng-model="params.endTime">
+  </span>
+
+  <select ng-model="params.eventType">
     <option value="" selected disabled>Select Event Type</option>
     <option value="Reception">Reception</option>
     <option value="Banquet">Banquet</option>
