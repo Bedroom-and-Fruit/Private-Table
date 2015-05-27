@@ -58,5 +58,10 @@ angular
       .state('checkout.menu', {
         url: '/menu',
         templateUrl: 'views/checkout/menu.html'
+      })
+
+      .state('payment', {
+        url: '/payments',
+        templateUrl: 'views/payments.html'
       });
   });
