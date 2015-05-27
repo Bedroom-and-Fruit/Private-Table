@@ -1,0 +1,53 @@
+<nav data-topbar="" role="navigation" data-options="is_hover: true" class="top-bar">
+  <ul class="title-area">
+    <li class="name">
+      <h1><a ui-sref="landing" target="_self"><img src="../images/logo.png"></a></h1>
+    </li>
+  </ul>
+  <section class="top-bar-section">
+    <ul class="right">
+      <li><a ui-sref="landing" target="_self">Log in</a>
+      </li>
+      <li><a ui-sref="landing" target="_self">Sign up</a>
+      </li>
+    </ul>
+  </section>
+</nav>
+
+<form action="" method="POST" id="payment-form">
+  <span class="payment-errors"></span>
+  <div class="form-row">
+    <div class="medium-6 medium-offset-3 columns">
+      <label>
+        <span>Card Number</span>
+        <input type="text" size="20" data-stripe="number"/>
+      </label>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="medium-6 medium-offset-3 columns">
+    <label>
+      <span>CVC</span>
+      <input type="text" size="4" data-stripe="cvc"/>
+    </label>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="medium-6 medium-offset-3 columns">
+    <label>
+      <span>Expiration (MM/YYYY)</span>
+      <input type="text" size="2" data-stripe="exp-month"/>
+    </label>
+    <span> / </span>
+    <input type="text" size="4" data-stripe="exp-year"/>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="medium-6 medium-offset-3 columns">
+      <button type="submit">Submit Payment</button>
+    </div>
+  </div>
+</form>

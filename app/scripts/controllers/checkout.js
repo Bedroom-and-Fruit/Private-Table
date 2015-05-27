@@ -13,6 +13,10 @@ angular.module('privateTableApp')
       $scope.eventConfirmed = true;
       $scope.menuConfirmed = false;
     };
+
+    $scope.toPay = function() {
+      $location.path('/payments');
+    }
         //also reveal menu panel
 
 
