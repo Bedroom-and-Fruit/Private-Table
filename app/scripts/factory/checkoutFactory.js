@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('searchBarFactory', [])
+angular.module('checkoutFactory', [])
 
-.factory('CheckoutOptions', ['searchBar', '$location', function(SearchResults, $location) {
+.factory('CheckoutOptions', ['$location', function($location) {
   // Your code here
   var eventParams = {};
   var setEventParams = function (params, callback) {
@@ -14,7 +14,6 @@ angular.module('searchBarFactory', [])
   var getEventParams = function() {
     return eventParams;
   };
-
 
   return {
     eventParams: eventParams,

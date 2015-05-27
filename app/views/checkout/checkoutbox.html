@@ -7,7 +7,7 @@
       <span class="small-6 columns">
         <img src="images/door.png"> 
       </span>
-      <p class="small-6 columns dull">Room 
+      <p class="small-6 columns dull"><strong>ROOM</strong>
       </p>
     </div>
   </span>
@@ -15,7 +15,7 @@
   <span id= "small-4 columns">
     <div class="row">
       <p class="small-6 columns dull">
-        {{room.venue}}
+        {{params.room.venue}}
       </p>
       <span class="small-6 columns">
       </span>
@@ -37,10 +37,19 @@
       <img src="images/calendar.png"> 
     </span>
     <p class="small-6 columns"><strong>EVENT</strong> </p>
-    <p class="small-12 columns" ng-show="eventConfirmed">{{params.date}} from {{params.startTime}} to {{params.endTime}} | {{params.guests}} Guests</span>
+    </span>
     </p>
   </div>
 </span>
+
+ <span id= "small-4 columns">
+    <div class="row">
+      <p class="small-6 columns dull" ng-show="eventConfirmed">{{params.date}} from {{params.startTime}} to {{params.endTime}} | {{params.guests}} Guests
+      </p>
+      <span class="small-6 columns">
+      </span>
+    </div>
+  </span>
 
 <span id= "small-4 columns">
   <div class="row">

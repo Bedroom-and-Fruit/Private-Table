@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('privateTableApp')
-  .controller('checkoutController', ['$scope', '$location', 'SearchBar', 'SearchResults', 'CheckoutOptions' '$http', 'roomData', function($scope, $location, SearchBar, SearchResults, CheckoutOptions, $http, roomData) {
+  .controller('checkoutController', ['$scope', '$location', 'SearchBar', 'SearchResults', 'CheckoutOptions', '$http', 'roomData', function($scope, $location, SearchBar, SearchResults, CheckoutOptions, $http, roomData) {
     $scope.params;
-    $scope.params.room = roomData.currentRoom || {venue: "Sophia Room"};
+    
     $scope.eventConfirmed = false;
     $scope.menuConfirmed = true;
     $scope.toMenu = function() {
@@ -22,6 +22,7 @@ angular.module('privateTableApp')
     $scope.dateInit = function() {
       SearchBar.searchFormInit();
       $scope.params = CheckoutOptions.getEventParams();
+      $scope.params.room = {venue: "Sophia Room"}; // roomData.currentRoom;
     };
 
 

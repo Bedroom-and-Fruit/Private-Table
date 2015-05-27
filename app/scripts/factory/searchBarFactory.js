@@ -8,7 +8,7 @@ angular.module('searchBarFactory', [])
   var setSearchParams = function (params, callback) {
     searchParams = params;
     // this is where our previous reroute was
-    checkoutOptions.setEventParams(searchParams);
+    CheckoutOptions.setEventParams(searchParams);
     if (callback) {
       SearchResults.getSearchResults(searchParams, callback);
     } else {
