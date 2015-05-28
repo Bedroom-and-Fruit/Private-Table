@@ -10,5 +10,5 @@ var sequelize = new Sequelize('privateTableDb', 'someUsername', 'somePassword', 
   dialect: 'mysql'
 });
 
-}
+
 module.exports = sequelize;
