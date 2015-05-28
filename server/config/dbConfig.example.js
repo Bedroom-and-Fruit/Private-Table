@@ -5,9 +5,14 @@ var Sequelize = require('sequelize');
 // go for it.  Check out Sequelize's docs for more info:
 // http://sequelize.readthedocs.org/en/latest/
 
+if (process.env.HEROKU_POSTGRESQL_AMBER_URL) {
+
+} else {
+
 var sequelize = new Sequelize('privateTableDb', 'someUsername', 'somePassword', {
   host: 'localhost',
   dialect: 'mysql'
 });
 
+}
 module.exports = sequelize;

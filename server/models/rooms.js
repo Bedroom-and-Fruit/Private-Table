@@ -4,13 +4,13 @@ var Venue = require('./venues.js');
 
 var Room = db.define('Room',
   {
-    name: Sequelize.STRING,   /*roomName*/
+    roomName: Sequelize.STRING,
     type: Sequelize.STRING,
     size: Sequelize.INTEGER,
     description: Sequelize.TEXT,
-    availForbanquet: Sequelize.BOOLEAN,  /*banquet*/
+    banquet: Sequelize.BOOLEAN,
     banquetCapacity: Sequelize.INTEGER,
-    availForreception: Sequelize.BOOLEAN,  /*reception*/
+    reception: Sequelize.BOOLEAN,
     receptionCapacity: Sequelize.INTEGER,
     minSpend: Sequelize.INTEGER,
     roomRentalFee: Sequelize.INTEGER,
@@ -20,7 +20,7 @@ var Room = db.define('Room',
     cleaningFee: Sequelize.INTEGER,
     houseRules: Sequelize.STRING,
     cancelPolicy: Sequelize.STRING,
-    /*heroImage: Sequelize.STRING*/
+    heroImage: Sequelize.STRING
   }
 );
 

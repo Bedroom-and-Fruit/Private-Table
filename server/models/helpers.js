@@ -70,7 +70,7 @@ module.exports.getSearchResults = function(params, response) {
 
 
 //for reception
-  if (params.eventType === 'Reception') {
+  else if (params.eventType === 'Reception') {
     Venue.findAll({where: {city: params.city}, include: [{model: Room, where: {minSpend: {$lte: params.budget}, receptionCapacity: {$gte: params.guests}}}]}).then(function(rooms) {
      if(rooms) {
       var allRooms = [];
@@ -122,7 +122,7 @@ module.exports.getSearchResults = function(params, response) {
   }
 
 //for reception and banquet
-  if (params.eventType === 'Reception and Banquet') {
+  else if (params.eventType === 'Reception and Banquet') {
     Venue.findAll({where: {city: params.city}, include: [{model: Room, where: {minSpend: {$lte: params.budget}, receptionAndBanquetCapacity: {$gte: params.guests}}}]}).then(function(rooms) {
      if(rooms) {
       var allRooms = [];
