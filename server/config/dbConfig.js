@@ -11,10 +11,7 @@ if (process.env.HEROKU_POSTGRESQL_AMBER_URL) {
     protocol: 'postgres',
     port: match[4],
     host: match[3],
-    logging: console.log,
-    dialectOptions: {
-      ssl: true
-    }
+    logging: console.log
   });
 } else {
   var sequelize = new Sequelize(databaseName, username, password, {
