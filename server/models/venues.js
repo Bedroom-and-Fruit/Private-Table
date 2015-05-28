@@ -3,7 +3,7 @@ var Sequelize = require('sequelize');
 
 var Venue = db.define('Venue',
   {
-    venueName: Sequelize.STRING,
+    name: Sequelize.STRING,      /*venueName*/
     address: Sequelize.STRING,
     city: Sequelize.STRING,
     state: Sequelize.STRING,
@@ -16,7 +16,7 @@ var Venue = db.define('Venue',
     closeTime: Sequelize.TIME,
     contactFirstName: Sequelize.STRING,
     contactLastName: Sequelize.STRING,
-    contactImage: Sequelize.STRING,
+    /*contactImage: Sequelize.STRING,*/
     contactTitle: Sequelize.STRING,
     taxRate: Sequelize.DECIMAL(10,2),
     autogratRate: Sequelize.DECIMAL,

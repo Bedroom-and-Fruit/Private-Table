@@ -52,11 +52,11 @@ angular.module('searchResultsFactory', [])
           data.country = addressTypes[i].long_name;
         }
       }
-      var url = 'http://hn.algolia.com/api/v1/search?tags=front_page';
+      var url = 'api/searchResults';
       return $http({
         method: 'GET',
         url: url,
-        data: data
+        params: data
       })
       .then(function(response){
         searchResults.splice(0, searchResults.length);
