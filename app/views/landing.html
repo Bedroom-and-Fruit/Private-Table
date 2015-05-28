@@ -1,7 +1,31 @@
-<div ng-controller="landingController" id="centersearchbar">
+<div ng-controller="checkoutController"> 
+  <nav data-topbar="" role="navigation" data-options="is_hover: true" class="top-bar">
+    <ul class="title-area">
+      <li class="name">
+        <h1><a ui-sref="landing" target="_self"><img src="../images/logo.png"></a></h1>
+      </li>
+    </ul>
+    <section class="top-bar-section">
+      <ul class="right">
+        </li>
+        <li><a ui-sref="landing" target="_self">Log in</a>
+        </li>
+        <li><a ui-sref="landing" target="_self">Sign up</a>
+        </li>
+      </ul>
+    </section>
+  </nav>
+</div>
 
-  <form name="searchForm" id="form1" novalidate>
-  
+<div ng-controller="landingController" id="centersearchbar">
+  <div id="#mainOverlapWrap">
+    <video preload="auto" autoplay id="video1">
+    <source src="/videos/Private-Table.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <form name="searchForm" id="form1" class="searchbox" novalidate>
+    <div><h2>Plan your next event:</h2></div>
     <div class="large-2 columns">
       <input type="text" placeholder="Location" class="form-control" id="string" name="string" required ng-model="params.location" ng-model="chosenPlace" googleplace>
     </div>
@@ -9,11 +33,11 @@
     <input id="datepicker" placeholder="Date" type="text" ng-model="params.date"/>
     </div>
 
-    <div class="large-1 columns">
+    <div class="large-2 columns">
       <input class="timepicker" placeholder="Start Time" type="text" ng-model="params.startTime">
     </div>
 
-    <div class="large-1 columns">
+    <div class="large-2 columns">
       <input class="timepicker" placeholder="End Time" type="text" ng-model="params.endTime">
     </div>
 
@@ -33,6 +57,8 @@
     <div class="large-1 columns">
         <input type="text" placeholder="Budget" ng-model="params.budget">
     </div>
-    <button type="submit" class="button small" ng-click="submitSearch()">Search</button>
+    <div class="large-1 columns">
+    <button type="submit" class="button tiny" ng-click="submitSearch()">Search</button>
+    </div>
   </form>
 <div>

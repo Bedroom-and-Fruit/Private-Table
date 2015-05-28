@@ -17,9 +17,44 @@
   text-align: center;
 }
 
+.searchbox {
+  width: 85%;
+  position: absolute;
+  bottom: 100px;
+  padding: 2%;
+  border-radius: 5px;
+  left: 0;
+  right: 0;
+  background-color: rgba(0,0,0,0.7);
+  margin: auto;
+}
+
+.searchbox .large-1, .searchbox .large-2, .searchbox input, .searchbox button {
+  padding: 1px;
+}
 #changepadding {
   padding: 10px 1px;
 }
 
 /*# sourceMappingURL=main.css.map */
 
+#video1{   
+    position:absolute;
+    top:50px;
+    left:0px;
+    
+    min-width:1%;
+    width:100%;
+    /*height:100%;*/
+}
+
+#mainOverlapWrap{
+    /*z-index:1*/;
+    position:relative;
+    width:100%;
+    height:100%;
+}
+
+form h2 {
+  color: #ffffff;
+}
