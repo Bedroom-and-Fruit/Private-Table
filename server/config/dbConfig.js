@@ -7,7 +7,10 @@ if (process.env.HEROKU_POSTGRESQL_AMBER_URL) {
     protocol: 'postgres',
     port: match[4],
     host: match[3],
-    logging: console.log
+    logging: console.log,
+    dialectOptions: {
+      ssl: true
+    }
   });
 } else {
   var username = String(fs.readFileSync(__dirname + '/databaseusername'));
