@@ -1,8 +1,9 @@
 var Sequelize = require('sequelize');
 var fs = require('fs');
 
-if (process.env.HEROKU_POSTGRESQL_AMBER_URL) {
-  var sequelize = new Sequelize(process.env.HEROKU_POSTGRESQL_AMBER_URL, {
+if (process.env.DATABASE_URL) {
+  var match = process.env.DATABASE_URL.match(/postgres:\/\/([^:]+):([^@]+)@([^:]+):(\d+)\/(.+)/);
+  var sequelize = new Sequelize(match[5], match[1], match[2], {
     dialect: 'postgres',
     protocol: 'postgres',
     port: match[4],
