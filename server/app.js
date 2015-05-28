@@ -1,10 +1,6 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var helper = require('./models/helpers.js');
-<<<<<<< HEAD
-var path = require('path');
-=======
->>>>>>> setting up remote db
 var port = process.env.PORT || 9000;
 
 var app = express();
