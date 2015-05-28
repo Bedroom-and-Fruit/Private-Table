@@ -12,56 +12,169 @@ var RoomAmenity = require('./roomAmenities.js');
 var Amenity = require('./amenities.js');
 var Association = require('./associations.js');
 
-// module.exports.getSearchResults = function(params, response) {
-//   sequelize.query(
+module.exports.getSearchResults = function(params, response) {
+  params.guests = params.guests || 0;
+  params.budget = params.budget || 99999999999;
 
-//     Rooms.find({where: {}}).then(function(user) {
-//       if(user) {
+  //banquet
+  if (params.eventType === 'Banquet') {
+    Venue.findAll({where: {city: params.city}, include: [{model: Room, where: {minSpend: {$lte: params.budget}, banquetCapacity: {$gte: params.guests}}}]}).then(function(rooms) {
+     if(rooms) {
+      var allRooms = [];
+      for (var i = 0; i < rooms.length; i++) {
+        var roomsInVenue = rooms[i].dataValues.Rooms;
+        for (var j = 0; j < roomsInVenue.length; j++) {
+          allRooms.push(roomsInVenue[j].dataValues);
+        }
+      }
+      var allRoomsId = [];
+      for (var k = 0; k < allRooms.length; k ++) {
+        allRoomsId.push(allRooms[k].id);
+      }
+      Booking.findAll({where: {$or: [{end: {$lte: params.startTimeStamp}}, {start: {$gte: params.endTimeStamp}}]}, include: [{model: Room, where: {id: allRoomsId}}]}).then(function(availableRooms) {
+        if (availableRooms) {
+          var allAvailableRooms = [];
+          for (var i = 0; i < availableRooms.length; i++) {
+            allAvailableRooms.push(availableRooms[i].dataValues.Room.dataValues.id);
+          }
+          Room.findAll({where: {id: allAvailableRooms}, include: [Venue]}).then(function(allAvailRooms) {
+            var roomsToClient = [];
+            if(allAvailRooms) {
+              for (var i = 0; i < allAvailRooms.length; i++) {
+                roomsToClient.push({
+                  contactFullName: allAvailRooms[i].dataValues.Venue.dataValues.contactFirstName + ' ' + allAvailRooms[i].dataValues.Venue.dataValues.contactLastName,
+                  contactTitle: allAvailRooms[i].dataValues.Venue.dataValues.contactTitle,
+                  venue: allAvailRooms[i].dataValues.Venue.dataValues.venueName,
+                  room: allAvailRooms[i].dataValues.roomName,
+                  roomImage: allAvailRooms[i].dataValues.heroImage,
+                  contactImage: allAvailRooms[i].dataValues.Venue.dataValues.contactImage
+                });
+              }
+              response.json(roomsToClient);
+            } else {
+              console.log("No bookings available!");
+              response.send(401, "No bookings available!");
+            }
+          });
+        } else {
+          console.log("No bookings available!");
+          response.send(401, "No bookings available!");
+        }
+       });
+     } else {
+       console.log("No venues found for the requested location!");
+       response.send(401, "No venues found for the requested location!");
+     }
+    });
+  }
 
-//         if (user.checkPassword(password)) {
-//           var profile = {
-//             username: user.username,
-//             email: user.email
-//           };
-//           console.log("User authenticated!");
-//           response.json({token: jwt.sign(profile, secret, { expiresInMinutes: 60 * 5})});
-//         } else {
-//           console.log("Bad Password, Charlie");
-//           response.send(401, "Wrong username or password");
-//         }
-//       } else {
 
-//         console.log("Whoops, user doesn't exsist");
-//         response.send(401, "Wrong username or password");
-//       }
-//     });
-//     )
-// };
+//for reception
+  if (params.eventType === 'Reception') {
+    Venue.findAll({where: {city: params.city}, include: [{model: Room, where: {minSpend: {$lte: params.budget}, receptionCapacity: {$gte: params.guests}}}]}).then(function(rooms) {
+     if(rooms) {
+      var allRooms = [];
+      for (var i = 0; i < rooms.length; i++) {
+        var roomsInVenue = rooms[i].dataValues.Rooms;
+        for (var j = 0; j < roomsInVenue.length; j++) {
+          allRooms.push(roomsInVenue[j].dataValues);
+        }
+      }
+      var allRoomsId = [];
+      for (var k = 0; k < allRooms.length; k ++) {
+        allRoomsId.push(allRooms[k].id);
+      }
+      Booking.findAll({where: {$or: [{end: {$lte: params.startTimeStamp}}, {start: {$gte: params.endTimeStamp}}]}, include: [{model: Room, where: {id: allRoomsId}}]}).then(function(availableRooms) {
+        if (availableRooms) {
+          var allAvailableRooms = [];
+          for (var i = 0; i < availableRooms.length; i++) {
+            allAvailableRooms.push(availableRooms[i].dataValues.Room.dataValues.id);
+          }
+          Room.findAll({where: {id: allAvailableRooms}, include: [Venue]}).then(function(allAvailRooms) {
+            var roomsToClient = [];
+            if(allAvailRooms) {
+              for (var i = 0; i < allAvailRooms.length; i++) {
+                roomsToClient.push({
+                  contactFullName: allAvailRooms[i].dataValues.Venue.dataValues.contactFirstName + ' ' + allAvailRooms[i].dataValues.Venue.dataValues.contactLastName,
+                  contactTitle: allAvailRooms[i].dataValues.Venue.dataValues.contactTitle,
+                  venue: allAvailRooms[i].dataValues.Venue.dataValues.venueName,
+                  room: allAvailRooms[i].dataValues.roomName,
+                  roomImage: allAvailRooms[i].dataValues.heroImage,
+                  contactImage: allAvailRooms[i].dataValues.Venue.dataValues.contactImage
+                });
+              }
+              response.json(roomsToClient);
+            } else {
+              console.log("No bookings available!");
+              response.send(401, "No bookings available!");
+            }
+          });
+        } else {
+          console.log("No bookings available!");
+          response.send(401, "No bookings available!");
+        }
+       });
+     } else {
+       console.log("No venues found for the requested location!");
+       response.send(401, "No venues found for the requested location!");
+     }
+    });
+  }
 
-//city
-//start time
-//end time
-//event type
-//guests
-//budget
-// 'availFor'+eventType = true AND eventType+'Capacity' > guests
+//for reception and banquet
+  if (params.eventType === 'Reception and Banquet') {
+    Venue.findAll({where: {city: params.city}, include: [{model: Room, where: {minSpend: {$lte: params.budget}, receptionAndBanquetCapacity: {$gte: params.guests}}}]}).then(function(rooms) {
+     if(rooms) {
+      var allRooms = [];
+      for (var i = 0; i < rooms.length; i++) {
+        var roomsInVenue = rooms[i].dataValues.Rooms;
+        for (var j = 0; j < roomsInVenue.length; j++) {
+          allRooms.push(roomsInVenue[j].dataValues);
+        }
+      }
+      var allRoomsId = [];
+      for (var k = 0; k < allRooms.length; k ++) {
+        allRoomsId.push(allRooms[k].id);
+      }
+      Booking.findAll({where: {$or: [{end: {$lte: params.startTimeStamp}}, {start: {$gte: params.endTimeStamp}}]}, include: [{model: Room, where: {id: allRoomsId}}]}).then(function(availableRooms) {
+        if (availableRooms) {
+          var allAvailableRooms = [];
+          for (var i = 0; i < availableRooms.length; i++) {
+            allAvailableRooms.push(availableRooms[i].dataValues.Room.dataValues.id);
+          }
+          Room.findAll({where: {id: allAvailableRooms}, include: [Venue]}).then(function(allAvailRooms) {
+            var roomsToClient = [];
+            if(allAvailRooms) {
+              for (var i = 0; i < allAvailRooms.length; i++) {
+                roomsToClient.push({
+                  contactFullName: allAvailRooms[i].dataValues.Venue.dataValues.contactFirstName + ' ' + allAvailRooms[i].dataValues.Venue.dataValues.contactLastName,
+                  contactTitle: allAvailRooms[i].dataValues.Venue.dataValues.contactTitle,
+                  venue: allAvailRooms[i].dataValues.Venue.dataValues.venueName,
+                  room: allAvailRooms[i].dataValues.roomName,
+                  roomImage: allAvailRooms[i].dataValues.heroImage,
+                  contactImage: allAvailRooms[i].dataValues.Venue.dataValues.contactImage
+                });
+              }
+              response.json(roomsToClient);
+            } else {
+              console.log("No bookings available!");
+              response.send(401, "No bookings available!");
+            }
+          });
+        } else {
+          console.log("No bookings available!");
+          response.send(401, "No bookings available!");
+        }
+       });
+     } else {
+       console.log("No venues found for the requested location!");
+       response.send(401, "No venues found for the requested location!");
+     }
+    });
+  }
 
 
-//  sequelize.query(SELECT * FROM Rooms AS r
-//  WHERE city=city AND minSpend < budget AND r.id IN (
-//  SELECT b.room FROM bookings AS b
-//  WHERE (b.end < startTime )  
-//      OR
-//  b.start > endTime);         
-
-
-
-// Rooms.findAll({where: r.id: req.body.params.})
-
-
-// <= : "before"
-// >= : "after"
-
+};
 
 
 
