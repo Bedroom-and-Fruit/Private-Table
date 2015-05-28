@@ -26,7 +26,6 @@ angular.module('privateTableApp')
     };
 
 
-
     $scope.dateInit();
 
   }]);
