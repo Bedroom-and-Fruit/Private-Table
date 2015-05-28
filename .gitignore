@@ -6,3 +6,11 @@ bower_components
 .floo
 .flooignore
 app/bower_components
+
+#databse name
+/server/config/databasename
+#database password
+/server/config/databasepassword
+
+#database username
+/server/config/databaseusername
