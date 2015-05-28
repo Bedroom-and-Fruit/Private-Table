@@ -1,7 +1,6 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var helper = require('./models/helpers.js');
-var path = require('path');
 var port = process.env.PORT || 9000;
 
 var app = express();
