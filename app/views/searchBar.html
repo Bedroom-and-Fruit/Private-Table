@@ -24,11 +24,11 @@
         </div>
 
         <div class="large-1 columns">
-          <input class="timepicker" ng-change="newSearch()" placeholder="Start Time" type="text" ng-model="params.startTime">
+          <input class="timepicker" ng-change="newSearch()" placeholder="Start Time" type="text" ng-change="setMinEndTime()" ng-model="params.startTime">
         </div>
 
         <div class="large-1 columns">
-          <input class="timepicker" ng-change="newSearch()" placeholder="End Time" type="text" ng-model="params.endTime">
+          <input id="endtime" class="timepicker" ng-change="newSearch()" placeholder="End Time" type="text" ng-model="params.endTime">
         </div>
 
         <div class="small-2 columns">

@@ -11,5 +11,10 @@ angular.module('privateTableApp')
       SearchBar.searchFormInit();
     };
 
+    $scope.setMinEndTime = function () {
+      var minEndTime = SearchBar.endTimeAdjuster(this.params.startTime);
+      $('#endtime').datetimepicker({datepicker:false, format: 'g:i A', formatTime: 'g:i A', step: 30, minTime: minEndTime});
+    };
+
     $scope.init();
   }]);
