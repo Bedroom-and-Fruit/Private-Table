@@ -59,6 +59,7 @@ angular.module('searchResultsFactory', [])
         params: data
       })
       .then(function(response){
+        console.log(response);
         searchResults.splice(0, searchResults.length);
         response.data.hits.forEach(function(val){
           searchResults.push(val);
