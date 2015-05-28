@@ -21,7 +21,7 @@ if (process.env.DATABASE_URL) {
     dialect: 'postgres',
     protocol: 'postgres',
     port: '5432',
-    host: 'ec2-54-83-25-238.compute-1.amazonaws.com',
+    host: 'ec2-23-23-81-221.compute-1.amazonaws.com',
     logging: console.log,
     dialectOptions: {
       ssl: true
