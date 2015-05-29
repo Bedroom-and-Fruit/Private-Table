@@ -11,6 +11,11 @@ var CoursesInMenu = require('./coursesInMenus.js');
 var RoomAmenity = require('./roomAmenities.js');
 var Amenity = require('./amenities.js');
 var Association = require('./associations.js');
+var User = require('./users.js');
+var associations = require('./associations.js');
+var jwt = require('jsonwebtoken');
+
+
 
 module.exports.getSearchResults = function(params, response) {
   params.guests = params.guests || 0;
@@ -172,10 +177,31 @@ module.exports.getSearchResults = function(params, response) {
      }
     });
   }
-
-
 };
 
+module.exports.authenticate = function(username, password, response, secret) {
+  User.find({where: {username: username}}).then(function(user) {
+    if(user) {
+
+      if (user.checkPassword(password)) {
+        var profile = {
+          username: user.username,
+          email: user.email
+        };
+        console.log("User authenticated!");
+        response.json({token: jwt.sign(profile, secret, { expiresInMinutes: 60 * 5})});
+      } else {
+        console.log("Bad Password, Charlie");
+        response.send(401, "Wrong username or password");
+      }
+    } else {
+
+      console.log("Whoops, user doesn't exsist");
+      response.send(401, "Wrong username or password");
+
+    }
+  });
+};
 
 
 
