@@ -63,6 +63,9 @@ form h2 {
   color:red;
 }
 
+.lgnMenu {
+  background-color: red;
+}
 #paymentform {
   background-color: white;
   height: 700px;

@@ -1,43 +1,25 @@
 <!-- navbar start -->
 <div ng-controller="checkoutController"> 
-  <nav data-topbar="" role="navigation" data-options="is_hover: true" class="top-bar">
-    <ul class="title-area">
-      <li class="name">
-        <h1><a ui-sref="landing" target="_self"><img src="../images/logo.png"></a></h1>
-      </li>
-    </ul>
-    <section class="top-bar-section">
-      <ul class="right">
-        <li><a ui-sref="searchBar" target="_self">Back to Search Results</a>
-        </li>
-        <li><a ui-sref="landing" target="_self">Log in</a>
-        </li>
-        <li><a ui-sref="landing" target="_self">Sign up</a>
-        </li>
-      </ul>
-    </section>
-  </nav>
-</div>
+ 
 
 
-<div style="background-image:url('/images/hires/room/blux7.png'); background-repeat:repeat-x; width:100%; height:400px">
+<div style="background-image:url('/images/hires/room/blux7.png'); background-repeat:repeat-x; width:100%; height:400px"></div>
 
-  </div>
   <div>
   Text Container Begin
     <div>{{room.prop}}</div>
     <div>{{room.venue}}</div>
     <div class="row">
       <div class="medium-1 columns center">
-        <img src="/images/time.png"><br />
+        <img src="/images/doorhandle.png"><br />
         {{room.roomType}}
       </div>
       <div class="medium-1 columns">
-        <img src="/images/time.png"><br />
+        <img src="/images/users.png"><br />
         {{room.guestMin}} - {{room.guestMax}} Guests
       </div>
       <div class="medium-1 columns">
-        <img src="/images/time.png"><br />
+        <img src="/images/bank-cards-32.png"><br />
         ${{room.budgetMin}}
       </div>
       <div class="medium-1 columns">

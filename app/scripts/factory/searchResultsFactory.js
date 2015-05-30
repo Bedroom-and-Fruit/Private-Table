@@ -3,11 +3,14 @@
 angular.module('searchResultsFactory', [])
 
 .factory('SearchResults', ['$location', '$http', function($location, $http) {
+  var reroute = function(params, dest) {
+    $location.path(dest).search(params);
+  };
   //searchResults can be an array based on a query for search, a user's bookings, or a users favorites
 
   var searchResults = [];
 
-  var getResults = function (params, callback, url) {
+  var getResults = function (params, callback, url, dest) {
     return $http({
       method: 'GET',
       url: url,
@@ -20,16 +23,16 @@ angular.module('searchResultsFactory', [])
         searchResults.push(val);
       });
       console.log(data);
-      if (callback) { callback(params); }
+      if (callback) { callback(params, dest); }
     });
   }
 
-  var getFavoriteResults = function (params, callback) {
-    return getResults(params, callback, 'api/favoriteResults');
+  var getFavoriteResults = function (params) {
+    return getResults(params, reroute, 'api/favoriteResults', '/favorites');
   };
   
   var getBookingsResults = function (params, callback) {
-    return getResults(params, callback, 'api/bookingsResults');
+    return getResults(params, reroute, 'api/bookingsResults', '/bookings');
   };
 
   // this is a helper function used adjusting time format in the query timestamp; it's not exported
@@ -53,11 +56,8 @@ angular.module('searchResultsFactory', [])
     return timeH+":"+timeM+':00'
   };
 
-  var reroute = function(params) {
-    $location.path('/searchbar').search(params);
-  };
 
-  var getSearchResults = function(params, callback) {
+  var getSearchResults = function(params, callback, dest) {
     //location only city
     //time format: YYYY-MM-DD HH:MM:SS
     var data = {};
@@ -104,7 +104,7 @@ angular.module('searchResultsFactory', [])
             data.country = addressTypes[i].long_name;
           }
         }
-        return getResults(data, callback, 'api/searchResults');
+        return getResults(data, callback, 'api/searchResults', dest);
       } else {
         alert('Please enter a location!');
       }
