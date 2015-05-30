@@ -17,7 +17,7 @@ if (process.env.DATABASE_URL) {
   var username = String(fs.readFileSync(__dirname + '/databaseusername'));
   var password = String(fs.readFileSync(__dirname + '/databasepassword'));
   var databaseName = String(fs.readFileSync(__dirname + '/databasename'));
-  var sequelize = new Sequelize( databaseName, username, password, {
+  var sequelize = new Sequelize(databaseName, username, password, {
     dialect: 'postgres',
     protocol: 'postgres',
     port: '5432',
