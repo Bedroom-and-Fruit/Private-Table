@@ -21,11 +21,11 @@ if (process.env.DATABASE_URL) {
     dialect: 'postgres',
     protocol: 'postgres',
     port: '5432',
-    host: 'localhost', //'ec2-23-23-81-221.compute-1.amazonaws.com',
+    host: 'ec2-23-23-81-221.compute-1.amazonaws.com',
     logging: console.log,
-    // dialectOptions: {
-    //   ssl: true
-    // }
+    dialectOptions: {
+      ssl: true
+    }
   });
 }
 
