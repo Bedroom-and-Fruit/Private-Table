@@ -2,7 +2,7 @@ var db = require('../config/dbConfig.js');
 var Sequelize = require('sequelize');
 var Room = require('./rooms.js');
 
-var Image = db.define('Image',
+var Images = db.define('Images',
   {
     source: Sequelize.STRING,
     pictureOf: Sequelize.INTEGER
@@ -11,4 +11,4 @@ var Image = db.define('Image',
 
 db.sync();
 
-module.exports = Image;
+module.exports = Images;
