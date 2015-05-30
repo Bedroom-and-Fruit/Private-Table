@@ -67,9 +67,9 @@ angular
         templateUrl: 'views/checkout/menu.html'
       })
 
-      .state('payment', {
+      .state('checkout.payment', {
         url: '/payments',
-        templateUrl: 'views/payments.html'
+        templateUrl: 'views/checkout/payments.html'
       })
       .state('confirmation', {
         url: '/confirmation',

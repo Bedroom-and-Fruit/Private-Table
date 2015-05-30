@@ -44,7 +44,7 @@
 
  <span id= "small-4 columns">
     <div class="row">
-      <p class="small-6 columns dull" ng-show="eventConfirmed">{{params.date}} from {{params.startTime}} to {{params.endTime}} | {{params.guests}} Guests
+      <p class="small-6 columns dull">{{params.date}} from {{params.startTime}} to {{params.endTime}} | {{params.guests}} Guests
       </p>
       <span class="small-6 columns">
       </span>
@@ -96,22 +96,19 @@
   <button type="submit" class="button changepadding" ng-click="toMenu()">Next</button>
 </div>
 
-
-  <div ng-hide="menuConfirmed">
+<div ng-hide="menuLabel">
   <hr>
-    <span class="small-4 columns">
-    </span>
-
     <span class="small-4 columns">
       <div class="row">
         <span class="small-6 columns">
           <img src="images/menu.png"> 
         </span>
-        <p class="small-6 columns"><strong>MENU</strong>
-        </p>
+        <p class="small-6 columns"><strong>MENU</strong></p>
       </div>
     </span>
+</div>
 
+  <div ng-hide="menuConfirmed">
     <span id= "small-4 columns">
       <div class="row">
         <span class="small-6 columns">
@@ -121,16 +118,31 @@
       </div>
     </span>
 
-      <select ng-model="params.eventType">
-        <option value="" selected disabled>Select a Menu</option>
-        <option value="Reception">Yummy</option>
-        <option value="Banquet">Yum</option>
-        <option value="Reception and Banquet">Yum</option>
-      </select>
+    <select ng-model="params.eventType">
+      <option value="" selected disabled>Select a Menu</option>
+      <option value="Reception">Yummy</option>
+      <option value="Banquet">Yum</option>
+      <option value="Reception and Banquet">Yum</option>
+    </select>
 
-    <div class="row"> $3200
-    </div>
+    <div class="text-center">$3200</div>
 
     <button type="submit" class="button" ng-click="toPay()">Reserve</button>
   </div>
+
+  <div ng-hide="showSummary">
+    <hr>
+    <p class="text-center"><strong>Summary</strong></p>
+    <div class="row">
+      <div class="small-8 columns">
+      Menu
+      </div>
+      <div class="small-4 columns">
+      $199
+      </div>
+    </div>
+  </div>
+
+
+
 </panel>

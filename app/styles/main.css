@@ -62,3 +62,9 @@ form h2 {
 .ng-valid {
   color:red;
 }
+
+#paymentform {
+  background-color: white;
+  height: 700px;
+  width: 100%;
+}
