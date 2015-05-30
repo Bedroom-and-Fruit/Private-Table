@@ -11,6 +11,11 @@ var CoursesInMenu = require('./coursesInMenus.js');
 var RoomAmenity = require('./roomAmenities.js');
 var Amenity = require('./amenities.js');
 var User = require('./users.js');
+var Favorite = require('./favorites.js');
+var Layout = require ('./layouts.js');
+var LayoutsOffered = require ('./layoutsOffered.js');
+var Service = require ('./services.js');
+var ServicesOffered = require ('./servicesOffered.js');
 
 
 //relationship between venue and room
@@ -33,7 +38,7 @@ Booking.belongsTo(Room, {foreignKey: 'room'});
 Room.hasMany(RoomAmenity, {foreignKey:'room_ID'});
 RoomAmenity.belongsTo(Room, {foreignKey: 'room_ID'});
 
-// relationship between roomAmenity and Amenity
+// relationship between roomAmenity and amenity
 Amenity.hasMany(RoomAmenity, {foreignKey:'amenities_ID'});
 RoomAmenity.belongsTo(Amenity, {foreignKey: 'amenities_ID'});
 
@@ -45,7 +50,7 @@ CourseCombination.belongsTo(Course, {foreignKey: 'course_ID'});
 Menu.hasMany(CoursesInMenu, {foreignKey:'menu_ID'});
 CoursesInMenu.belongsTo(Menu, {foreignKey: 'menu_ID'});
 
-// relationship between coursesInMenu and Course
+// relationship between coursesInMenu and course
 Course.hasMany(CoursesInMenu, {foreignKey:'course_ID'});
 CoursesInMenu.belongsTo(Course, {foreignKey: 'course_ID'});
 
@@ -53,10 +58,33 @@ CoursesInMenu.belongsTo(Course, {foreignKey: 'course_ID'});
 MenuItem.hasMany(CourseCombination, {foreignKey:'menuItem_ID'});
 CourseCombination.belongsTo(MenuItem, {foreignKey: 'menuItem_ID'});
 
-// relationship between User and Booking
+// relationship between user and booking
 User.hasMany(Booking, {foreignKey:'booker'});
 Booking.belongsTo(User, {foreignKey: 'booker'});
 
+// relationship between servicesOffered and service
+Service.hasMany(ServicesOffered, {foreignKey:'service_ID'});
+ServicesOffered.belongsTo(Service, {foreignKey: 'service_ID'});
+
+// relationship between servicesOffered and room
+Room.hasMany(ServicesOffered, {foreignKey:'room_ID'});
+ServicesOffered.belongsTo(Room, {foreignKey: 'room_ID'});
+
+// relationship between layoutsOffered and layout
+Layout.hasMany(LayoutsOffered, {foreignKey:'layout_ID'});
+LayoutsOffered.belongsTo(Layout, {foreignKey: 'layout_ID'});
+
+// relationship between layoutsOffered and room
+Room.hasMany(LayoutsOffered, {foreignKey:'room_ID'});
+LayoutsOffered.belongsTo(Room, {foreignKey: 'room_ID'});
+
+// relationship between favorite and user
+User.hasMany(Favorite, {foreignKey:'user_ID'});
+Favorite.belongsTo(User, {foreignKey: 'user_ID'});
+
+// relationship between favorite and room
+Room.hasMany(Favorite, {foreignKey:'room_ID'});
+Favorite.belongsTo(Room, {foreignKey: 'room_ID'});
 
 
 db.sync();
