@@ -16,4 +16,4 @@ app/bower_components
 /server/config/databaseusername
 
 #dbConfig
-/server/config/dbconfig.js
+/server/config/dbConfig.js
