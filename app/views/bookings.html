@@ -1,0 +1,11 @@
+<div ng-controller="bookingsController" class="fixed"> 
+  <div>
+    <dl class="sub-nav">
+    <dt>Filter:</dt>
+    <dd ng-click="showAll()" class="active"><a href="#">All</a></dd>
+    <dd ng-click="showPurchased()"><a href="#">Planning</a></dd>
+    <dd ng-click="showPlanning()"><a href="#">Purchased</a></dd>
+    </dl>  
+  </div>
+  <div ui-view="searchResults"></div>
+</div>

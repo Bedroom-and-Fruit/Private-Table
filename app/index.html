@@ -18,12 +18,31 @@
     <!-- endbuild -->
   </head>
   <body ng-app="privateTableApp">
-    <!--[if lt IE 7]>
+    <div ng-controller="navController">
+      <nav data-topbar="" role="navigation" data-options="is_hover: true" class="top-bar">
+        <ul class="title-area">
+          <li class="name">
+            <h1><a ui-sref="landing" target="_self"><img src="../images/logo.png"></a></h1>
+          </li> 
+        </ul>
+        <section class="top-bar-section">
+        <ul ng-show="loggedIn">
+          <li class="lgnMenu"><a ui-sref="bookings"><img  src="/images/notebook.png"></a></li>
+          <li class="lgnMenu"><a ui-sref="favorites"><img src="/images/heart.png"></a></li>
+        </ul>
+          <ul class="right">
+            <li><a ui-sref="landing" target="_self">Log in</a></li>
+            <li><a ui-sref="landing" target="_self">Sign up</a></li>
+          </ul>
+        </section>
+      </nav>
+    </div>
+        <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-
+    
     <!-- Add your site or application content here -->
-    <div ui-view></div>
+    <div ui-view> </div>
     <div class="footer">
       <p>Give us Feedback!</p>
     </div>
@@ -64,7 +83,7 @@
     <script src="bower_components/jquery.cookie/jquery.cookie.js"></script>
     <script src="bower_components/jquery-placeholder/jquery.placeholder.js"></script>
     <script src="bower_components/foundation/js/foundation.js"></script>
-    <script>$(document).foundation();</script>
+    <script>$(document).foundation('clearing', 'reflow');</script>
     <script src="bower_components/datetimepicker/jquery.datetimepicker.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
@@ -80,6 +99,7 @@
 
 
         <!--controllers -->
+        <script src="scripts/controllers/topnavcontroller.js"></script>
         <script src="scripts/controllers/landing.js"></script>
         <script src="scripts/controllers/searchBar.js"></script>
         <script src="scripts/controllers/room.js"></script>
@@ -87,6 +107,11 @@
         <script src="scripts/controllers/checkout.js"></script>
         <script src="scripts/controllers/searchResultsController.js"></script>
         <script src="scripts/controllers/payments.js"></script>
+        <script src="scripts/controllers/favorites.js"></script>
+        <script src="scripts/controllers/bookings.js"></script>
+        
+
+
 
         <!--directives -->
         <script src="scripts/directives/landing.js"></script>
