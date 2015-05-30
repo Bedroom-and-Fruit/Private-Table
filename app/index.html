@@ -9,6 +9,7 @@
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/foundation/css/foundation.css" />
+    <link rel="stylesheet" href="bower_components/ngModal/dist/ng-modal.css" />
     <link rel="stylesheet" href="bower_components/datetimepicker/jquery.datetimepicker.css" />
     <!-- endbower -->
     <!-- endbuild -->
@@ -31,11 +32,17 @@
           <li class="lgnMenu"><a ui-sref="favorites"><img src="/images/heart.png"></a></li>
         </ul>
           <ul class="right">
-            <li><a ui-sref="landing" target="_self">Log in</a></li>
-            <li><a ui-sref="landing" target="_self">Sign up</a></li>
+            <li><a ng-click="toggleLogin()">Log in</a></li>
+            <li><a ng-click="toggleSignUp()">Sign up</a></li>
           </ul>
         </section>
       </nav>
+      <modal-dialog show='signUpShown' dialog-title='Sign up:'>
+        
+     </modal-dialog>
+    <modal-dialog show='loginShown' dialog-title='Login:'>
+        
+     </modal-dialog>
     </div>
         <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -83,6 +90,7 @@
     <script src="bower_components/jquery.cookie/jquery.cookie.js"></script>
     <script src="bower_components/jquery-placeholder/jquery.placeholder.js"></script>
     <script src="bower_components/foundation/js/foundation.js"></script>
+    <script src="bower_components/ngModal/dist/ng-modal.js"></script>
     <script>$(document).foundation('clearing', 'reflow');</script>
     <script src="bower_components/datetimepicker/jquery.datetimepicker.js"></script>
     <!-- endbower -->
