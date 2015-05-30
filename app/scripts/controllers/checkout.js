@@ -6,16 +6,22 @@ angular.module('privateTableApp')
     
     $scope.eventConfirmed = false;
     $scope.menuConfirmed = true;
+    $scope.menuLabel = true;
+    $scope.showSummary = true;
+
     $scope.toMenu = function() {
       CheckoutOptions.setEventParams(this.params);
       $scope.params = CheckoutOptions.getEventParams();
       $location.path('/checkout/menu');
       $scope.eventConfirmed = true;
+      $scope.menuLabel = false;
       $scope.menuConfirmed = false;
     };
 
     $scope.toPay = function() {
-      $location.path('/payments');
+      $location.path('/checkout/payments');
+      $scope.menuConfirmed = true;
+      $scope.showSummary = false;
     }
         //also reveal menu panel
 
