@@ -3,6 +3,7 @@ angular.module('privateTableApp')
     //This controller determines how the ngRepeat in searchResults view is filtered.
     $scope.init = function () {
       this.showAll();
+      searchBar.get
     };
     $scope.showAll = function () {
       SearchResults.showAll();
