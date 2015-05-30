@@ -59,10 +59,6 @@ form h2 {
   color: #ffffff;
 }
 
-.ng-valid {
-  color:red;
-}
-
 .lgnMenu {
   background-color: red;
 }
@@ -70,4 +66,11 @@ form h2 {
   background-color: white;
   height: 700px;
   width: 100%;
+  padding: 5%;
+  color: gray;
+}
+
+.inputform {
+  height: 35px;
+  width: 500px;
 }
