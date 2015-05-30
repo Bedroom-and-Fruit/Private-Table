@@ -5,7 +5,6 @@ var Sequelize = require('sequelize');
 
 var Layout = db.define('Layout',
   {
-    id: Sequelize.INTEGER,
     name: Sequelize.STRING,
     capacity: Sequelize.INTEGER
   }

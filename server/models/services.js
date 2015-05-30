@@ -3,7 +3,6 @@ var Sequelize = require('sequelize');
 
 var Service = db.define('Service',
   {
-    id: Sequelize.INTEGER,
     name: Sequelize.STRING
   }
 );
