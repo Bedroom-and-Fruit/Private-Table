@@ -1,5 +1,8 @@
 'use strict';
 $(document).foundation();
+(function() {
+    Stripe.setPublishableKey('pk_test_rT3gR317GZZ9QOG0D5uMaQWy');
+})();
 /**
  * @ngdoc overview
  * @name privateTableApp
@@ -21,7 +24,10 @@ angular
     'searchBarFactory',
     'searchResultsFactory',
     'roomFactory',
-    'checkoutFactory'
+    'checkoutFactory',
+    'angularPayments',
+    'mm.foundation',
+    'angularSpinner'
   ])
   .config(function ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('/');
@@ -50,7 +56,7 @@ angular
           }
         }
       })
-
+      
       .state('checkout.room', {
         url: '/room',
         templateUrl: 'views/checkout/room.html'
@@ -64,5 +70,9 @@ angular
       .state('payment', {
         url: '/payments',
         templateUrl: 'views/payments.html'
+      })
+      .state('confirmation', {
+        url: '/confirmation',
+        templateUrl: 'views/confirmation.html'
       });
   });

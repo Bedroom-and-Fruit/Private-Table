@@ -58,3 +58,7 @@
 form h2 {
   color: #ffffff;
 }
+
+.ng-valid {
+  color:red;
+}

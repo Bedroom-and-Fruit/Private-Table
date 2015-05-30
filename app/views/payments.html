@@ -1,72 +1,24 @@
-<nav data-topbar="" role="navigation" data-options="is_hover: true" class="top-bar">
-  <ul class="title-area">
-    <li class="name">
-      <h1><a ui-sref="landing" target="_self"><img src="../images/logo.png"></a></h1>
-    </li>
-  </ul>
-  <section class="top-bar-section">
-    <ul class="right">
-      <li><a ui-sref="landing" target="_self">Log in</a>
-      </li>
-      <li><a ui-sref="landing" target="_self">Sign up</a>
-      </li>
-    </ul>
-  </section>
-</nav>
-
-<form action="" method="POST" id="payment-form">
-  <span class="payment-errors"></span>
-
-  <div class="form-row">
-    <div class="medium-6 medium-offset-3 columns">
-      <label>
-        <span>Full Name</span>
-        <input type="text" size="20"/>
-      </label>
-    </div>
-  </div>
-
-  <div class="form-row">
-    <div class="medium-6 medium-offset-3 columns">
-      <label>
-        <span>Email Address</span>
-        <input type="text" size="20"/>
-      </label>
-    </div>
-  </div>
-
-  <div class="form-row">
-    <div class="medium-6 medium-offset-3 columns">
-      <label>
-        <span>Card Number</span>
-        <input type="text" size="20" data-stripe="number"/>
-      </label>
-    </div>
-  </div>
-
-  <div class="form-row">
-    <div class="medium-6 medium-offset-3 columns">
-    <label>
-      <span>CVC</span>
-      <input type="text" size="4" data-stripe="cvc"/>
-    </label>
-    </div>
-  </div>
-
-  <div class="form-row">
-    <div class="medium-6 medium-offset-3 columns">
-    <label>
-      <span>Expiration (MM/YYYY)</span>
-      <input type="text" size="2" data-stripe="exp-month"/>
-    </label>
-    <span> / </span>
-    <input type="text" size="4" data-stripe="exp-year"/>
-    </div>
-  </div>
-
-  <div class="form-row">
-    <div class="medium-6 medium-offset-3 columns">
-      <button type="submit">Submit Payment</button>
-    </div>
-  </div>
+<form ng-controller="paymentsController" stripe-form="stripeCallback">
+  <label> Full Name </label>
+  <input ng-model="name" placeholder="Full Name"/>
+  <label> Email </label>
+  <input ng-model="email" placeholder="Email"/>
+<!--   <label> Address </label>
+  <input ng-model="address_line1" placeholder="Address"/>
+  <label> City </label>
+  <input ng-model="address_city" placeholder="City"/>
+  <label> State </label>
+  <input ng-model="address_state" placeholder="State"/>
+  <label> Country </label>
+  <input ng-model="address_country" placeholder="Country"/>
+  <label> Zip Code </label>
+  <input ng-model="address_zip" placeholder="Zip Code"/> -->
+  <label> Card Number </label>
+  <input ng-model="number" placeholder="Card Number" payments-format="card" payments-validate="card"/>
+  <label> Expiration </label>
+  <input ng-model="expiry" placeholder="MM/YY" payments-format="expiry" payments-validate="expiry"/>
+  <label> CVC </label>
+  <input ng-model="cvc" placeholder="CVC" payments-format="cvc" payments-validate="cvc"/>
+  <div> </div>
+  <button type="submit">Submit</button>
 </form>
