@@ -27,7 +27,8 @@ angular
     'checkoutFactory',
     'angularPayments',
     'mm.foundation',
-    'angularSpinner'
+    'angularSpinner',
+    'ngModal'
   ])
   .config(function ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('/');
