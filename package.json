@@ -25,7 +25,8 @@
     "readline": "0.0.7",
     "sequelize": "~2.1.0",
     "sequelize-heroku": "^1.0.0",
-    "serve-favicon": "~2.0.1"
+    "serve-favicon": "~2.0.1",
+    "stripe": "^3.3.4"
   },
   "repository": {},
   "devDependencies": {

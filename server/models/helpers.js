@@ -202,15 +202,3 @@ module.exports.authenticate = function(username, password, response, secret) {
     }
   });
 };
-
-
-
-
-
-
-
-
-
-
-
-
