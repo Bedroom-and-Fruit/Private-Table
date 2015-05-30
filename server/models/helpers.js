@@ -252,3 +252,4 @@ module.exports.findRoom = function(room, response) {
     }
   })
 };
+
