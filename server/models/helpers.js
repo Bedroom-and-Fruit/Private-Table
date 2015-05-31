@@ -1,6 +1,6 @@
 var Sequelize = require('sequelize');
 var Booking = require('./bookings.js');
-var Image = require('./images.js');
+var Images = require('./images.js');
 var Venue = require('./venues.js');
 var Room = require('./rooms.js');
 var Course = require('./courses.js');
@@ -10,9 +10,13 @@ var CourseCombination = require('./courseCombinations.js');
 var CoursesInMenu = require('./coursesInMenus.js');
 var RoomAmenity = require('./roomAmenities.js');
 var Amenity = require('./amenities.js');
-var Association = require('./associations.js');
 var User = require('./users.js');
-var associations = require('./associations.js');
+var Layout = require('./layouts.js');
+var LayoutsOffered = require('./layoutsOffered.js');
+var Service = require('./services.js');
+var ServicesOffered = require('./servicesOffered.js');
+var Favorite = require('./favorites.js');
+var Association = require('./associations.js');
 var jwt = require('jsonwebtoken');
 
 

@@ -1,24 +1,87 @@
 <form ng-controller="paymentsController" stripe-form="stripeCallback" id="paymentform">
-  <label> Full Name </label>
-  <input ng-model="name" placeholder="Full Name"/>
-  <label> Email </label>
-  <input ng-model="email" placeholder="Email"/>
-<!--   <label> Address </label>
-  <input ng-model="address_line1" placeholder="Address"/>
-  <label> City </label>
-  <input ng-model="address_city" placeholder="City"/>
-  <label> State </label>
-  <input ng-model="address_state" placeholder="State"/>
-  <label> Country </label>
-  <input ng-model="address_country" placeholder="Country"/>
-  <label> Zip Code </label>
-  <input ng-model="address_zip" placeholder="Zip Code"/> -->
-  <label> Card Number </label>
-  <input ng-model="number" placeholder="Card Number" payments-format="card" payments-validate="card"/>
-  <label> Expiration </label>
-  <input ng-model="expiry" placeholder="MM/YY" payments-format="expiry" payments-validate="expiry"/>
-  <label> CVC </label>
-  <input ng-model="cvc" placeholder="CVC" payments-format="cvc" payments-validate="cvc"/>
-  <div> </div>
-  <button type="submit">Submit</button>
+  <p> Payment </p>
+    <div class="row">
+      <div class = "small-12 columns">
+        <label> Credit Card Number </label>
+        <input ng-model="number" payments-format="card" payments-validate="card"/>
+        <img src="/../../images/bank-cards-32.png">
+        <img src="/../../images/bank-cards-32.png">
+        <img src="/../../images/bank-cards-32.png">
+        <img src="/../../images/bank-cards-32.png">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class = "small-2 columns">
+        <label> Expires on </label>
+        <input ng-model="expiry" placeholder="MM/YY" payments-format="expiry" payments-validate="expiry"/>
+      </div>
+      <div class = "small-9 columns">
+        <label> Security Code </label>
+        <input ng-model="cvc" placeholder="CVC" payments-format="cvc" payments-validate="cvc"/>
+      </div>
+    </div>
+
+    <hr>
+  <p> Billing Address </p>
+  
+
+  <div class="row">
+    <div class = "small-6 columns">
+      <label> Full Name </label>
+      <input ng-model="name"/>
+    </div>
+    <div class = "small-6 columns">
+      <label> Email </label>
+      <input ng-model="email"/>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class = "small-8 columns">
+      <label> Street Address </label>
+      <input ng-model="address_line1" placeholder="Address"/>
+    </div>
+    <div class = "small-4 columns">
+      <label> Apt # </label>
+      <input ng-model="apt"/>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class = "small-3 columns">
+      <label> City </label>
+      <input ng-model="address_city" placeholder="City"/>
+    </div>
+    <div class = "small-3 columns">
+      <label> State </label>
+      <input ng-model="address_state" placeholder="State"/>
+    </div>
+    <div class = "small-3 columns">
+      <label> Country </label>
+      <input ng-model="address_country" placeholder="Country"/>
+    </div>
+    <div class = "small-3 columns">
+      <label> Postal Code </label>
+      <input ng-model="address_zip" placeholder="Zip Code"/>
+    </div>
+  </div>
+  <div class="row text-center">
+    <div class="small-12 columns">
+      <input type="checkbox"> I agree to the Cancellation Policy, House Rules and Terms of Service
+    </div>
+  </div>
+  <div class="row text-center">
+    <div class="small-12 columns">
+      <input type="checkbox"> pay the entire amount
+    </div>
+  </div>
+  <div class="row text-center">
+    <div class="small-12 columns">
+      <input type="checkbox"> pay 50% deposit + balance 7 days prior to event
+    </div>
+  </div>
+  <div class="text-center">
+    <button type="submit">Reserve Now</button>
+  </div>
 </form>
