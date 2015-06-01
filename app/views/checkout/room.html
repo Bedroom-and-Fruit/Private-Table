@@ -6,7 +6,7 @@
   <div ng-controller="roomController">
     <div class="row">
       <div class="medium-12 columns">
-        <p>THIS IS THE ROOM DESCRIPTION {{room.description}}</p>
+        <p>{{room.description}}</p>
       </div>
     </div>
     <hr>
@@ -15,9 +15,9 @@
        <div class="medium-9 columns">
           <ul>
             <li> Size: {{room.size}}</li>
-            <li> Room Type: {{room.roomType}}</li>
-            <li> Minimum Spend: {{room.minBudget}}</li> 
-            <li> Availability: {{room.time}}</li>
+            <li> Room Type: {{room.type}}</li>
+            <li> Minimum Spend: {{room.minSpend}}</li> 
+            <li> Availability: {{room.eventDuration}}</li>
           </ul>
        </div>
     </div>
@@ -29,7 +29,7 @@
           <div class="row">
             <div class="medium-6 columns">
               <ul>
-                <li> Cancellation: {{room.cancellation}}</li>
+                <li> Cancellation: {{room.cancelPolicy}}</li>
                 <li> House Rules: {{room.houseRules}}</li>
                 <li> Refund Policy: {{room.refundPolicy}}</li> 
               </ul>
@@ -58,9 +58,9 @@
             </div>
             <div class="medium-6 columns">
               <ul>
-                <li>Overage: ${{room.overage}} per {{room.overageIncrement}} hour</li>
-                <li>Gratuity: ${{room.gratuity}} included in menu price</li>
-                <li>Tax: {{room.tax}}% included in menu price</li> 
+                <li>Overage: ${{room.durationOverageFee}} per {{room.durationOverage}} hour</li>
+                <li>Gratuity: {{room.autogratRate}}% included in menu price</li>
+                <li>Tax: {{room.taxRate}}% included in menu price</li> 
               </ul>
               <span ng-show="feeMore" ng-click="feeMoreClick()">+More</span>
             </div>

@@ -3,6 +3,7 @@
 angular.module('privateTableApp')
   .controller('checkoutController', ['$scope', '$location', 'SearchBar', 'SearchResults', 'CheckoutOptions', '$http', 'roomData', function($scope, $location, SearchBar, SearchResults, CheckoutOptions, $http, roomData) {
     $scope.params;
+    $scope.room;
     
     $scope.eventConfirmed = false;
     $scope.menuConfirmed = true;
@@ -28,7 +29,7 @@ angular.module('privateTableApp')
     $scope.dateInit = function() {
       SearchBar.searchFormInit();
       $scope.params = CheckoutOptions.getEventParams();
-      $scope.params.room = {venue: "Sophia Room"}; // roomData.currentRoom;
+      $scope.room = roomData.getRoom();
     };
 
 

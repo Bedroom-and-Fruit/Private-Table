@@ -1,15 +1,35 @@
 <div ng-controller="searchResultsController">
   <div class="row">
-    <div class="medium-6 columns" ng-repeat="room in roomResults | filter: bookingType(room)">
-      <div> <a href="{{room.url}}">{{room.property}}</a></div>
-      <div> <a href="{{room.url}}">{{room.venue}}</a></div>
+    <div class="medium-6 columns" ng-repeat="room in roomResults">
+<!--     | filter: bookingType(room)"> -->
+
       <!-- define styles for preview-image-container, preview-image-container a, and for contact assets below -->
-      <div class="preview-image-container" style="background-image:url({{room.venueImage}})">
-        <div> <a href="{{room.url}}"> VIEW </a></div>
-        <img src="{{room.contactImage}}">
-        <div>{{room.contactName}}</div>
-        <div>{{room.contactTitle}}</div>
+      <panel>
+
+        <div class="row">
+          <div class="medium-6 columns">
+            <h6><a href="{{room.url}}">{{room.venue}}</a></h6>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="medium-11 columns">
+            <div><a href="{{room.url}}"><em>{{room.room}}</em></a></div>
+          </div>
+          <div class="medium-1 columns">
+            <a href="{{room.url}}"><img src="/../../images/heart.png"></a>
+          </div>
+        </div>
+
+      </panel>
+
+      <div class="roomimage" ng-style="{'background-image':'url(' + room.roomImage + ')'}">
+        <button class="small viewurl" ng-click="viewRoom(room)"> VIEW </a></button>
+<!--         <div class="text-center viewurl"><a href="{{room.url}}">VIEW</a></div> -->
+        <img class="centercircle" src="{{room.contactImage}}">
       </div>
+        <h6 class="text-center"><strong>{{room.contactFullName}}<strong></h6>
+        <h6 class="text-center">{{room.contactTitle}}</h6>
     </div>
   </div>
 </div>

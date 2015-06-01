@@ -17,15 +17,13 @@ angular.module('searchResultsFactory', [])
       params: params
     })
     .then(function(response){
-      console.log(response);
       searchResults.splice(0, searchResults.length);
-      response.data.hits.forEach(function(val){
+      response.data.forEach(function(val){
         searchResults.push(val);
       });
-      console.log(data);
       if (callback) { callback(params, dest); }
     });
-  }
+  };
 
   var getFavoriteResults = function (params) {
     return getResults(params, reroute, 'api/favoriteResults', '/favorites');
@@ -104,9 +102,9 @@ angular.module('searchResultsFactory', [])
             data.country = addressTypes[i].long_name;
           }
         }
-        return getResults(data, callback, 'api/searchResults', dest);
+        return getResults(data, callback, 'api/searchresults', dest);
       } else {
-        alert('Please enter a location!');
+        console.log('No location entered');
       }
     });
   };
@@ -116,8 +114,8 @@ angular.module('searchResultsFactory', [])
   //onlyBookings is a variable to determine which bookings are shown in the Bookings tab; it is not exported
   var onlyBookings;
   var bookingsSelection = function (room) {
-    if (onlyBookings && room.bookingType) {
-      return (room.bookingType === onlyBookings) ? true : false;
+    if (onlyBookings && room.eventType) {
+      return (room.eventType === onlyBookings) ? true : false;
     }
     return true;
   };
