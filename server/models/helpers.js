@@ -24,6 +24,9 @@ var jwt = require('jsonwebtoken');
 module.exports.getSearchResults = function(params, response) {
   params.guests = params.guests || 0;
   params.budget = params.budget || 99999999999;
+  params.eventType = params.eventType || 'Reception and Banquet';
+  params.startTimeStamp = params.startTimeStamp || new Date().toISOString().slice(0, 19).replace('T', ' ');
+  params.endTimeStamp = params.endTimeStamp || params.startTimeStamp;
 
   //banquet
   if (params.eventType === 'Banquet') {
@@ -55,6 +58,7 @@ module.exports.getSearchResults = function(params, response) {
                   contactTitle: allAvailRooms[i].dataValues.Venue.dataValues.contactTitle,
                   venue: allAvailRooms[i].dataValues.Venue.dataValues.venueName,
                   room: allAvailRooms[i].dataValues.roomName,
+                  roomID: allAvailRooms[i].dataValues.id,
                   roomImage: allAvailRooms[i].dataValues.heroImage,
                   contactImage: allAvailRooms[i].dataValues.Venue.dataValues.contactImage
                 });
@@ -108,6 +112,7 @@ module.exports.getSearchResults = function(params, response) {
                   contactTitle: allAvailRooms[i].dataValues.Venue.dataValues.contactTitle,
                   venue: allAvailRooms[i].dataValues.Venue.dataValues.venueName,
                   room: allAvailRooms[i].dataValues.roomName,
+                  roomID: allAvailRooms[i].dataValues.id,
                   roomImage: allAvailRooms[i].dataValues.heroImage,
                   contactImage: allAvailRooms[i].dataValues.Venue.dataValues.contactImage
                 });
@@ -132,7 +137,7 @@ module.exports.getSearchResults = function(params, response) {
 
 //for reception and banquet
   else if (params.eventType === 'Reception and Banquet') {
-    Venue.findAll({where: {city: params.city}, include: [{model: Room, where: {minSpend: {$lte: params.budget}, receptionAndBanquetCapacity: {$gte: params.guests}}}]}).then(function(rooms) {
+    Venue.findAll({where: {city: params.city}, include: [{model: Room, where: {minSpend: {$lte: params.budget}, banquetCapacity: {$gte: params.guests}, receptionCapacity: {$gte: params.guests}}}]}).then(function(rooms) {
      if(rooms) {
       var allRooms = [];
       for (var i = 0; i < rooms.length; i++) {
@@ -160,6 +165,7 @@ module.exports.getSearchResults = function(params, response) {
                   contactTitle: allAvailRooms[i].dataValues.Venue.dataValues.contactTitle,
                   venue: allAvailRooms[i].dataValues.Venue.dataValues.venueName,
                   room: allAvailRooms[i].dataValues.roomName,
+                  roomID: allAvailRooms[i].dataValues.id,
                   roomImage: allAvailRooms[i].dataValues.heroImage,
                   contactImage: allAvailRooms[i].dataValues.Venue.dataValues.contactImage
                 });
@@ -205,4 +211,44 @@ module.exports.authenticate = function(username, password, response, secret) {
 
     }
   });
+};
+
+
+module.exports.findRoom = function(room, response) {
+  Room.find({where: {id: room}, include: [Venue]}).then(function(roomFound) {
+    if (roomFound) {
+      var allRoomInformation = roomFound.dataValues;
+      var allVenueInformation = roomFound.dataValues.Venue.dataValues
+      var roomInfo = {
+        cancelPolicy: allRoomInformation.cancelPolicy,
+        cleaningFee: allRoomInformation.cleaningFee,
+        description: allRoomInformation.description,
+        durationOverageFee: allRoomInformation.durationOverageFee,
+        eventDuration: allRoomInformation.eventDuration,
+        heroImage: allRoomInformation.heroImage,
+        houseRules: allRoomInformation.houseRules,
+        id: allRoomInformation.id,
+        minSpend: allRoomInformation.minSpend,
+        parentVenue: allRoomInformation.parentVenue,
+        roomName: allRoomInformation.roomName,
+        roomRentalFee: allRoomInformation.roomRentalFee,
+        receptionCapacity: allRoomInformation.receptionCapacity,
+        banquetCapacity: allRoomInformation.banquetCapacity,
+        size: allRoomInformation.size,
+        type: allRoomInformation.type,
+        houseRules: allVenueInformation.houseRules,
+        menuLeadTime: allVenueInformation.menuLeadTime,
+        venueCancelPolicy: allVenueInformation.cancelPolicy,
+        venueName: allVenueInformation.venueName,
+        taxRate: allVenueInformation.taxRate,
+        autogratRate: allVenueInformation.autogratRate,
+        autogratMinGuests: allVenueInformation.autogratMinGuests,
+        cuisineType: allVenueInformation.cuisineType
+      }
+      response.json(roomInfo);
+    } else {
+      console.log('The room should exist...');
+      response.send(401, "The room disappeared!");
+    }
+  })
 };

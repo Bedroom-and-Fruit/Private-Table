@@ -13,8 +13,12 @@ app.use(express.static(__dirname + '/../app'));
 
 
 //path for when users are created
-app.get('/api/searchResults?', function(req, res){
+app.get('/api/searchresults?', function(req, res){
   helper.getSearchResults(req.query, res);
+});
+
+app.get('/api/room/:roomID', function(req, res){
+  helper.findRoom(req.params.roomID, res);
 });
 
 app.post('/api/payments', function(req, res){

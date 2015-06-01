@@ -32,6 +32,7 @@ angular.module('privateTableApp')
 
     $scope.init = function () {
       SearchBar.searchFormInit();
+      $scope.room = roomData.getRoom();
     };
 
     $scope.init();
