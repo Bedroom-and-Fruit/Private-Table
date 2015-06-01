@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('privateTableApp')
-  .controller('searchBarController', ['$scope', 'SearchBar', 'SearchResults', function($scope, SearchBar, SearchResults) {
+  .controller('searchBarController', ['$scope', '$location', 'SearchBar', 'SearchResults', function($scope, $location, SearchBar, SearchResults) {
     $scope.params;
 
     $scope.newSearch = function() {

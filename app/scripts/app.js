@@ -30,7 +30,7 @@ angular
     'angularSpinner',
     'ngModal'
   ])
-  .config(function ($stateProvider, $urlRouterProvider) {
+  .config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
     $urlRouterProvider.otherwise('/');
 
     $stateProvider
@@ -95,4 +95,6 @@ angular
         url: '/confirmation',
         templateUrl: 'views/confirmation.html'
       });
+
+      // $locationProvider.html5Mode(true).hashPrefix('!');
   });
