@@ -16,8 +16,8 @@
           <ul>
             <li> Size: {{room.size}}</li>
             <li> Room Type: {{room.type}}</li>
-            <li> Minimum Spend: {{room.minSpend}}</li> 
-            <li> Availability: {{room.eventDuration}}</li>
+            <li> Minimum Spend: ${{room.minSpend}}</li> 
+            <li> Time Included: {{room.eventDuration}} hours</li>
           </ul>
        </div>
     </div>
@@ -27,18 +27,10 @@
        <div class="medium-3 columns">House Rules</div>
        <div class="medium-9 columns">
           <div class="row">
-            <div class="medium-6 columns">
+            <div class="medium-12 columns">
               <ul>
-                <li> Cancellation: {{room.cancelPolicy}}</li>
+                <li> Cancellation Policy: {{room.cancelPolicy}}</li>
                 <li> House Rules: {{room.houseRules}}</li>
-                <li> Refund Policy: {{room.refundPolicy}}</li> 
-              </ul>
-            </div>
-            <div class="medium-6 columns">
-              <ul>
-                <li> {{room.menuPolicy}}</li>
-                <li> {{room.petPolicy}}</li>
-                <li> {{room.smokingPolicy}}</li> 
               </ul>
             </div>
           </div>
@@ -58,9 +50,7 @@
             </div>
             <div class="medium-6 columns">
               <ul>
-                <li>Overage: ${{room.durationOverageFee}} per {{room.durationOverage}} hour</li>
-                <li>Gratuity: {{room.autogratRate}}% included in menu price</li>
-                <li>Tax: {{room.taxRate}}% included in menu price</li> 
+                <li>Overage: ${{room.durationOverageFee}} per hour</li>
               </ul>
               <span ng-show="feeMore" ng-click="feeMoreClick()">+More</span>
             </div>
