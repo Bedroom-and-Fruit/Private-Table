@@ -39,7 +39,10 @@ angular
         templateUrl: 'views/landing.html'
       })
       .state('searchBar', {
-        url: '/searchbar',
+        url: '/searchbar?startTimeStamp&endTimeStamp&lng&lat&city&state&country&guests&budget',
+        params: {
+          city: 'San Francisco'
+        },
         views: {
           '': {templateUrl: 'views/searchBar.html'},
           'searchResults@searchBar': {
@@ -78,7 +81,7 @@ angular
         }
       })
       .state('checkout.room', {
-        url: '/room',
+        url: '/room/:roomID',
         templateUrl: 'views/checkout/room.html'
       })
 
