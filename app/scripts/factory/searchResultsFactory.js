@@ -10,7 +10,7 @@ angular.module('searchResultsFactory', [])
 
   var searchResults = [];
 
-  var getResults = function (params, callback, url, dest) {
+  var getResults = function (params, url, callback, dest) {
     return $http({
       method: 'GET',
       url: url,
@@ -26,11 +26,11 @@ angular.module('searchResultsFactory', [])
   };
 
   var getFavoriteResults = function (params) {
-    return getResults(params, reroute, 'api/favoriteResults', '/favorites');
+    return getResults(params,'api/favoriteResults', reroute, '/favorites');
   };
   
   var getBookingsResults = function (params, callback) {
-    return getResults(params, reroute, 'api/bookingsResults', '/bookings');
+    return getResults(params, 'api/bookingsResults', reroute, '/bookings');
   };
 
   // this is a helper function used adjusting time format in the query timestamp; it's not exported
@@ -102,7 +102,7 @@ angular.module('searchResultsFactory', [])
             data.country = addressTypes[i].long_name;
           }
         }
-        return getResults(data, callback, 'api/searchresults', dest);
+        return getResults(data, 'api/searchresults', callback, dest);
       } else {
         console.log('No location entered');
       }
@@ -136,6 +136,7 @@ angular.module('searchResultsFactory', [])
     getFavoriteResults: getFavoriteResults,
     searchResults: searchResults,
     getSearchResults: getSearchResults,
+    getResults: getResults,
     reroute: reroute,
     bookingsSelection: bookingsSelection,
     showPlanning: showPlanning,

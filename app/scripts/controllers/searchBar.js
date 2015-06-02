@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('privateTableApp')
-  .controller('searchBarController', ['$scope', '$location', 'SearchBar', 'SearchResults', function($scope, $location, SearchBar, SearchResults) {
+  .controller('searchBarController', ['$scope', '$location', 'SearchBar', 'SearchResults', '$stateParams', function($scope, $location, SearchBar, SearchResults, $stateParams) {
     $scope.params;
 
     $scope.newSearch = function() {
@@ -10,6 +10,9 @@ angular.module('privateTableApp')
 
     $scope.init = function () {
       SearchBar.searchFormInit();
+      if ($stateParams) {
+        SearchResults.getResults($stateParams, 'api/searchresults');
+      }
       $scope.params = SearchBar.getSearchParams();
       SearchResults.showAll();
     };
