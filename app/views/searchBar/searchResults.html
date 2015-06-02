@@ -1,11 +1,10 @@
 <div ng-controller="searchResultsController">
-  <div class="row">
-    <div class="medium-6 columns" ng-repeat="room in roomResults">
-<!--     | filter: bookingType(room)"> -->
+  <div class="resultscontainer">
+    <div class="medium-6 columns roomsummary" ng-repeat="room in roomResults">
+    <!--     | filter: bookingType(room)"> -->
 
-      <!-- define styles for preview-image-container, preview-image-container a, and for contact assets below -->
+        <!-- define styles for preview-image-container, preview-image-container a, and for contact assets below -->
       <panel>
-
         <div class="row">
           <div class="medium-6 columns">
             <h6><a href="{{room.url}}">{{room.venue}}</a></h6>
@@ -13,23 +12,27 @@
         </div>
 
         <div class="row">
-          <div class="medium-11 columns">
+          <div class="medium-12 columns">
             <div><a href="{{room.url}}"><em>{{room.room}}</em></a></div>
           </div>
-          <div class="medium-1 columns">
-            <a href="{{room.url}}"><img src="/../../images/heart.png"></a>
-          </div>
+          
         </div>
-
       </panel>
+      <div class="roomimage" ng-style="{'background-image':'url(' + room.roomImage + ')'}" >
+       <div class="favoriteresult">
+          <!-- ng-if="!isFavorite(room)" ng-click="addFavorite(room)" -->
+          <img src="/../../images/favorite-fff.png">
+          <!-- ng-if="isFavorite(room)" ng-click="roomFavorite(room)" -->
+         <!--  <img src="/../../images/favorite-f77.png"> -->
+          
 
-      <div class="roomimage" ng-style="{'background-image':'url(' + room.roomImage + ')'}">
-        <button class="small viewurl" ng-click="viewRoom(room)"> VIEW </a></button>
-<!--         <div class="text-center viewurl"><a href="{{room.url}}">VIEW</a></div> -->
+        </div>
+        <button class="small viewurl" ng-click="viewRoom(room)">VIEW</button>
         <img class="centercircle" src="{{room.contactImage}}">
       </div>
-        <h6 class="text-center"><strong>{{room.contactFullName}}<strong></h6>
-        <h6 class="text-center">{{room.contactTitle}}</h6>
+      <div class="spacer"></div>
+          <h6 class="text-center"><strong>{{room.contactFullName}}</strong></h6>
+          <h6 class="text-center">{{room.contactTitle}}</h6> 
     </div>
   </div>
 </div>
