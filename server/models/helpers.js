@@ -227,6 +227,10 @@ module.exports.findRoom = function(room, response) {
       }
 
       Amenity.findAll({where: {id: allRoomAmenityId}}).then(function(allRoomAmenityId){
+        var roomAmenitiesFound =[];
+        for (var i=0; i < allRoomAmenityId.length; i++){
+          roomAmenitiesFound.push([]);
+        }
 
     
       var allRoomInformation = roomFound.dataValues;
