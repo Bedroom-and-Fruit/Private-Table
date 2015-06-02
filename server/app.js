@@ -14,7 +14,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static(__dirname + '/../app'));
 
-var secret = String(fs.readFileSync(__dirname + '/config/secret'));
+if (process.env.S1_SECRET) {
+  var secret = process.env.S1_SECRET;
+} else {
+  var secret = String(fs.readFileSync(__dirname + '/config/secret'));
+}
 
 //refactor this to explicitly protect certain routes
 app.use('/api/users', expressJwt({secret: secret}));
