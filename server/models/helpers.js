@@ -214,11 +214,26 @@ module.exports.authenticate = function(username, password, response, secret) {
 };
 
 
+// Venue.findAll({where: {city: params.city}, include: [{model: Room, where: {minSpend: {$lte: params.budget}, banquetCapacity: {$gte: params.guests}, receptionCapacity: {$gte: params.guests}}}]}).then(function(rooms)
+
 module.exports.findRoom = function(room, response) {
-  Room.find({where: {id: room}, include: [Venue]}).then(function(roomFound) {
-    if (roomFound) {
+  Room.find({where: {id: room}, include: [Venue, RoomAmenity]}).then(function(roomFound) {
+    if (roomFound){
+      
+      var allRoomAmenityId = [];
+      
+      for (var i = 0; i < roomFound.RoomAmenities.length; i++){
+        allRoomAmenityId.push(roomFound.RoomAmenities[i].dataValues.amenities_ID);
+      }
+
+      Amenity.findAll({where: {id: allRoomAmenityId}}).then(function(amenitiesFound){
+        var roomAmenitiesFound =[];
+        for (var i=0; i<allRoomAmenityId.length; i++){
+          roomAmenitiesFound.push(amenitiesFound[i].dataValues.name);
+        } 
+      
       var allRoomInformation = roomFound.dataValues;
-      var allVenueInformation = roomFound.dataValues.Venue.dataValues
+      var allVenueInformation = roomFound.dataValues.Venue.dataValues;
       var roomInfo = {
         cancelPolicy: allRoomInformation.cancelPolicy,
         cleaningFee: allRoomInformation.cleaningFee,
@@ -243,12 +258,15 @@ module.exports.findRoom = function(room, response) {
         taxRate: allVenueInformation.taxRate,
         autogratRate: allVenueInformation.autogratRate,
         autogratMinGuests: allVenueInformation.autogratMinGuests,
-        cuisineType: allVenueInformation.cuisineType
+        cuisineType: allVenueInformation.cuisineType,
+        amenities: roomAmenitiesFound
       }
       response.json(roomInfo);
-    } else {
+    })
+  } else {
       console.log('The room should exist...');
       response.send(401, "The room disappeared!");
     }
   })
 };
+
