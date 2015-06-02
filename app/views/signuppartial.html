@@ -1,0 +1,16 @@
+<form name="loginForm" ng-controller="signupController"
+      ng-submit="signup(credentials)" novalidate>
+  <div class="row">
+  <input class="small-6 columns" type="text" placeholder="Username" id="username"
+         ng-model="credentials.username">
+  <input class="small-6 columns" type="text" placeholder="Email" id="email"
+         ng-model="credentials.email">
+  </div>
+  <div class="row">
+  <input class="medium-6 columns" type="password" placeholder="Password" id="password"
+         ng-model="credentials.password">
+  <input class="medium-6 columns" type="password" placeholder="Confirm password" id="confirmpassword"
+         ng-model="credentials.confirmpassword">
+  </div>
+  <button type="submit">Sign up</button>
+</form>

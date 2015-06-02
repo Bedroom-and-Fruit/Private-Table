@@ -30,19 +30,19 @@
         <section class="top-bar-section">
         <ul ng-show="loggedIn">
           <li class="lgnMenu"><a ui-sref="bookings"><img  src="/images/notebook.png"></a></li>
-          <li class="lgnMenu"><a ui-sref="favorites"><img src="/images/heart.png"></a></li>
+          <li class="lgnMenu"><a ui-sref="favorites"><img src="/images/favorite.png"></a></li>
         </ul>
           <ul class="right">
-            <li><a ng-click="toggleLogin()">Log in</a></li>
+            <li><a ng-click="toggleLogin()">Login</a></li>
             <li><a ng-click="toggleSignUp()">Sign up</a></li>
           </ul>
         </section>
       </nav>
-      <modal-dialog show='signUpShown' dialog-title='Sign up:'>
-        
+      <modal-dialog show='signUpShown' dialog-title='Signup:'>
+        <div ng-include src="'/views/signuppartial.html'"></div>
      </modal-dialog>
-    <modal-dialog show='loginShown' dialog-title='Login: Plan'>
-        
+    <modal-dialog show='loginShown' dialog-title='Login:'>
+        <div ng-include src="'/views/loginpartial.html'"></div>
      </modal-dialog>
     </div>
         <!--[if lt IE 7]>
@@ -52,7 +52,7 @@
     <!-- Add your site or application content here -->
     <div ui-view> </div>
     <div class="footer">
-      <p>Give us Feedback!</p>
+      <!-- <p>Give us Feedback!</p> -->
     </div>
 
 

@@ -1,37 +1,26 @@
-<!-- navbar start -->
-<div ng-controller="searchBarController" class="fixed"> 
-  <nav data-topbar="" role="navigation" data-options="is_hover: true" class="top-bar">
-    <ul class="title-area">
-      <li class="name">
-        <h1><a ui-sref="landing" target="_self"><img src="../images/logo.png"></a></h1>
-      </li>
-    </ul>
-    <section class="top-bar-section">
-      <ul class="right">
-        <li><a ui-sref="landing" target="_self">Log in</a>
-        </li>
-        <li><a ui-sref="landing" target="_self">Sign up</a>
-        </li>
-      </ul>
-    </section>
-    <form name="searchForm" id="form1" ng-submit="newSearch()" novalidate>
-        <div class="large-2 columns">
+
+
+<script>$(document).foundation('reflow');</script>
+<div ng-controller="searchBarController" > 
+  <div data-magellan-expedition="fixed">    
+    <form class="sub-nav" name="searchForm" id="form1" ng-submit="newSearch()" novalidate>
+        <div class="medium-2 columns">
           <input type="text" placeholder="Location" class="form-control" id="string" name="string" required ng-model="params.location" ng-change="newSearch()" ng-model="chosenPlace" googleplace>
         </div>
 
-        <div class="large-1 columns">
+        <div class="medium-1 columns">
           <input ng-change="newSearch()" id="datepicker" placeholder="Date" type="text" ng-model="params.date">
         </div>
 
-        <div class="large-1 columns">
+        <div class="medium-1 columns">
           <input class="timepicker" ng-change="newSearch()" placeholder="Start Time" type="text" ng-change="setMinEndTime()" ng-model="params.startTime">
         </div>
 
-        <div class="large-1 columns">
+        <div class="medium-1 columns">
           <input id="endtime" class="timepicker" ng-change="newSearch()" placeholder="End Time" type="text" ng-model="params.endTime">
         </div>
 
-        <div class="small-2 columns">
+        <div class="medium-2 columns">
           <select ng-model="params.eventType" ng-change="newSearch()">
             <option value="" selected disabled>Select Event Type</option>
             <option value="Reception">Reception</option>
@@ -39,13 +28,13 @@
             <option value="Reception and Banquet">Reception and Banquet</option>
           </select>
         </div>
-        <div class="large-1 columns">
+        <div class="medium-1 columns">
             <input type="text" ng-change="newSearch()" placeholder="Guests" ng-model="params.guests">
         </div>
-        <div class="large-1 columns">
+        <div class="medium-1 columns end">
             <input type="text" ng-change="newSearch()" placeholder="Budget" ng-model="params.budget">
         </div>
     </form>
-  </nav>
+  </div>
 </div>
 <div ui-view="searchResults"></div>
