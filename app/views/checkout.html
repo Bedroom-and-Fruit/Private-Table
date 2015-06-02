@@ -1,11 +1,12 @@
 <!-- navbar start -->
+<script>$(document).foundation('reflow');</script>
 <div ng-controller="checkoutController"> 
  
 
 
 <div ng-style="{'background-image':'url(' + room.heroImage + ')'}" style="background-repeat:repeat-x; width:100%; height:400px"></div>
 
-  <div>
+  <div class="roomsummary">
     <div class="row">
       <div class="medium-12 columns">
         <h1><em>{{room.roomName}}</em></h1>
@@ -40,9 +41,17 @@
     </div>
   </div>
 </div>
+<div class="sticky">    
+    <dl class="sub-nav">
+    <dd class="active"><a ui-sref="checkout.room" id="room" ng-click="select()" target="_self">Room</a></dd>
+    <dd><a ui-sref="checkout.menu" id="menu" ng-click="select()" target="_self">Menu</a></dd>
+    </dl>  
+</div>
+
+
 <div class="row">
   <div class="medium-9 columns" >
-    <div class="contain-to-grid sticky">
+    <!-- <div class="sticky">
       <nav data-topbar role="navigation" data-options="is_hover: true" class="top-bar">   
         <section class="top-bar-section">
           <ul class="left">
@@ -53,11 +62,11 @@
           </ul>
         </section>
       </nav>
-    </div>
+    </div>-->
     <div ng-controller="roomController">
       <div ui-view=""></div>
     </div>
-  </div>
+  </div> 
   <div class="medium-3 columns">
     <div ui-view="checkoutbox"></div>
   </div>

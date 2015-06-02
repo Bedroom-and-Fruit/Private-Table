@@ -143,7 +143,7 @@ form h2 {
   padding: 0px;
   left: 0;
   right: 0;
-  background-color: rgba(0,0,0,0.7);
+  background-color: gray; /*rgba(0,0,0,0.7);*/
   margin: auto;
 }
 
