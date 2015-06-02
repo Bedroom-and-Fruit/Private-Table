@@ -226,16 +226,14 @@ module.exports.findRoom = function(room, response) {
         allRoomAmenityId.push(roomFound.RoomAmenities[i].dataValues.amenities_ID);
       }
 
-      Amenity.findAll({where: {id: allRoomAmenityId}}).then(function(allRoomAmenityId){
+      Amenity.findAll({where: {id: allRoomAmenityId}}).then(function(amenitiesFound){
         var roomAmenitiesFound =[];
-        for (var i=0; i < allRoomAmenityId.length; i++){
-          roomAmenitiesFound.push([]);
-        }
-
-    
+        for (var i=0; i<allRoomAmenityId.length; i++){
+          roomAmenitiesFound.push(amenitiesFound[i].dataValues.name);
+        } 
+      
       var allRoomInformation = roomFound.dataValues;
       var allVenueInformation = roomFound.dataValues.Venue.dataValues;
-      var allAmenityInformation = roomFound.dataValues.RoomAmenity;
       var roomInfo = {
         cancelPolicy: allRoomInformation.cancelPolicy,
         cleaningFee: allRoomInformation.cleaningFee,
@@ -261,7 +259,7 @@ module.exports.findRoom = function(room, response) {
         autogratRate: allVenueInformation.autogratRate,
         autogratMinGuests: allVenueInformation.autogratMinGuests,
         cuisineType: allVenueInformation.cuisineType,
-        amenities: allAmenityInformation
+        amenities: roomAmenitiesFound
       }
       response.json(roomInfo);
     })
