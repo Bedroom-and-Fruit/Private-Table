@@ -33,7 +33,7 @@ angular.module('privateTableApp')
 
     $scope.init = function () {
       SearchBar.searchFormInit();
-      if ($stateParams) {
+      if (typeof $stateParams.roomID === 'number') {
         roomData.viewRoom($stateParams, function() {
           $scope.room = roomData.getRoom();
         });

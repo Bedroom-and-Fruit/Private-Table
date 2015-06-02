@@ -41,9 +41,6 @@ angular
       })
       .state('searchBar', {
         url: '/searchbar?startTimeStamp&endTimeStamp&lng&lat&city&state&country&guests&budget',
-        params: {
-          city: 'San Francisco'
-        },
         views: {
           '': {templateUrl: 'views/searchBar.html'},
           'searchResults@searchBar': {

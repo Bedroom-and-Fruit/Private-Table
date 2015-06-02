@@ -29,7 +29,7 @@ angular.module('privateTableApp')
     $scope.dateInit = function() {
       SearchBar.searchFormInit();
       $scope.params = CheckoutOptions.getEventParams();
-      if ($stateParams) {
+      if (typeof $stateParams.roomID === 'number') {
         roomData.viewRoom($stateParams, function() {
           $scope.room = roomData.getRoom();
         });
