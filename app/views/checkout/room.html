@@ -39,16 +39,10 @@
 
     <hr>
     <div class="row">
-       <div class="medium-3 columns">Fees and Taxes</div>
+       <div class="medium-3 columns">Fees</div>
        <div class="medium-9 columns">
           <div class="row">
-            <div class="medium-6 columns">
-              <ul ng-repeat="fee in fees | limitTo:4">
-                <li>fee: fee its $00</li>
-                <li> {{fee.name}}: ${{fee.fee}}</li>
-              </ul>
-            </div>
-            <div class="medium-6 columns">
+            <div class="medium-12 columns">
               <ul>
                 <li>Overage: ${{room.durationOverageFee}} per hour</li>
               </ul>
@@ -73,18 +67,11 @@
            <div class="medium-3 columns">Amenities</div>
            <div class="medium-9 columns">
             <div class="row">
-              <div class="medium-6 columns">
-                <ul ng-repeat="amenity in amenities | limitTo: amenityLimit">
-                  <li> {{amenity.name}}: ${{amenity.fee}}</li>
+              <div class="medium-12 columns">
+                <ul ng-repeat="amenities in room.amenities | limitTo: amenityLimit">
+                  <li> {{amenities}}</li>
                 </ul>
                 <span ng-if="amenityMore" ng-click="amenityMoreClick()">+More</span>
-              </div>
-              <div class="medium-6 columns">
-                <ul>
-                  <li>Overage: ${{room.overage}} per {{room.overageIncrement}} hour</li>
-                  <li>Gratuity: ${{room.gratuity}} included in menu price</li>
-                  <li>Tax: {{room.tax}}% included in menu price</li> 
-                </ul>
               </div>
             </div>
           </div>
@@ -95,9 +82,9 @@
            <div class="medium-9 columns">
               <ul>
                 <li> Menus: {{room.menuNumber}}</li>
+                <li> Cuisine Type: {{room.cuisineType}}</li>
                 <li> Price: ${{room.menuMin}} to ${{room.menuMax}} per person</li>
                 <li> Customizable: {{room.customizable}}</li> 
-                <li> Chef's Menu: {{room.chefMenu}}</li>
               </ul>
            </div>
         </div>
