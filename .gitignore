@@ -9,6 +9,7 @@ app/bower_components
 
 #databse name
 /server/config/databasename
+
 #database password
 /server/config/databasepassword
 
@@ -17,3 +18,6 @@ app/bower_components
 
 #dbConfig
 /server/config/dbConfig.js
+
+# Ignore actual authentication secret
+/server/config/secret

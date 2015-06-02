@@ -270,3 +270,22 @@ module.exports.findRoom = function(room, response) {
   })
 };
 
+module.exports.searchOrMake = function(username, email, password, response, secret) {
+  User.find({where: {username: username}}).then(function(user) {
+    if(user) {
+      console.log('User exists');
+      response.send(401, "That user already exists!");
+    } else {
+      User.create({username: username, email: email}).then(function(user) {
+        user.password = user.setPassword(password);
+        var profile = {
+          username: user.username,
+          email: user.email
+        };
+        console.log("User created");
+        response.json({token: jwt.sign(profile, secret, { expiresInMinutes: 60 * 5})});
+      })
+    }
+  });
+};
+

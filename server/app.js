@@ -1,6 +1,9 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+var expressJwt = require('express-jwt');
+var jwt = require('jsonwebtoken');
 var helper = require('./models/helpers.js');
+var fs = require('fs');
 var port = process.env.PORT || 9000;
 var stripe = require('stripe')('pk_test_rT3gR317GZZ9QOG0D5uMaQWy');
 
@@ -11,16 +14,42 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static(__dirname + '/../app'));
 
+var secret = String(fs.readFileSync(__dirname + '/config/secret'));
+
+//refactor this to explicitly protect certain routes
+app.use('/api/users', expressJwt({secret: secret}));
+app.use('/api/auth/local', expressJwt({secret: secret}));
+app.use('/api/users/bookings', expressJwt({secret: secret}));
+app.use('/api/users/favorites', expressJwt({secret: secret}));
+
 
 //path for when users are created
+app.post('/api/users', function(req, res){
+  helper.searchOrMake(req.body.username, req.body.email, req.body.password, res, secret);
+});
+
+// path for when users are logging in
+app.post('/auth/local', function(req, res) {
+  helper.authenticate(req.body.username, req.body.password, res, secret);
+});
+
+// path for obtaining search results
 app.get('/api/searchresults?', function(req, res){
   helper.getSearchResults(req.query, res);
 });
 
+//path for obtaining detailed room info
 app.get('/api/room/:roomID', function(req, res){
   helper.findRoom(req.params.roomID, res);
 });
 
+//path for adding a room to favorites
+
+//path for deleting a room from favorites
+
+//path for viewing a user's bookings
+
+//path for processing payments
 app.post('/api/payments', function(req, res){
   var stripeToken = req.body;
   var charge = stripe.charges.create({
