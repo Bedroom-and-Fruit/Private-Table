@@ -71,8 +71,11 @@ angular
       })
       .state('checkout', {
         url: '/checkout',
+        abstract: true,
         views: {
-          '': {templateUrl: 'views/checkout.html'},
+          '': {
+            templateUrl: 'views/checkout.html'
+          },
           'checkoutbox@checkout': {
             templateUrl: 'views/checkout/checkoutbox.html'
           }
