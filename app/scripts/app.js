@@ -29,7 +29,9 @@ angular
     'mm.foundation',
     'angularSpinner',
     'ngModal',
-    'mm.foundation'
+    'mm.foundation',
+    'authFactory',
+    'favoriteFactory'
   ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
     $urlRouterProvider.otherwise('/');
@@ -61,9 +63,25 @@ angular
       })
       .state('bookings', {
         url: '/bookings',
+        data: {
+          authorizedRoles: [USER_ROLES.admin, USER_ROLES.planner, USER_ROLES.vendor]
+        },
         views: {
           '': {templateUrl: 'views/bookings.html'},
           'searchResults@bookings': {
+            templateUrl: 'views/searchBar/searchResults.html',
+            controller: 'searchResultsController'
+          }
+        }
+      })
+      .state('favorites', {
+        url: '/favorites',
+        data: {
+          authorizedRoles: [USER_ROLES.admin, USER_ROLES.planner, USER_ROLES.vendor]
+        },
+        views: {
+          '': {templateUrl: 'views/favorites.html'},
+          'searchResults@favorites': {
             templateUrl: 'views/searchBar/searchResults.html',
             controller: 'searchResultsController'
           }

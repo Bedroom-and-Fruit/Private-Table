@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="styles/scss/app.css">
     <!-- endbuild -->
   </head>
-  <body ng-app="privateTableApp">
+  <body ng-app="privateTableApp" ng-controller="ApplicationCtrl">
     <div ng-controller="navController">
       <nav data-topbar="" role="navigation" data-options="is_hover: true" class="top-bar">
         <ul class="title-area">
@@ -28,21 +28,22 @@
           </li> 
         </ul>
         <section class="top-bar-section">
-        <ul ng-show="loggedIn">
+        <ul ng-if="currentUser">
           <li class="lgnMenu"><a ui-sref="bookings"><img  src="/images/notebook.png"></a></li>
           <li class="lgnMenu"><a ui-sref="favorites"><img src="/images/favorite.png"></a></li>
         </ul>
           <ul class="right">
-            <li><a ng-click="toggleLogin()">Login</a></li>
-            <li><a ng-click="toggleSignUp()">Sign up</a></li>
+            <li ng-if="!currentUser" ><a ng-click="toggleLogin()">Login</a></li>
+            <li ng-if="!currentUser" ><a ng-click="toggleSignUp()">Sign up</a></li>
+            <li ng-if="currentUser" ><a ui-sref="favorites">{{currentUser.name}}</a></li>
           </ul>
         </section>
       </nav>
       <modal-dialog show='signUpShown' dialog-title='Signup:'>
-        <div ng-include src="'/views/signuppartial.html'"></div>
+        <div ng-include src="'/views/accounts/signuppartial.html'"></div>
      </modal-dialog>
     <modal-dialog show='loginShown' dialog-title='Login:'>
-        <div ng-include src="'/views/loginpartial.html'"></div>
+        <div ng-include src="'/views/accounts/loginpartial.html'"></div>
      </modal-dialog>
     </div>
         <!--[if lt IE 7]>
@@ -104,9 +105,11 @@
         <script src="scripts/factory/searchResultsFactory.js"></script>
         <script src="scripts/factory/roomFactory.js"></script>
         <script src="scripts/factory/checkoutFactory.js"></script>
-
+        <script src="scripts/factory/authFactory.js"></script>
+        <script src="scripts/factory/favoriteFactory.js"></script>
 
         <!--controllers -->
+        <script src="scripts/controllers/account/applicationcontroller.js"></script>
         <script src="scripts/controllers/topnavcontroller.js"></script>
         <script src="scripts/controllers/landing.js"></script>
         <script src="scripts/controllers/searchBar.js"></script>
@@ -117,12 +120,14 @@
         <script src="scripts/controllers/payments.js"></script>
         <script src="scripts/controllers/favoritescontroller.js"></script>
         <script src="scripts/controllers/bookings.js"></script>
-        
+        <script src="scripts/controllers/account/login.js"></script>
+        <script src="scripts/controllers/account/signup.js"></script>
 
 
 
         <!--directives -->
         <script src="scripts/directives/landing.js"></script>
+
         <!-- endbuild -->
 </body>
 </html>
