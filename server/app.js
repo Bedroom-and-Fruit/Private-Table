@@ -48,10 +48,19 @@ app.get('/api/room/:roomID', function(req, res){
 });
 
 //path for adding a room to favorites
+app.post('/api/users/favorites', function(req, res){
+  helper.addFavorite(, res);
+});
 
 //path for deleting a room from favorites
+app.post('/api/users/favorites', function(req, res){
+  helper.deleteFavorite(,res);
+});
 
 //path for viewing a user's bookings
+app.get('/api/users/bookings', function(req, res){
+  helper.viewBookings(,res);
+});
 
 //path for processing payments
 app.post('/api/payments', function(req, res){
