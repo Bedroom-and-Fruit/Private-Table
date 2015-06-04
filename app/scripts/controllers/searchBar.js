@@ -2,6 +2,7 @@
 
 angular.module('privateTableApp')
   .controller('searchBarController', ['$scope', '$location', 'SearchBar', 'SearchResults', '$stateParams', function($scope, $location, SearchBar, SearchResults, $stateParams) {
+   
     $scope.params;
 
     $scope.newSearch = function() {

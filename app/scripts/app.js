@@ -13,7 +13,6 @@ $(document).foundation();
  */
 angular
   .module('privateTableApp', [
-    'ngAnimate',
     'ngAria',
     'ngCookies',
     'ngMessages',
@@ -27,14 +26,15 @@ angular
     'checkoutFactory',
     'angularPayments',
     'mm.foundation',
-    'angularSpinner',
     'ngModal',
-    'mm.foundation',
     'authFactory',
-    'favoriteFactory'
+    'favoriteFactory',
+    'authInterceptorFactory'
   ])
-  .config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
+  .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
     $urlRouterProvider.otherwise('/');
+
+    $httpProvider.interceptors.push('authInterceptor');
 
     $stateProvider
       .state('landing', {
@@ -51,21 +51,8 @@ angular
           }
         }
       })
-      .state('favorites', {
-        url: '/favorites',
-        views: {
-          '': {templateUrl: 'views/favorites.html'},
-          'searchResults@favorites': {
-            templateUrl: 'views/searchBar/searchResults.html',
-            controller: 'searchResultsController'
-          }
-        }
-      })
       .state('bookings', {
         url: '/bookings',
-        data: {
-          authorizedRoles: [USER_ROLES.admin, USER_ROLES.planner, USER_ROLES.vendor]
-        },
         views: {
           '': {templateUrl: 'views/bookings.html'},
           'searchResults@bookings': {
@@ -76,9 +63,6 @@ angular
       })
       .state('favorites', {
         url: '/favorites',
-        data: {
-          authorizedRoles: [USER_ROLES.admin, USER_ROLES.planner, USER_ROLES.vendor]
-        },
         views: {
           '': {templateUrl: 'views/favorites.html'},
           'searchResults@favorites': {

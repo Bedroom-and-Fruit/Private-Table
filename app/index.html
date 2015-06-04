@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="styles/scss/app.css">
     <!-- endbuild -->
   </head>
-  <body ng-app="privateTableApp" ng-controller="ApplicationCtrl">
+  <body ng-app="privateTableApp">
     <div ng-controller="navController">
       <nav data-topbar="" role="navigation" data-options="is_hover: true" class="top-bar">
         <ul class="title-area">
@@ -33,9 +33,8 @@
           <li class="lgnMenu"><a ui-sref="favorites"><img src="/images/favorite.png"></a></li>
         </ul>
           <ul class="right">
-            <li ng-if="!currentUser" ><a ng-click="toggleLogin()">Login</a></li>
-            <li ng-if="!currentUser" ><a ng-click="toggleSignUp()">Sign up</a></li>
-            <li ng-if="currentUser" ><a ui-sref="favorites">{{currentUser.name}}</a></li>
+            <li><a ng-click="toggleLogin()">Login</a></li>
+            <li><a ng-click="toggleSignUp()">Sign up</a></li>
           </ul>
         </section>
       </nav>
@@ -84,7 +83,6 @@
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-touch/angular-touch.js"></script>
     <script src="bower_components/angular-foundation/mm-foundation.js"></script>
-    <script src="bower_components/angular-spinner/angular-spinner.js"></script>
     <script src="bower_components/angular-payments/lib/angular-payments.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="bower_components/fastclick/lib/fastclick.js"></script>
@@ -107,6 +105,7 @@
         <script src="scripts/factory/checkoutFactory.js"></script>
         <script src="scripts/factory/authFactory.js"></script>
         <script src="scripts/factory/favoriteFactory.js"></script>
+        <script src="scripts/factory/authInterceptor.js"></script>
 
         <!--controllers -->
         <script src="scripts/controllers/account/applicationcontroller.js"></script>

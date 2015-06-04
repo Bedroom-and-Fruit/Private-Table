@@ -1,16 +1,18 @@
-<form name="loginForm" ng-controller="SignupCtrl"
-      ng-submit="signup(credentials)" novalidate>
+<form name="signupForm" ng-controller="signupController" ng-submit="signup(signupForm.$valid)" novalidate>
   <div class="row">
-  <input class="small-6 columns" type="text" placeholder="Username" id="username"
-         ng-model="credentials.username">
-  <input class="small-6 columns" type="text" placeholder="Email" id="email"
-         ng-model="credentials.email">
+
+  <input class="small-6 columns" type="text" placeholder="Username" id="username" name="username" ng-model="credentials.username" ng-minlength="3" ng-maxlength="12" required>
+    <p ng-show="signupForm.username.$error.minlength" class="help-block">Username is too short.</p>
+    <p ng-show="signupForm.username.$error.maxlength" class="help-block">Username is too long.</p>
+
+  <input class="small-6 columns" name="email" type="email" placeholder="Email" id="email" ng-model="credentials.email" required>
+    <p ng-show="signupForm.email.$invalid && !signupForm.email.$pristine" class="help-block">Enter a valid email.</p>
   </div>
   <div class="row">
-  <input class="medium-6 columns" type="password" placeholder="Password" id="password"
-         ng-model="credentials.password">
-  <input class="medium-6 columns" type="password" placeholder="Confirm password" id="confirmpassword"
-         ng-model="credentials.confirmpassword">
-  </div>
-  <button type="submit">Sign up</button>
+
+  <input class="medium-6 columns" type="password" name="password" placeholder="Password" id="password" ng-model="credentials.password" ng-minlength="8" required>
+    <p ng-show="signupForm.password.$error.minlength" class="help-block">Password is too short.</p>
+<!--   <input class="medium-6 columns" type="password" placeholder="Confirm password" id="confirmpassword" ng-model="credentials.confirmpassword" required> -->
+  </div> 
+  <button type="submit" ng-disabled="signupForm.$invalid">Sign up</button>
 </form>

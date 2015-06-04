@@ -1,34 +1,30 @@
-'use strict';
-
 angular.module('privateTableApp')
-  .controller('SignupCtrl', function ($scope, Auth, $location) {
-    $scope.user = {};
+  .controller('signupController', ['$scope', 'Auth', '$location', function ($scope, Auth, $location) {
+    $scope.credentials = {};
     $scope.errors = {};
 
-    $scope.register = function(form) {
-      $scope.submitted = true;
-
-      if(form.$valid) {
+    $scope.signup = function(form) {
+      //$scope.submitted = true;
+      if (form) {
+        console.log('signing up user');
         Auth.createUser({
-          username: $scope.user.username,
-          email: $scope.user.email,
-          password: $scope.user.password
+          username: $scope.credentials.username,
+          email: $scope.credentials.email,
+          password: $scope.credentials.password
         })
-        .then( function() {
+        .then(function() {
           // Account created, redirect to user's dashboard
-          $location.path('/dashboard');
+          $location.path('/bookings');
+          
         })
-        .catch( function(err) {
+        .catch(function(err) {
           err = err.data;
           $scope.errors = {};
-
-          // Update validity of form fields that match the mongoose errors
-          angular.forEach(err.errors, function(error, field) {
-            form[field].$setValidity('mongoose', false);
-            $scope.errors[field] = error.message;
           });
-        });
+      } else {
+        console.log('Form is not valid');
       }
     };
+  }]);
 
-  });
+  

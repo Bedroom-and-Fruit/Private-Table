@@ -1,18 +1,23 @@
 'use strict';
 
 angular.module('privateTableApp')
-  .controller('LoginCtrl', ['$scope', '$rootScope', 'AUTH_EVENTS', 'Auth', function ($scope, $rootScope, AUTH_EVENTS, Auth) {
+  .controller('loginController', function ($scope, Auth, $location) {
     $scope.credentials = {};
     $scope.errors = {};
+    $scope.login = function(form) {
 
-
-    $scope.login = function (credentials) {
-      Auth.login(credentials).then(function (user) {
-        $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
-        $scope.setCurrentUser(user);
-      }, function () {
-        $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
-      });
-     };
-
-  }]);
+      if(form) {
+        Auth.login({
+          username: $scope.credentials.username,
+          password: $scope.credentials.password
+        })
+        .then(function() {
+          // Logged in, redirect to user's dashboard
+          $location.path('/bookings');
+        })
+        .catch(function(err) {
+          $scope.errors.other = err.message;
+        });
+      }
+    };
+  });

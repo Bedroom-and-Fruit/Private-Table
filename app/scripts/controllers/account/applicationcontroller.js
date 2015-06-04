@@ -1,8 +1,8 @@
-'use strict';
+/*'use strict';
 
 angular.module('privateTableApp')
 
-.controller('ApplicationCtrl', [ '$scope', 'USER_ROLES', 'Auth', function ($scope, USER_ROLES, Auth) {
+.controller('ApplicationCtrl', [ '$scope', 'Auth', function ($scope, USER_ROLES, Auth) {
   $scope.currentUser = null;
   $scope.userRoles = USER_ROLES;
   $scope.isAuthorized = AuthService.isAuthorized;
@@ -10,4 +10,4 @@ angular.module('privateTableApp')
   $scope.setCurrentUser = function (user) {
     $scope.currentUser = user;
   };
-}])
+}])*/
