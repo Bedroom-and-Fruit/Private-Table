@@ -282,7 +282,7 @@ module.exports.searchOrMake = function(username, email, password, response, secr
           email: user.email
         };
         console.log("User created");
-        response.json({token: jwt.sign(profile, secret, { expiresInMinutes: 60 * 5})});
+        response.json({token: jwt.sign(profile, secret, {expiresInMinutes: 60 * 5})});
       })
     }
   });

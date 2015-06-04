@@ -13,7 +13,6 @@ $(document).foundation();
  */
 angular
   .module('privateTableApp', [
-    'ngAnimate',
     'ngAria',
     'ngCookies',
     'ngMessages',
@@ -27,12 +26,15 @@ angular
     'checkoutFactory',
     'angularPayments',
     'mm.foundation',
-    'angularSpinner',
     'ngModal',
-    'mm.foundation'
+    'authFactory',
+    'favoriteFactory',
+    'authInterceptorFactory'
   ])
-  .config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
+  .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
     $urlRouterProvider.otherwise('/');
+
+    $httpProvider.interceptors.push('authInterceptor');
 
     $stateProvider
       .state('landing', {
@@ -49,21 +51,21 @@ angular
           }
         }
       })
-      .state('favorites', {
-        url: '/favorites',
-        views: {
-          '': {templateUrl: 'views/favorites.html'},
-          'searchResults@favorites': {
-            templateUrl: 'views/searchBar/searchResults.html',
-            controller: 'searchResultsController'
-          }
-        }
-      })
       .state('bookings', {
         url: '/bookings',
         views: {
           '': {templateUrl: 'views/bookings.html'},
           'searchResults@bookings': {
+            templateUrl: 'views/searchBar/searchResults.html',
+            controller: 'searchResultsController'
+          }
+        }
+      })
+      .state('favorites', {
+        url: '/favorites',
+        views: {
+          '': {templateUrl: 'views/favorites.html'},
+          'searchResults@favorites': {
             templateUrl: 'views/searchBar/searchResults.html',
             controller: 'searchResultsController'
           }

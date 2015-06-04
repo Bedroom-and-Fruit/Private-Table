@@ -1,0 +1,8 @@
+<form name="loginForm" ng-submit="login(loginForm.$valid)" novalidate>
+  <input type="text" placeholder="Username" name="username" id="username"
+         ng-model="credentials.username" ng-minlength="3" ng-maxlength="12">
+  <input type="password" placeholder="Password" name="password" id="password"
+         ng-model="credentials.password" ng-minlength="8">
+  <p ng-show="loginForm.username.$invalid && !loginForm.username.$pristine || loginForm.password.$invalid && !loginForm.password.$pristine" class="help-block">Username or password is not valid.</p>
+  <button type="submit">Login</button>
+</form>

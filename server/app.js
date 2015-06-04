@@ -21,8 +21,6 @@ if (process.env.S1_SECRET) {
 }
 
 //refactor this to explicitly protect certain routes
-app.use('/api/users', expressJwt({secret: secret}));
-app.use('/api/auth/local', expressJwt({secret: secret}));
 app.use('/api/users/bookings', expressJwt({secret: secret}));
 app.use('/api/users/favorites', expressJwt({secret: secret}));
 
@@ -32,8 +30,16 @@ app.post('/api/users', function(req, res){
   helper.searchOrMake(req.body.username, req.body.email, req.body.password, res, secret);
 });
 
+//path for user's profile
+app.get('/api/users/me', function(req, res){
+  var decoded = jwt.decode(req.headers.authorization);
+  res.send(201);
+  // helper.findAllInfo(decoded.username, res);
+});
+
 // path for when users are logging in
 app.post('/auth/local', function(req, res) {
+  console.log(req.body);
   helper.authenticate(req.body.username, req.body.password, res, secret);
 });
 
