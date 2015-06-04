@@ -10,7 +10,7 @@ var Service = db.define('Service',
     pricedPer: Sequelize.STRING,
     limit: Sequelize.INTEGER,
     limitOverageFee: Sequelize.INTEGER,
-    limitOveragePricedPer: Sequelize.INTEGER
+    limitOveragePricedPer: Sequelize.STRING
   }
 );
 
