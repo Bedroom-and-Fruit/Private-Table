@@ -15,7 +15,7 @@ angular.module('authInterceptorFactory', [])
       if(response.status === 401) {
         $location.path('/login');
         // remove any stale tokens
-        $cookie.remove('PrivateTableToken');
+        $cookies.remove('PrivateTableToken');
         return $q.reject(response);
       }
       else {
