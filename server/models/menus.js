@@ -8,7 +8,7 @@ var Menu = db.define('Menu',
     price: Sequelize.INTEGER,
     banquet: Sequelize.BOOLEAN,
     reception: Sequelize.BOOLEAN,
-    parentVenue: Sequelize.INTEGER
+    parentRoom: Sequelize.INTEGER
   }
 );
 

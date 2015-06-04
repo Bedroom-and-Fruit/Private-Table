@@ -22,9 +22,9 @@ var Service = require ('./services.js');
 Venue.hasMany(Room, {foreignKey: 'parentVenue'});
 Room.belongsTo(Venue, {foreignKey: 'parentVenue'});
 
-//relationship between venue and menu
-Venue.hasMany(Menu, {foreignKey:'parentVenue'});
-Menu.belongsTo(Venue, {foreignKey: 'parentVenue'});
+//relationship between room and menu
+Room.hasMany(Menu, {foreignKey:'parentRoom'});
+Menu.belongsTo(Room, {foreignKey: 'parentRoom'});
 
 // relationship between room and image
 Room.hasMany(Images, {foreignKey:'pictureOf'});
