@@ -2,7 +2,6 @@
 
 angular.module('privateTableApp')
   .controller('searchResultsController', ['$scope', '$http','$location', 'SearchResults', 'roomData', function( $scope, $http, $location, SearchResults, roomData) {
-
     $scope.roomResults = SearchResults.searchResults;
 
     $scope.bookingType = function (room) {
