@@ -2,7 +2,7 @@
 
 angular.module('favoriteFactory', [])
 
-.factory('Favorites', ['$location', '$http', 'SearchResults', function(SearchResults, $location, $http, SearchResults) {
+.factory('Favorites', ['$location', '$http', 'SearchResults', function($location, $http, SearchResults) {
   var favorites = [];
 
   var getFavorites = function(params) {
