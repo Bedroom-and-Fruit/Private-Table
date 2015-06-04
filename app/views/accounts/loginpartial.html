@@ -1,5 +1,4 @@
-<form name="loginForm" ng-controller="loginController"
-      ng-submit="login(loginForm.$valid)" novalidate>
+<form name="loginForm" ng-submit="login(loginForm.$valid)" novalidate>
   <input type="text" placeholder="Username" name="username" id="username"
          ng-model="credentials.username" ng-minlength="3" ng-maxlength="12">
   <input type="password" placeholder="Password" name="password" id="password"

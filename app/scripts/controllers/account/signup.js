@@ -2,6 +2,10 @@ angular.module('privateTableApp')
   .controller('signupController', ['$scope', 'Auth', '$location', function ($scope, Auth, $location) {
     $scope.credentials = {};
     $scope.errors = {};
+    $scope.toggleSignUp = function () {
+      this.signUpShown = !this.signUpShown;
+
+    };
 
     $scope.signup = function(form) {
       //$scope.submitted = true;
@@ -14,6 +18,7 @@ angular.module('privateTableApp')
         })
         .then(function() {
           // Account created, redirect to user's dashboard
+          $scope.toggleSignUp();
           $location.path('/bookings');
           
         })
