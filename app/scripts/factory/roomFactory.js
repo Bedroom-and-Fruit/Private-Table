@@ -17,6 +17,7 @@ angular.module('roomFactory', [])
       // console.log(response.data);
       roomID = response.data.id;
       currentRoom = response.data;
+      currentRoom.menuPrices = currentRoom.menuPrices.sort(function(a,b){return a-b;});
       if (callback) {
         callback();
       }
@@ -26,6 +27,7 @@ angular.module('roomFactory', [])
   };
 
   var getRoom = function() {
+    console.log(currentRoom);
     return currentRoom;
   };
 

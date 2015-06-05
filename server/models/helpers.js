@@ -215,10 +215,15 @@ module.exports.authenticate = function(username, password, response, secret) {
 };
 
 
-// Venue.findAll({where: {city: params.city}, include: [{model: Room, where: {minSpend: {$lte: params.budget}, banquetCapacity: {$gte: params.guests}, receptionCapacity: {$gte: params.guests}}}]}).then(function(rooms)
+// Menu properties needed
+// total number of menus for venue - menusOfferedTable
+//mOT is menus ids and rooms associated
+// menu prices - menus
+
+
 
 module.exports.findRoom = function(room, response) {
-  Room.find({where: {id: room}, include: [Venue, RoomAmenity]}).then(function(roomFound) {
+  Room.find({where: {id: room}, include: [Venue, RoomAmenity, MenusOffered]}).then(function(roomFound) {
     if (roomFound){
       
       var allRoomAmenityId = [];
@@ -232,37 +237,49 @@ module.exports.findRoom = function(room, response) {
         for (var i=0; i<allRoomAmenityId.length; i++){
           roomAmenitiesFound.push(amenitiesFound[i].dataValues.name);
         } 
-      
-      var allRoomInformation = roomFound.dataValues;
-      var allVenueInformation = roomFound.dataValues.Venue.dataValues;
-      var roomInfo = {
-        cancelPolicy: allRoomInformation.cancelPolicy,
-        cleaningFee: allRoomInformation.cleaningFee,
-        description: allRoomInformation.description,
-        durationOverageFee: allRoomInformation.durationOverageFee,
-        eventDuration: allRoomInformation.eventDuration,
-        heroImage: allRoomInformation.heroImage,
-        houseRules: allRoomInformation.houseRules,
-        id: allRoomInformation.id,
-        minSpend: allRoomInformation.minSpend,
-        parentVenue: allRoomInformation.parentVenue,
-        roomName: allRoomInformation.roomName,
-        roomRentalFee: allRoomInformation.roomRentalFee,
-        receptionCapacity: allRoomInformation.receptionCapacity,
-        banquetCapacity: allRoomInformation.banquetCapacity,
-        size: allRoomInformation.size,
-        type: allRoomInformation.type,
-        houseRules: allVenueInformation.houseRules,
-        menuLeadTime: allVenueInformation.menuLeadTime,
-        venueCancelPolicy: allVenueInformation.cancelPolicy,
-        venueName: allVenueInformation.venueName,
-        taxRate: allVenueInformation.taxRate,
-        autogratRate: allVenueInformation.autogratRate,
-        autogratMinGuests: allVenueInformation.autogratMinGuests,
-        cuisineType: allVenueInformation.cuisineType,
-        amenities: roomAmenitiesFound
-      }
-      response.json(roomInfo);
+
+        var menuPrices = [];
+        MenusOffered.findAll({where: {room_ID: room}, include: [Menu]}).then(function(roomMenus) {
+          roomMenus.forEach(function(roomMenu, index, roomMenus){
+            Menu.find({where: {id: roomMenu.dataValues.menu_ID}}).then(function(menu) {
+              menuPrices.push(menu.dataValues.price);
+              if (menuPrices.length === roomMenus.length) {
+                var allRoomInformation = roomFound.dataValues;
+                var allVenueInformation = roomFound.dataValues.Venue.dataValues;
+                var roomInfo = {
+                  cancelPolicy: allRoomInformation.cancelPolicy,
+                  cleaningFee: allRoomInformation.cleaningFee,
+                  description: allRoomInformation.description,
+                  durationOverageFee: allRoomInformation.durationOverageFee,
+                  eventDuration: allRoomInformation.eventDuration,
+                  heroImage: allRoomInformation.heroImage,
+                  houseRules: allRoomInformation.houseRules,
+                  id: allRoomInformation.id,
+                  minSpend: allRoomInformation.minSpend,
+                  parentVenue: allRoomInformation.parentVenue,
+                  roomName: allRoomInformation.roomName,
+                  roomRentalFee: allRoomInformation.roomRentalFee,
+                  receptionCapacity: allRoomInformation.receptionCapacity,
+                  banquetCapacity: allRoomInformation.banquetCapacity,
+                  size: allRoomInformation.size,
+                  type: allRoomInformation.type,
+                  houseRules: allVenueInformation.houseRules,
+                  menuLeadTime: allVenueInformation.menuLeadTime,
+                  venueCancelPolicy: allVenueInformation.cancelPolicy,
+                  venueName: allVenueInformation.venueName,
+                  taxRate: allVenueInformation.taxRate,
+                  autogratRate: allVenueInformation.autogratRate,
+                  autogratMinGuests: allVenueInformation.autogratMinGuests,
+                  cuisineType: allVenueInformation.cuisineType,
+                  amenities: roomAmenitiesFound,
+                  menuNumber: menuPrices.length,
+                  menuPrices: menuPrices
+                }
+                response.json(roomInfo);
+              }
+            });
+          })
+        });
     })
   } else {
       console.log('The room should exist...');
@@ -304,6 +321,14 @@ module.exports.findAllInfo = function(username, response) {
         response.send(401, "User not found!");
     }
   });
+};
+
+module.exports.serveMenus = function(room,response){
+  MenusOffered.find({where: {room_ID:room}}).then(function(menu){
+    if(menu){
+      var menus = [];
+    }
+  })
 };
 
 module.exports.addFavorite = function () {
