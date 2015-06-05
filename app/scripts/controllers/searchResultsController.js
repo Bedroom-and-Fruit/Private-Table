@@ -9,6 +9,6 @@ angular.module('privateTableApp')
     };
 
     $scope.viewRoom = function (room) {
-      roomData.viewRoom(room);
+      roomData.viewRoom(room.roomID, 'api/room/', null, roomData.reroute('/checkout/room/', room.roomID));
     };
   }]);

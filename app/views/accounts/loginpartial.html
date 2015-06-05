@@ -1,8 +1,10 @@
 <form name="loginForm" ng-submit="login(loginForm.$valid)" novalidate>
   <input type="text" placeholder="Username" name="username" id="username"
-         ng-model="loginCredentials.username" ng-minlength="3" ng-maxlength="12">
+         ng-model="loginCredentials.username" ng-minlength="3" ng-maxlength="12" required>
+    <p ng-show="loginForm.username.$error.minlength" class="help-block">Username is too short.</p>
+    <p ng-show="loginForm.username.$error.maxlength" class="help-block">Username is too long.</p>
   <input type="password" placeholder="Password" name="password" id="password"
-         ng-model="loginCredentials.password" ng-minlength="8">
-  <p ng-show="loginForm.username.$invalid && !loginForm.username.$pristine || loginForm.password.$invalid && !loginForm.password.$pristine" class="help-block">Username or password is not valid.</p>
-  <button type="submit">Login</button>
+         ng-model="loginCredentials.password" ng-minlength="8" required>
+    <p ng-show="loginForm.password.$error.minlength" class="help-block">Password is too short.</p>
+  <button type="submit" ng-disabled="loginForm.$invalid">Login</button>
 </form>
