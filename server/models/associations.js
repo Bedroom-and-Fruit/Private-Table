@@ -42,13 +42,13 @@ RoomAmenity.belongsTo(Amenity, {foreignKey: 'amenities_ID'});
 Course.hasMany(CourseCombination, {foreignKey:'course_ID'});
 CourseCombination.belongsTo(Course, {foreignKey: 'course_ID'});
 
+// relationship between coursesInMenu and courseCombination
+CourseCombination.hasMany(CoursesInMenu, {foreignKey:'courseCombination_ID'});
+CoursesInMenu.belongsTo(CourseCombination, {foreignKey: 'courseCombination_ID'});
+
 // relationship between coursesInMenu and menu
 Menu.hasMany(CoursesInMenu, {foreignKey:'menu_ID'});
 CoursesInMenu.belongsTo(Menu, {foreignKey: 'menu_ID'});
-
-// relationship between coursesInMenu and course
-Course.hasMany(CoursesInMenu, {foreignKey:'course_ID'});
-CoursesInMenu.belongsTo(Course, {foreignKey: 'course_ID'});
 
 // relationship between courseCombination and menuItem
 MenuItem.hasMany(CourseCombination, {foreignKey:'menuItem_ID'});
