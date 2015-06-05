@@ -15,6 +15,7 @@ var Layout = require('./layouts.js');
 var LayoutsOffered = require('./layoutsOffered.js');
 var Service = require('./services.js');
 var Favorite = require('./favorites.js');
+var MenusOffered = require ('./menusOffered.js');
 var Association = require('./associations.js');
 var jwt = require('jsonwebtoken');
 

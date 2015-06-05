@@ -15,16 +15,12 @@ var Favorite = require('./favorites.js');
 var Layout = require ('./layouts.js');
 var LayoutsOffered = require ('./layoutsOffered.js');
 var Service = require ('./services.js');
-
+var MenusOffered = require ('./menusOffered.js');
 
 
 //relationship between venue and room
 Venue.hasMany(Room, {foreignKey: 'parentVenue'});
 Room.belongsTo(Venue, {foreignKey: 'parentVenue'});
-
-//relationship between room and menu
-Room.hasMany(Menu, {foreignKey:'parentRoom'});
-Menu.belongsTo(Room, {foreignKey: 'parentRoom'});
 
 // relationship between room and image
 Room.hasMany(Images, {foreignKey:'pictureOf'});
@@ -73,6 +69,14 @@ LayoutsOffered.belongsTo(Layout, {foreignKey: 'layout_ID'});
 // relationship between layoutsOffered and room
 Room.hasMany(LayoutsOffered, {foreignKey:'room_ID'});
 LayoutsOffered.belongsTo(Room, {foreignKey: 'room_ID'});
+
+// relationship between menusOffered and menu
+Menu.hasMany(MenusOffered, {foreignKey:'menu_ID'});
+MenusOffered.belongsTo(Menu, {foreignKey: 'menu_ID'});
+
+// relationship between menusOffered and room
+Room.hasMany(MenusOffered, {foreignKey:'room_ID'});
+MenusOffered.belongsTo(Room, {foreignKey: 'room_ID'});
 
 // relationship between favorite and user
 User.hasMany(Favorite, {foreignKey:'user_ID'});
