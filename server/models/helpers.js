@@ -306,6 +306,14 @@ module.exports.findAllInfo = function(username, response) {
   });
 };
 
+module.exports.serveMenus = function(room,response){
+  MenusOffered.find(where{room_ID:room}).then(function(menu){
+    if(menu){
+      var menus = [];
+    }
+  })
+};
+
 module.exports.addFavorite = function () {
 
 };
