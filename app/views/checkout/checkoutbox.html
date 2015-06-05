@@ -36,7 +36,7 @@
     <span class="small-6 columns">
       <img src="images/calendar.png"> 
     </span>
-    <p class="small-6 columns"><strong>EVENT</strong> </p>
+    <p class="small-6 columns"><strong>EVENT</strong></p>
     </span>
     </p>
   </div>
@@ -45,6 +45,7 @@
  <span id= "small-4 columns">
     <div class="row">
       <p class="small-6 columns dull">
+        {{params.eventType}}
       </p>
       <span class="small-6 columns">
       </span>
@@ -64,53 +65,38 @@
 
 <span ng-show="eventConfirmed" class="small-12 columns">
   <div class="row">
-    <p class="small-12 columns"> {{params.date}} from {{params.startTime}} to {{params.endTime}} </p>
+    <p class="small-12 columns"> Your event is reserved for {{params.date}} from {{params.startTime}} to {{params.endTime}} for {{params.guests}} guests</p>
   </div>
 </span>
 
 
-<span ng-show="eventConfirmed" id="small-12 columns">
-  <div class="row">
-    <p class="small-11 small-offset-1 columns"> for {{params.guests}} Guests</p>
-  </div>
-</span>
-</ng-show>
-
-
-
-<div ng-hide="eventConfirmed">
-  <span class="small-3 columns" id="changepadding">
+<form name="dateForm" ng-hide="eventConfirmed">
+  <span class="small-2 columns" id="changepadding">
     <label> Guests </label>
-    <input type="text"  placeholder="Guests" ng-model="params.guests">
+    <input type="text" ng-model="params.guests" name="guests" required>
   </span>
 
-  <span class="small-3 columns" id="changepadding">
+  <span class="small-4 columns" id="changepadding">
     <label> Date </label>
-    <input id="datepicker" placeholder="Date" type="text" ng-model="params.date">
+    <input id="datepicker" placeholder="Date" type="text" ng-model="params.date" ng-change="dateSearch()" name="date" required>
   </span>
 
   <span class= "small-3 columns" id="changepadding">
     <label> Start Time </label>
-    <input class="timepicker" placeholder="Time" type="text" ng-change="setMinEndTime()" ng-model="params.startTime">
+    <input class="timepicker" placeholder="Time" type="text" ng-change="setMinEndTime()" ng-change="checkStartTime()" ng-model="params.startTime" name="startTime" required>
   </span>
 
   <span class= "small-3 columns" id="changepadding">
     <label> End Time </label>
-    <input class="timepicker" id="eventend" placeholder="Time" type="text" ng-model="params.endTime">
+    <input class="timepicker" id="eventend" placeholder="Time" type="text" ng-model="params.endTime" ng-change="checkEndTime()" name="endTime" required>
   </span>
-
-  <select ng-model="params.eventType">
-    <option value="" selected disabled>Select Event Type</option>
-    <option value="Reception">Reception</option>
-    <option value="Banquet">Banquet</option>
-    <option value="Reception and Banquet">Reception and Banquet</option>
-  </select>
 
 <!-- event part of panel end -->
   <div class="text-center">
-    <button type="submit" class="button changepadding" ng-click="toMenu()">Next</button>
+    <p ng-show="dateForm.guests.$invalid || dateForm.date.$invalid || dateForm.startTime.$invalid || dateForm.endTime.$invalid " class="help-block"> Please complete the above before proceeding. </p>
+    <button type="submit" class="button changepadding" ng-disabled="dateForm.$invalid" ng-click="toMenu()">Next</button>
   </div>
-</div>
+</form>
 
 <div ng-hide="menuLabel">
   <hr>
@@ -139,13 +125,6 @@
         </span>
       </div>
     </span>
-
-    <select ng-model="params.menu">
-      <option value="" selected disabled>Select a Menu</option>
-      <option value="Seafood Fest">Seafood Fest</option>
-      <option value="Surf and Turf">Surf and Turf</option>
-      <option value="All you can eat">All you can eat</option>
-    </select>
 
     <div class="text-center">$3200</div>
     <div class="text-center">

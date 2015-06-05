@@ -34,9 +34,9 @@ angular.module('privateTableApp')
     $scope.init = function () {
       SearchBar.searchFormInit();
       if (typeof parseInt($stateParams.roomID) === 'number') {
-        roomData.viewRoom($stateParams, function() {
+        roomData.viewRoom($stateParams.roomID, 'api/room/', function() {
           $scope.room = roomData.getRoom();
-        });
+        }, roomData.reroute('/checkout/room/', $stateParams.roomID));
       }
       $scope.room = roomData.getRoom();
     };
