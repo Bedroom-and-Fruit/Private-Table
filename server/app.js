@@ -33,8 +33,7 @@ app.post('/api/users', function(req, res){
 //path for user's profile
 app.get('/api/users/me', function(req, res){
   var decoded = jwt.decode(req.headers.authorization);
-  res.send(201);
-  // helper.findAllInfo(decoded.username, res);
+  helper.findAllInfo(decoded.username, res);
 });
 
 // path for when users are logging in

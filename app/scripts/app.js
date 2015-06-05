@@ -57,9 +57,11 @@ angular
           '': {templateUrl: 'views/bookings.html'},
           'searchResults@bookings': {
             templateUrl: 'views/searchBar/searchResults.html',
-            controller: 'searchResultsController'
+            controller: 'searchResultsController',
+            authenticate: true
           }
-        }
+        },
+        authenticate: true
       })
       .state('favorites', {
         url: '/favorites',
@@ -67,9 +69,11 @@ angular
           '': {templateUrl: 'views/favorites.html'},
           'searchResults@favorites': {
             templateUrl: 'views/searchBar/searchResults.html',
-            controller: 'searchResultsController'
+            controller: 'searchResultsController',
+            authenticate: true
           }
-        }
+        },
+        authenticate: true
       })
       .state('checkout', {
         url: '/checkout',
@@ -102,5 +106,16 @@ angular
         templateUrl: 'views/confirmation.html'
       });
 
+    })
+    .run(function ($rootScope, $location, Auth) {
+     // Redirect to login if route requires auth and you're not logged in
+      $rootScope.$on('$stateChangeStart', function (event, toState) {
+        Auth.isLoggedInAsync(function(loggedIn) {
+          if (toState.authenticate && !loggedIn) {
+            $rootScope.returnToState = toState.url;
+            $location.path('/');
+          }
+        });
+      });
+    });
       // $locationProvider.html5Mode(true).hashPrefix('!');
-  });

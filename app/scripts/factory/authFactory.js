@@ -1,14 +1,43 @@
 'use strict';
 
 angular.module('authFactory', [])
-  .factory('Auth', ['$http','$resource', '$cookies', function($http, $resource, $cookies) {
+  .factory('Auth', ['$http','$resource', '$cookies', '$q', function($http, $resource, $cookies, $q) {
 
     var currentUser = {};
 
+    if($cookies.get('PrivateTableToken')) {
+      currentUser = $resource('api/users/me').get();
+    }
+
     var login = function(credentials) {
-      var User = $resource('auth/local/');
-      return User.save(credentials, function(data) {
+      // var deferred = $q.defer();
+      // $http.post('auth/local', credentials)
+      // .success(function(data) {
+      //   $cookies.put('PrivateTableToken', data.token);
+      //   $http.get('api/users/me')
+      //   .success(function(data){
+      //     console.log(data);
+      //     currentUser = data;
+      //   })
+      //   .error(function(err) {
+      //     console.log(err);
+      //   })
+      //   //   console.log(data);
+      //   //   currentUser = data;
+      //   //   deferred.resolve(data);
+      //   //   console.log(currentUser);
+      //   // })
+      // })
+      // .error(function(err) {
+      //   console.log(err);
+      // }.bind(this));
+
+      // return deferred.promise;
+       
+
+      return $resource('auth/local/').save(credentials, function(data) {
         $cookies.put('PrivateTableToken', data.token);
+        //if returned a token, find the user based on that token and set current user to the return value
         currentUser = $resource('api/users/me').get();
       },
       function(err) {
@@ -29,17 +58,35 @@ angular.module('authFactory', [])
       }.bind(this)).$promise;
     };
 
+    var getUser = function() {
+      return currentUser;
+    };
+
+    var logout = function() {
+      $cookies.remove('PrivateTableToken');
+      currentUser = {};
+    };
+
+    var isLoggedInAsync = function(callback) {
+      if(currentUser.hasOwnProperty('$promise')) {
+        currentUser.$promise.then(function() {
+          callback(true);
+        }).catch(function() {
+          callback(false);
+        });
+      } else {
+        callback(false);
+      }
+    };
+
     return {
 
       login: login,
-      createUser: createUser
-
+      logout: logout,
+      createUser: createUser,
+      currentUser: currentUser,
+      getUser: getUser,
+      isLoggedInAsync: isLoggedInAsync
     };
 
   }]);
-
-// var User = $resource('/user/:userId', {userId:'@id'});
-// var user = User.get({userId:123}, function() {
-//   user.abc = true;
-//   user.$save();
-// });

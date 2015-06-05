@@ -1,15 +1,35 @@
-<div ng-controller="topNavController">
-  <nav data-topbar="" role="navigation" data-options="is_hover: true" class="top-bar">
+
+<div ng-controller="navController"
+  <nav data-topbar="" role="navigation" data-options="is_hover: true" class="top-bar" >
     <ul class="title-area">
       <li class="name">
         <h1><a ui-sref="landing" target="_self"><img src="../images/logo.png"></a></h1>
-      </li>
+      </li> 
     </ul>
     <section class="top-bar-section">
-      <ul class="right">
-        <li><a ui-sref="landing" target="_self">Log in</a></li>
-        <li><a ui-sref="landing" target="_self">Sign up</a></li>
+
+      <ul ng-if="currentUser.username">
+        <li class="lgnMenu"><a ui-sref="bookings"><img  src="/images/notebook.png"></a></li>
+        <li class="lgnMenu"><a ui-sref="favorites"><img src="/images/favorite.png"></a></li>
       </ul>
+
+      <ul ng-if="!currentUser.username" class="right">
+         <li><a ng-click="toggleLogin()">Login</a></li>
+        <li><a ng-click="toggleSignUp()">Sign up </a></li>
+      </ul>
+
+      <ul ng-if="currentUser.username" class="right">
+        <li><a>Hello, {{currentUser.username}}!</a></li>
+        <li><a ng-click="logout()">Logout</a></li>
+      </ul>
+
     </section>
+   
   </nav>
-</div> 
+   <modal-dialog show='signUpShown' dialog-title='Signup:'>
+      <div ng-include src="'/views/accounts/signuppartial.html'"></div>
+    </modal-dialog>
+     <modal-dialog show='loginShown' dialog-title='Login:'>
+      <div ng-include src="'/views/accounts/loginpartial.html'"></div>
+     </modal-dialog>
+</div>
