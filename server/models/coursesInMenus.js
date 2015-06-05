@@ -1,11 +1,11 @@
 var db = require('../config/dbConfig.js');
 var Sequelize = require('sequelize');
-var Course = require('./courses.js');
+var CourseCombination = require('./courseCombinations.js');
 var Menu = require('./menus.js');
 
 var CoursesInMenu = db.define('CoursesInMenu',
   {
-    course_ID: Sequelize.INTEGER,
+    courseCombination_ID: Sequelize.INTEGER,
     menu_ID: Sequelize.INTEGER
   }
 );

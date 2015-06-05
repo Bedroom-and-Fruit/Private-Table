@@ -15,16 +15,12 @@ var Favorite = require('./favorites.js');
 var Layout = require ('./layouts.js');
 var LayoutsOffered = require ('./layoutsOffered.js');
 var Service = require ('./services.js');
-
+var MenusOffered = require ('./menusOffered.js');
 
 
 //relationship between venue and room
 Venue.hasMany(Room, {foreignKey: 'parentVenue'});
 Room.belongsTo(Venue, {foreignKey: 'parentVenue'});
-
-//relationship between venue and menu
-Venue.hasMany(Menu, {foreignKey:'parentVenue'});
-Menu.belongsTo(Venue, {foreignKey: 'parentVenue'});
 
 // relationship between room and image
 Room.hasMany(Images, {foreignKey:'pictureOf'});
@@ -46,13 +42,13 @@ RoomAmenity.belongsTo(Amenity, {foreignKey: 'amenities_ID'});
 Course.hasMany(CourseCombination, {foreignKey:'course_ID'});
 CourseCombination.belongsTo(Course, {foreignKey: 'course_ID'});
 
+// relationship between coursesInMenu and courseCombination
+CourseCombination.hasMany(CoursesInMenu, {foreignKey:'courseCombination_ID'});
+CoursesInMenu.belongsTo(CourseCombination, {foreignKey: 'courseCombination_ID'});
+
 // relationship between coursesInMenu and menu
 Menu.hasMany(CoursesInMenu, {foreignKey:'menu_ID'});
 CoursesInMenu.belongsTo(Menu, {foreignKey: 'menu_ID'});
-
-// relationship between coursesInMenu and course
-Course.hasMany(CoursesInMenu, {foreignKey:'course_ID'});
-CoursesInMenu.belongsTo(Course, {foreignKey: 'course_ID'});
 
 // relationship between courseCombination and menuItem
 MenuItem.hasMany(CourseCombination, {foreignKey:'menuItem_ID'});
@@ -73,6 +69,14 @@ LayoutsOffered.belongsTo(Layout, {foreignKey: 'layout_ID'});
 // relationship between layoutsOffered and room
 Room.hasMany(LayoutsOffered, {foreignKey:'room_ID'});
 LayoutsOffered.belongsTo(Room, {foreignKey: 'room_ID'});
+
+// relationship between menusOffered and menu
+Menu.hasMany(MenusOffered, {foreignKey:'menu_ID'});
+MenusOffered.belongsTo(Menu, {foreignKey: 'menu_ID'});
+
+// relationship between menusOffered and room
+Room.hasMany(MenusOffered, {foreignKey:'room_ID'});
+MenusOffered.belongsTo(Room, {foreignKey: 'room_ID'});
 
 // relationship between favorite and user
 User.hasMany(Favorite, {foreignKey:'user_ID'});
