@@ -31,9 +31,3 @@ angular.module('authInterceptorFactory', [])
     };
 
   }]);
-
-// var User = $resource('/user/:userId', {userId:'@id'});
-// var user = User.get({userId:123}, function() {
-//   user.abc = true;
-//   user.$save();
-// });

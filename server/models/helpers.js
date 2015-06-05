@@ -198,6 +198,7 @@ module.exports.authenticate = function(username, password, response, secret) {
           email: user.email
         };
         console.log("User authenticated!");
+        console.log(profile);
         response.json({token: jwt.sign(profile, secret, { expiresInMinutes: 60 * 5})});
       } else {
         console.log("Bad Password, Charlie");
@@ -284,6 +285,22 @@ module.exports.searchOrMake = function(username, email, password, response, secr
         console.log("User created");
         response.json({token: jwt.sign(profile, secret, {expiresInMinutes: 60 * 5})});
       })
+    }
+  });
+};
+
+module.exports.findAllInfo = function(username, response) {
+  User.find({where: {username: username}}).then(function(user) {
+    if(user) {
+      var profile = {
+        username: user.username,
+        email: user.email
+      };
+      console.log("Here's all the info!");
+      response.json(profile);
+    } else {
+        console.log("User not found");
+        response.send(401, "User not found!");
     }
   });
 };
