@@ -3,7 +3,6 @@ var Booking = require('./bookings.js');
 var Images = require('./images.js');
 var Venue = require('./venues.js');
 var Room = require('./rooms.js');
-var Course = require('./courses.js');
 var Menu = require('./menus.js');
 var MenuItem = require('./menuItems.js');
 var CourseCombination = require('./courseCombinations.js');
@@ -341,21 +340,89 @@ module.exports.findAllInfo = function(username, response) {
 //include: [{model: Room, where: {minSpend: {$lte: params.budget}
 
 module.exports.serveMenus = function(room, eventType, response){
+  //find all menus for a selected room
   MenusOffered.findAll({where: {room_ID: room}, include: [Menu]}).then(function(menusOffered){
     if(menusOffered){
-      var allMenuData = [];
-      menusOffered.forEach(function(menuOffered, index, menusOffered){
+      for (var i = 0; i < menusOffered.length; i++) {
         if (eventType === "banquet") {
-          Menu.find({where: {id: menuOffered.dataValues.menu_ID, banquet: true}}).then(function (menu) {
-          CoursesInMenu.findAll({where: {menu_ID: menu.id}, include: [{model: CourseCombination, where: {id: menu.dataValues.CourseCombination_ID}}]}).then(function(coursesInMenu) {
-            console.log('COURSES IN MENU', coursesInMenu);
-            });
+          Menu.find({where: {id: menusOffered[i].dataValues.menu_ID, banquet: true}})
+          .then(function (menuFound) {
+            var menu = {};
+            menu.price = menuFound.dataValues.price;
+            menu.name = menuFound.dataValues.name;
+            menu.courses = [];
+          CoursesInMenu.findAll({where: {menu_ID: menuFound.id}}).then(function(coursesInMenu) {
+            for (var i = 0; i < coursesInMenu.length; i++) {
+              var course = {};
+              CourseCombination.findAll({where: {id: coursesInMenu[i].dataValues.courseCombination_ID}}).then(function(combos) { 
+                for (var i = 0; i < combos.length; i++) {
+                  Course.find({id: combos[i].dataValues.course_ID}).then(function(courseFound) {
+                    course.name = courseFound.dataValues.name;
+                  });  
+                  MenuItem.find({id: combos[i].dataValues.menuItem_ID}).then(function(menuItems) {
+                    //console.log('MENUITEMS', menuItems);
+                    course.menuItems = menuItems;
+                    menu.courses.push(course);
+                    console.log('MENU==========', JSON.stringify(menu));
+                  });
+                }
+              });
+            }
           });
-        }
-      });
-    }   
-  })
+        });
+      }
+    }
+  }
+});
 };
+
+        // var roomMenus = [{menu1},{menu2},{menu3},{...},{...}];
+
+       //var results = {
+                    // menuItems.dataValues.name;
+                    // menuItems.dataValues.description;
+                    // course.dataValues.name;
+                    // menu.dataValues.name;
+                    // menu.dataValues.price;
+                  //}
+      //find menu names and prices, and filter by event type
+
+
+
+
+//      // menusOffered.forEach(function(menuOffered, index, menusOffered){
+//         if (eventType === "banquet") {
+//           Menu.find({where: {id: menuOffered.dataValues.menu_ID, banquet: true}})
+//           .then(function (menu) {
+//             var menu = menu;
+//           //courses in Menu is all the courses by ID in that menu
+//           CoursesInMenu.findAll({where: {menu_ID: menu.id}}).then(function(coursesInMenu) {
+//             coursesInMenu.forEach(function(courseInMenu) {
+//               //courseCombination is the course name and all the menu items in it
+//               CourseCombination.findAll({where: {id: courseInMenu.dataValues.courseCombination_ID}}).then(function(combos) {
+//                 combos.forEach(function(combo) {
+//                   //Course is the name of the course
+//                   Course.find({id: combo.dataValues.course_ID}).then(function(course) {
+//                     console.log(course);
+//                     courseInMenu.name = course;
+//                   });
+//                   //menuItem is an item on the menu/description within a course
+//                   MenuItem.findAll({id: combo.dataValues.menuItem_ID}).then(function(menuItems) {
+//                     courseInMenu.menuItems = menuItems;
+//                     menu.courses = coursesInMenu;
+//                   });
+//                 });
+//             });
+//             })
+//           });
+//         }
+
+//         );
+//         }   
+//       });
+//     }
+//   });
+// };
 
 module.exports.addFavorite = function () {
 
