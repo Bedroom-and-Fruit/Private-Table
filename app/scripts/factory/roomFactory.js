@@ -82,10 +82,36 @@ angular.module('roomFactory', [])
 
   var chooseMenu = function(menu) {
     currentMenu = menu;
+
+  var getStartTimes = function() {
+    return bookedStartTimes;
   };
 
+  var getEndTimes = function() {
+    return bookedEndTimes;
+
+  var viewMenus = function(room, eventType, callback) {
+    console.log('viewMenus called');
+    var url = 'api/menu/' + room + '/eventtype/' + eventType;
+    return $http({
+      method: 'GET',
+      url: url
+    })
+    .then(function(response){
+       console.log(response.data);
+      if (callback) {
+        callback();
+      }
+      $location.url($location.path());
+      $location.path('/checkout/room/'+roomID);
+      });
+  };
+
+  var getMenus = function() {
+    console.log(menus);
+
   return {
-    menus: menus,
+    viewMenus: viewMenus,
     currentRoom: currentRoom,
     viewRoom: viewRoom,
     getRoom: getRoom,

@@ -215,12 +215,6 @@ module.exports.authenticate = function(username, password, response, secret) {
 };
 
 
-// Menu properties needed
-// total number of menus for venue - menusOfferedTable
-//mOT is menus ids and rooms associated
-// menu prices - menus
-
-
 
 module.exports.findRoom = function(room, response) {
   Room.find({where: {id: room}, include: [Venue, RoomAmenity, MenusOffered]}).then(function(roomFound) {
@@ -344,11 +338,22 @@ module.exports.findAllInfo = function(username, response) {
   });
 };
 
-module.exports.serveMenus = function(room,response){
-  MenusOffered.find({where: {room_ID:room}}).then(function(menu){
-    if(menu){
-      var menus = [];
-    }
+//include: [{model: Room, where: {minSpend: {$lte: params.budget}
+
+module.exports.serveMenus = function(room, eventType, response){
+  MenusOffered.findAll({where: {room_ID: room}, include: [Menu]}).then(function(menusOffered){
+    if(menusOffered){
+      var allMenuData = [];
+      menusOffered.forEach(function(menuOffered, index, menusOffered){
+        if (eventType === "banquet") {
+          Menu.find({where: {id: menuOffered.dataValues.menu_ID, banquet: true}}).then(function (menu) {
+          CoursesInMenu.findAll({where: {menu_ID: menu.id}, include: [{model: CoursesCombinations, where: {id: menu.CourseCombination_ID}}]}).then(function(coursesInMenu) {
+            console.log('COURSES IN MENU', coursesInMenu);
+            });
+          });
+        }
+      });
+    }   
   })
 };
 
