@@ -89,7 +89,8 @@ angular.module('roomFactory', [])
 
   var getEndTimes = function() {
     return bookedEndTimes;
-
+  };
+  
   var viewMenus = function(room, eventType, callback) {
     console.log('viewMenus called');
     var url = 'api/menu/' + room + '/eventtype/' + eventType;
@@ -109,6 +110,7 @@ angular.module('roomFactory', [])
 
   var getMenus = function() {
     console.log(menus);
+  };
 
   return {
     viewMenus: viewMenus,

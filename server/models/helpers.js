@@ -347,7 +347,7 @@ module.exports.serveMenus = function(room, eventType, response){
       menusOffered.forEach(function(menuOffered, index, menusOffered){
         if (eventType === "banquet") {
           Menu.find({where: {id: menuOffered.dataValues.menu_ID, banquet: true}}).then(function (menu) {
-          CoursesInMenu.findAll({where: {menu_ID: menu.id}, include: [{model: CoursesCombinations, where: {id: menu.CourseCombination_ID}}]}).then(function(coursesInMenu) {
+          CoursesInMenu.findAll({where: {menu_ID: menu.id}, include: [{model: CourseCombination, where: {id: menu.dataValues.CourseCombination_ID}}]}).then(function(coursesInMenu) {
             console.log('COURSES IN MENU', coursesInMenu);
             });
           });
