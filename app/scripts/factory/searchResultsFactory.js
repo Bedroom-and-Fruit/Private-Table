@@ -54,6 +54,12 @@ angular.module('searchResultsFactory', [])
     return timeH+":"+timeM+':00'
   };
 
+  var createDate = function(date, dateFormatted) {
+    date = date.split('/');
+    dateFormatted += date[2]+ '-' + date[0] + '-' + date[1];
+    return dateFormatted;
+  };
+
 
   var getSearchResults = function(params, callback, dest) {
     //location only city
@@ -62,9 +68,8 @@ angular.module('searchResultsFactory', [])
     var startTimeStamp = "";
     var endTimeStamp = "";
     if (params.date) {
-      var date = params.date.split('/');
-      startTimeStamp += date[2]+ '-' + date[0] + '-' + date[1];
-      endTimeStamp += date[2]+ '-' + date[0] + '-' + date[1];
+      startTimeStamp = createDate(params.date, startTimeStamp);
+      endTimeStamp = createDate(params.date, endTimeStamp);
     }
     
     if (params.startTime) {
@@ -132,16 +137,25 @@ angular.module('searchResultsFactory', [])
     onlyBookings = 'planning';
   };
 
+  var dbTimeConverter = function(time) {
+    //the time we get back from our DB looks like this:
+    //"2015-06-23T15:00:00.000Z" so we need to split by the T and "."
+    return ((time.split('T'))[1]).split('.')[0];
+  }
+
   return {
     getFavoriteResults: getFavoriteResults,
     searchResults: searchResults,
     getSearchResults: getSearchResults,
     getResults: getResults,
     reroute: reroute,
+    timeConverter: timeConverter,
     bookingsSelection: bookingsSelection,
     showPlanning: showPlanning,
     showPurchased: showPurchased,
-    showAll: showAll
+    showAll: showAll,
+    createDate: createDate,
+    dbTimeConverter: dbTimeConverter
   };
 
 }]);
