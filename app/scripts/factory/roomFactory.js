@@ -99,8 +99,13 @@ angular.module('roomFactory', [])
       url: url
     })
     .then(function(response){
-       console.log(response.data);
-      if (callback) {
+      menus.splice(0, menus.length);
+      response.data.forEach(function(menu) {
+        menus.push(menu);
+      }); 
+      viewCourses(menus[0].id);
+      console.log(menus);     
+       if (callback) {
         callback();
       }
       $location.url($location.path());
@@ -108,11 +113,30 @@ angular.module('roomFactory', [])
       });
   };
 
+  var viewCourses = function(menuID, callback) {
+  console.log('viewMenus called');
+  var url = 'api/menu/' + menuID;
+  return $http({
+    method: 'GET',
+    url: url
+  })
+  .then(function(response){
+     console.log(response.data);
+    if (callback) {
+      callback();
+    }
+    $location.url($location.path());
+    $location.path('/checkout/room/'+roomID);
+    });
+  };
+
   var getMenus = function() {
     console.log(menus);
   };
 
   return {
+    menus: menus,
+    viewCourses: viewCourses,
     viewMenus: viewMenus,
     currentRoom: currentRoom,
     viewRoom: viewRoom,

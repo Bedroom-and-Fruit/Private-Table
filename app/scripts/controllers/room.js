@@ -39,8 +39,7 @@ angular.module('privateTableApp')
         }, roomData.reroute('/checkout/room/', $stateParams.roomID));
       }
       $scope.room = roomData.getRoom();
-      roomData.viewMenus(4, "banquet");
     };
-
+    roomData.viewMenus(4, "banquet");
     $scope.init();
   }]);
