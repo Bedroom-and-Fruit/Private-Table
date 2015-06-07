@@ -345,8 +345,9 @@ module.exports.findAllInfo = function(username, response) {
 // //menu[0] .. menu[1] .. 
 // [course (3), course (3), course(3) ]
 
-module.exports.serveMenus = function(room, eventType, response){
-  MenusOffered.findAll({where: {room_ID: room}, include: [Menu]}).then(function(menusOffered){
+module.exports.serveMenus = function(params, response){
+  var eventType = params.eventType || "Banquet";
+  MenusOffered.findAll({where: {room_ID: params.roomID}, include: [Menu]}).then(function(menusOffered){
     if(menusOffered) {
       var allMenusOffered = [];
       var formatMenuReturn = function (menuFound) {
@@ -361,10 +362,10 @@ module.exports.serveMenus = function(room, eventType, response){
             }
           };
       for (var i = 0; i < menusOffered.length; i++) {
-        if (eventType === "banquet") {
+        if (eventType === "Banquet") {
           Menu.find({where: {id: menusOffered[i].dataValues.menu_ID, banquet: true}})
           .then(formatMenuReturn)
-        } else if (eventType === "reception") {
+        } else if (eventType === "Reception") {
           Menu.find({where: {id: menusOffered[i].dataValues.menu_ID, reception: true}})
           .then(formatMenuReturn)
         } else {

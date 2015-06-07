@@ -11,15 +11,23 @@ angular.module('privateTableApp')
     $scope.menuLabel = true;
     $scope.showSummary = true;
     $scope.available = false;
+    $scope.totalCost;
+
+    //henry to resume here on sunday. trying to get checkoutcontroller to talk to menucontroller
+
+    if (roomData.checkout && $scope.params.guests) {
+      $scope.totalCost = roomData.checkout.price * $scope.params.guests;
+    } else {
+      $scope.totalCost = '$0';
+    }
 
     $scope.toMenu = function() {
       CheckoutOptions.setEventParams($scope.params);
       $scope.params = CheckoutOptions.getEventParams();
-      roomData.viewRoom($stateParams.roomID, 'api/menu/', function() {
-        $scope.eventConfirmed = true;
-        $scope.menuLabel = false;
-        $scope.menuConfirmed = false;
-      }, roomData.reroute('/checkout/menu'));
+      $scope.eventConfirmed = true;
+      $scope.menuLabel = false;
+      $scope.menuConfirmed = false;
+      roomData.reroute('/checkout/menu');
     };
 
     $scope.toPay = function() {

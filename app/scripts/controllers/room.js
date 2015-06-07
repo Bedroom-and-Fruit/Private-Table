@@ -8,6 +8,7 @@ angular.module('privateTableApp')
     $scope.amenityMore = true;
     $scope.feeMore = true;
     $scope.roomID = $stateParams;
+    $scope.searchParams = SearchBar.getSearchParams();
 
     //FEES View Limit & Full Display methods/properties
     $scope.feeLimit = 4;
@@ -39,7 +40,15 @@ angular.module('privateTableApp')
         }, roomData.reroute('/checkout/room/', $stateParams.roomID));
       }
       $scope.room = roomData.getRoom();
+      if ($scope.searchParams) {
+        if ($scope.searchParams.eventType) {
+          roomData.viewMenus($stateParams.roomID, $scope.searchParams.eventType);
+        } else {
+          roomData.viewMenus($stateParams.roomID);
+        }
+      } else {
+        roomData.viewMenus($stateParams.roomID);
+      }
     };
-    roomData.viewMenus(4, "banquet");
     $scope.init();
   }]);
