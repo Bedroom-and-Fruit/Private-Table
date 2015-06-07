@@ -84,8 +84,61 @@ angular.module('roomFactory', [])
     currentMenu = menu;
   };
 
+  var getStartTimes = function() {
+    return bookedStartTimes;
+  };
+
+  var getEndTimes = function() {
+    return bookedEndTimes;
+  };
+  
+  var viewMenus = function(room, eventType, callback) {
+    console.log('viewMenus called');
+    var url = 'api/menu/' + room + '/eventtype/' + eventType;
+    return $http({
+      method: 'GET',
+      url: url
+    })
+    .then(function(response){
+      menus.splice(0, menus.length);
+      response.data.forEach(function(menu) {
+        menus.push(menu);
+      }); 
+      viewCourses(menus[0].id);
+      console.log(menus);     
+       if (callback) {
+        callback();
+      }
+      $location.url($location.path());
+      $location.path('/checkout/room/'+roomID);
+      });
+  };
+
+  var viewCourses = function(menuID, callback) {
+  console.log('viewMenus called');
+  var url = 'api/menu/' + menuID;
+  return $http({
+    method: 'GET',
+    url: url
+  })
+  .then(function(response){
+     console.log(response.data);
+    if (callback) {
+      callback();
+    }
+    $location.url($location.path());
+    $location.path('/checkout/room/'+roomID);
+    });
+  };
+
+  var getMenus = function() {
+    console.log(menus);
+  };
+
   return {
     menus: menus,
+    viewCourses: viewCourses,
+    viewMenus: viewMenus,
     currentRoom: currentRoom,
     viewRoom: viewRoom,
     getRoom: getRoom,

@@ -40,6 +40,6 @@ angular.module('privateTableApp')
       }
       $scope.room = roomData.getRoom();
     };
-
+    roomData.viewMenus(4, "banquet");
     $scope.init();
   }]);
