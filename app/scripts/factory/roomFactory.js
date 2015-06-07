@@ -5,9 +5,9 @@ angular.module('roomFactory', [])
 .factory('roomData', ['SearchResults', '$location', '$http', function(SearchResults, $location, $http) {
   var currentRoom;
   var roomID;
-  var bookedStartTimes = [];
-  var bookedEndTimes = [];
+  var allBookedTimes = [];
   var menus = [];
+  var currentMenu;
 
   var viewRoom = function(room, url, callback, reroute) {
     var toUrl = url + room;
@@ -16,20 +16,18 @@ angular.module('roomFactory', [])
       url: toUrl
     })
     .then(function(response) {
+      console.log(response);
+
       if (response.data.venueName) {
       roomID = response.data.id;
       currentRoom = response.data;
       currentRoom.menuPrices = currentRoom.menuPrices.sort(function(a,b){return a-b;});
       }
 
-      if (response.data.bookedStartTimes) {
-        bookedStartTimes.splice(0, bookedStartTimes.length);
-        response.data.bookedStartTimes.forEach(function(val){
-          bookedStartTimes.push(val);
-        });
-        bookedEndTimes.splice(0, bookedEndTimes.length);
-        response.data.bookedEndTimes.forEach(function(val){
-          bookedEndTimes.push(val);
+      if(response.data.menu) {
+        menus.splice(0, menus.length);
+        response.data.menu.forEach(function(val){
+          menus.push(val);
         });
       }
       
@@ -42,22 +40,48 @@ angular.module('roomFactory', [])
       });
   };
 
+
+  var findAvailableTimes = function(roomID, url, startTime, endTime, callback) {
+    var toUrl = url;
+    return $http({
+      method: 'GET',
+      url: toUrl,
+      params: {roomID: roomID, startTime: startTime, endTime: endTime}
+    })
+    .then(function(response) {
+      allBookedTimes.splice(0, allBookedTimes.length);
+      response.data.allTimeBlocks.forEach(function(val){
+        allBookedTimes.push(val);
+      });
+      if (callback) {
+        callback();
+      }
+    });
+  };
+
   var reroute = function(url, roomID) {
-    $location.url($location.path());
-    $location.path(url + roomID);
+    if (roomID) {
+      $location.url($location.path());
+      $location.path(url + roomID);
+    } else {
+      $location.path(url);
+    }
   };
 
   var getRoom = function() {
-    console.log(currentRoom);
     return currentRoom;
   };
 
-  var getStartTimes = function() {
-    return bookedStartTimes;
+  var getAllBookedTimes = function() {
+    return allBookedTimes;
   };
 
-  var getEndTimes = function() {
-    return bookedEndTimes;
+  var getMenu = function() {
+    return menus;
+  };
+
+  var chooseMenu = function(menu) {
+    currentMenu = menu;
   };
 
   return {
@@ -65,11 +89,13 @@ angular.module('roomFactory', [])
     currentRoom: currentRoom,
     viewRoom: viewRoom,
     getRoom: getRoom,
-    bookedStartTimes: bookedStartTimes,
-    bookedEndTimes: bookedEndTimes,
+    allBookedTimes: allBookedTimes,
     reroute: reroute,
-    getStartTimes: getStartTimes,
-    getEndTimes: getEndTimes
+    getAllBookedTimes,
+    getMenu: getMenu,
+    chooseMenu: chooseMenu,
+    currentMenu: currentMenu,
+    findAvailableTimes: findAvailableTimes
   };
 
 }]);

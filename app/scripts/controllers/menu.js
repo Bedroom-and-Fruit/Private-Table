@@ -4,7 +4,7 @@
 angular.module('privateTableApp')
   .controller('menuController', ['$scope', 'SearchBar', 'SearchResults', 'roomData', function($scope, SearchBar, SearchResults, roomData) {
 
-   
+
     $scope.firstMenu = true;
     $scope.lastMenu = false;
     $scope.menus = roomData.menus || [];
@@ -21,7 +21,10 @@ angular.module('privateTableApp')
       var nextIndex = currentMenu.number+1;
       this.currentMenu = this.menus[prevIndex];
       $scope.currentMenu.number--;
+    };
 
+    $scope.chooseMenu = function() {
+      roomData.chooseMenu($scope.currentMenu);
     };
 
     $scope.init = function () {

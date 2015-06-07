@@ -21,7 +21,7 @@ angular.module('searchBarFactory', [])
 
   var searchFormInit = function () {
     $('.timepicker').datetimepicker({datepicker:false, format: 'g:i A', formatTime: 'g:i A', step: 30});
-    $('#datepicker').datetimepicker({timepicker:false, format: 'm/d/Y', closeOnDateSelect:true, minDate:'-1970/01/01'});
+    $('#datepicker').datetimepicker({timepicker:false, format: 'm/d/Y', closeOnDateSelect:true, minDate:0});
   };
 
   var endTimeAdjuster = function (time, hours) {

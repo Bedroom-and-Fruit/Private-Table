@@ -1,18 +1,17 @@
-<div class="row">
-  <div ng-controller="menuController">
-    <hr>
-    <div>select a menu for your experience</div>
-    
-    <a ng-hide="firstMenu" ng-click="prevMenu()">&lt;&lt;prev</a>
-      <span>{{currentMenu.number}} of {{menus.length}}</span><a ng-hide="lastMenu" ng-click="prevMenu()">   next>></a>
-    <div> {{currentMenu.title}} </div>
-    <div ng-repeat="course in currentMenu.courses">
-      <div ng-repeat="options in course.options">
-      <div>{{option.name}}</div>
-      <div>{{option.description}}</div>
-      </div>
-    </div>  
+<div ng-controller="menuController" class="row">
+  <div> Three Course Seafood Menu {{currentMenu.title}} </div>
+  <div ng-repeat="course in currentMenu.courses">
+    <div ng-repeat="options in course.options">
+    <div>{{option.name}}</div>
+    <div>{{option.description}}</div>
+    </div>
+  </div> 
+  <div class="text-center">
+    <button type="submit" class="button" ng-click="chooseMenu()">Select This Menu</button>
   </div>
+  <a ng-hide="firstMenu" ng-click="prevMenu()">&lt;&lt;prev</a>
+    <span>{{currentMenu.number}} of {{menus.length}}</span><a ng-hide="lastMenu" ng-click="prevMenu()">   next>></a> 
 </div>
+
 
 

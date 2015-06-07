@@ -52,6 +52,11 @@ app.get('/api/room/:roomID', function(req, res){
   helper.findRoom(req.params.roomID, res);
 });
 
+//path for searching for available times
+app.get('/api/dates?', function(req, res){
+  helper.findDates(req.query.roomID, req.query.startTime, req.query.endTime, res);
+});
+
 //path for adding a room to favorites
 app.post('/api/users/favorites', function(req, res){
   helper.addFavorite(req, res);
