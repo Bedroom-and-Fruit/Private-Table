@@ -42,6 +42,16 @@ app.post('/auth/local', function(req, res) {
   helper.authenticate(req.body.username, req.body.password, res, secret);
 });
 
+//path for obtaining menus for a selected room
+app.get('/api/menu/:roomID/eventtype/:eventType', function(req, res){
+  helper.serveMenus(req.params.roomID, req.params.eventType, res);
+});
+
+//path for obtaining courses for a selected menu
+app.get('/api/menu/:menuID', function(req, res){
+  helper.serveCourses(req.params.menuID, res);
+});
+
 // path for obtaining search results
 app.get('/api/searchresults?', function(req, res){
   helper.getSearchResults(req.query, res);
