@@ -1,31 +1,29 @@
 
 <div ng-controller="menuController" class="row">
-  <div> Three Course Seafood Menu {{currentMenu.title}} </div>
-  <div ng-repeat="course in currentMenu.courses">
-    <div ng-repeat="options in course.options">
-    <div>{{option.name}}</div>
-    <div>{{option.description}}</div>
+  <h3 class="text-center"> {{menuTitle}} </h3>
+  <hr>
+  <div ng-repeat="course in currentMenu">
+    <p class="text-center"> {{course.name}} </p>
+    <div ng-repeat="options in course.menuItems">
+    <h5 class="text-center">{{options.name}}</h5>
+    <p class="text-center"><em>{{options.description}}</em></p>
     </div>
+    <hr>
   </div> 
   <div class="text-center">
     <button type="submit" class="button" ng-click="chooseMenu()">Select This Menu</button>
-<div class="row">
-  <div ng-controller="menuController">
-    <hr>
-    <div>select a menu for your experience</div>
-    
-    <a ng-hide="firstMenu" ng-click="prevMenu()">&lt;&lt;prev</a>
-      <span>{{currentMenu.number}} of {{menus.length}}</span><a ng-hide="lastMenu" ng-click="prevMenu()">   next>></a>
-    <div> {{currentMenu.title}} </div>
-    <div ng-repeat="course in currentMenu.courses">
-      <div ng-repeat="option in course.options">
-      <div>{{option.name}}</div>
-      <div>{{option.description}}</div>
-      </div>
-    </div>  
   </div>
-  <a ng-hide="firstMenu" ng-click="prevMenu()">&lt;&lt;prev</a>
-    <span>{{currentMenu.number}} of {{menus.length}}</span><a ng-hide="lastMenu" ng-click="prevMenu()">   next>></a> 
+  <div class="row text-center">
+    <div class="small-4 columns text-center">
+      <button ng-hide="firstMenu" ng-click="prevMenu()">Previous Menu</button>
+    </div>
+    <div class="small-4 columns text-center">
+      <span class="text-center">{{menuNumber+1}} of {{menus.length}}</span>
+    </div>
+    <div class="small-4 columns text-center">
+      <button ng-hide="lastMenu" ng-click="nextMenu()" class="text-center"> Next Menu </button>
+    </div> 
+  </div>
 </div>
 
 

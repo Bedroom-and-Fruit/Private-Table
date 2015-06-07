@@ -8,6 +8,7 @@ angular.module('roomFactory', [])
   var allBookedTimes = [];
   var menus = [];
   var currentMenu;
+  var checkoutMenu;
 
   var viewRoom = function(room, url, callback, reroute) {
     var toUrl = url + room;
@@ -16,20 +17,10 @@ angular.module('roomFactory', [])
       url: toUrl
     })
     .then(function(response) {
-      console.log(response);
 
-      if (response.data.venueName) {
       roomID = response.data.id;
       currentRoom = response.data;
       currentRoom.menuPrices = currentRoom.menuPrices.sort(function(a,b){return a-b;});
-      }
-
-      if(response.data.menu) {
-        menus.splice(0, menus.length);
-        response.data.menu.forEach(function(val){
-          menus.push(val);
-        });
-      }
       
       if (callback) {
         callback();
@@ -76,12 +67,12 @@ angular.module('roomFactory', [])
     return allBookedTimes;
   };
 
-  var getMenu = function() {
-    return menus;
+  var getCurrentMenu = function() {
+    return currentMenu;
   };
 
   var chooseMenu = function(menu) {
-    currentMenu = menu;
+    checkoutMenu = menu;
   };
 
   var getStartTimes = function() {
@@ -93,46 +84,37 @@ angular.module('roomFactory', [])
   };
   
   var viewMenus = function(room, eventType, callback) {
-    console.log('viewMenus called');
-    var url = 'api/menu/' + room + '/eventtype/' + eventType;
+    var url = 'api/menu/eventType';
     return $http({
       method: 'GET',
-      url: url
+      url: url,
+      params: {roomID: room, eventType: eventType}
     })
     .then(function(response){
       menus.splice(0, menus.length);
       response.data.forEach(function(menu) {
         menus.push(menu);
       }); 
-      viewCourses(menus[0].id);
-      console.log(menus);     
+      viewCourses(menus[0].id);   
        if (callback) {
         callback();
       }
-      $location.url($location.path());
-      $location.path('/checkout/room/'+roomID);
       });
   };
 
   var viewCourses = function(menuID, callback) {
-  console.log('viewMenus called');
-  var url = 'api/menu/' + menuID;
+  var url = 'api/menu/menuID?';
   return $http({
     method: 'GET',
-    url: url
+    url: url,
+    params: {menuID: menuID}
   })
   .then(function(response){
-     console.log(response.data);
+    currentMenu = response.data;
     if (callback) {
       callback();
     }
-    $location.url($location.path());
-    $location.path('/checkout/room/'+roomID);
     });
-  };
-
-  var getMenus = function() {
-    console.log(menus);
   };
 
   return {
@@ -145,10 +127,11 @@ angular.module('roomFactory', [])
     allBookedTimes: allBookedTimes,
     reroute: reroute,
     getAllBookedTimes,
-    getMenu: getMenu,
+    getCurrentMenu: getCurrentMenu,
     chooseMenu: chooseMenu,
     currentMenu: currentMenu,
-    findAvailableTimes: findAvailableTimes
+    findAvailableTimes: findAvailableTimes,
+    checkoutMenu: checkoutMenu
   };
 
 }]);

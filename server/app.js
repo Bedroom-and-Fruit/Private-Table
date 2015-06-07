@@ -38,18 +38,17 @@ app.get('/api/users/me', function(req, res){
 
 // path for when users are logging in
 app.post('/auth/local', function(req, res) {
-  console.log(req.body);
   helper.authenticate(req.body.username, req.body.password, res, secret);
 });
 
 //path for obtaining menus for a selected room
-app.get('/api/menu/:roomID/eventtype/:eventType', function(req, res){
-  helper.serveMenus(req.params.roomID, req.params.eventType, res);
+app.get('/api/menu/eventType?', function(req, res){
+  helper.serveMenus(req.query, res);
 });
 
 //path for obtaining courses for a selected menu
-app.get('/api/menu/:menuID', function(req, res){
-  helper.serveCourses(req.params.menuID, res);
+app.get('/api/menu/menuID?', function(req, res){
+  helper.serveCourses(req.query.menuID, res);
 });
 
 // path for obtaining search results

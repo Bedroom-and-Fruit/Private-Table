@@ -8,27 +8,39 @@ angular.module('privateTableApp')
     $scope.firstMenu = true;
     $scope.lastMenu = false;
     $scope.menus = roomData.menus || [];
-    $scope.currentMenu = $scope.menus[0] || {};
-    $scope.currentMenu.number = 1;
-
+    $scope.menuNumber = 0;
+    $scope.menuTitle = $scope.menus[$scope.menuNumber].name;
     $scope.prevMenu = function() {
-      var prevIndex = currentMenu.number-2;
-      this.currentMenu = this.menus[prevIndex];
-      this.currentMenu.number++;
+      $scope.menuNumber --;
+      roomData.viewCourses($scope.menus[$scope.menuNumber].id, function() {
+        $scope.currentMenu = roomData.getCurrentMenu();
+        $scope.menuTitle = $scope.menus[$scope.menuNumber].name;
+        $scope.lastMenu = false;
+        if ($scope.menuNumber === 0) {
+          $scope.firstMenu = true;
+        }
+      });
     };
 
     $scope.nextMenu = function() {
-      var nextIndex = currentMenu.number+1;
-      this.currentMenu = this.menus[prevIndex];
-      $scope.currentMenu.number--;
+      $scope.menuNumber ++;
+      roomData.viewCourses($scope.menus[$scope.menuNumber].id, function() {
+        $scope.currentMenu = roomData.getCurrentMenu();
+        $scope.menuTitle = $scope.menus[$scope.menuNumber].name;
+        $scope.firstMenu = false;
+        if ($scope.menuNumber === $scope.menus.length-1) {
+          $scope.lastMenu = true;
+        }
+      });
     };
 
     $scope.chooseMenu = function() {
-      roomData.chooseMenu($scope.currentMenu);
+      //henry to resume here on sunday
+      roomData.chooseMenu($scope.menus[$scope.menuNumber]);
     };
 
     $scope.init = function () {
-      
+      $scope.currentMenu = roomData.getCurrentMenu();
     };
 
     $scope.init();
