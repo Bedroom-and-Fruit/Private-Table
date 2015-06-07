@@ -82,6 +82,7 @@ angular.module('roomFactory', [])
 
   var chooseMenu = function(menu) {
     currentMenu = menu;
+  };
 
   var getStartTimes = function() {
     return bookedStartTimes;
