@@ -63,18 +63,14 @@ angular
         },
         authenticate: true
       })
+
       .state('favorites', {
         url: '/favorites',
-        views: {
-          '': {templateUrl: 'views/favorites.html'},
-          'searchResults@favorites': {
-            templateUrl: 'views/searchBar/searchResults.html',
-            controller: 'searchResultsController',
-            authenticate: true
-          }
-        },
+        templateUrl: 'views/favorites.html',
+        controller: 'favoritesController',
         authenticate: true
       })
+      
       .state('checkout', {
         url: '/checkout',
         abstract: true,

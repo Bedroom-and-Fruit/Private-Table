@@ -5,5 +5,5 @@ angular.module('privateTableApp')
     $scope.init = function () {
       SearchResults.getFavoriteResults();
       SearchResults.showAll();
-    }
+    };
   }]);

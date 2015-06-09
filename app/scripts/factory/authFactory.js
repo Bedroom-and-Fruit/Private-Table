@@ -5,6 +5,8 @@ angular.module('authFactory', [])
 
     var currentUser = {};
 
+    var loggedIn = false;
+
     if($cookies.get('PrivateTableToken')) {
       currentUser = $resource('api/users/me').get();
     }
@@ -13,7 +15,7 @@ angular.module('authFactory', [])
       return $resource('auth/local/').save(credentials, function(data) {
         $cookies.put('PrivateTableToken', data.token);
         //if returned a token, find the user based on that token and set current user to the return value
-        currentUser = $resource('api/users/me').get();
+        AuthFactory.currentUser = $resource('api/users/me').get();
       },
       function(err) {
         console.log(err);
@@ -25,7 +27,7 @@ angular.module('authFactory', [])
       var User = $resource('api/users/');
       return User.save(credentials, function(data) {
         $cookies.put('PrivateTableToken', data.token);
-        currentUser = $resource('api/users/me').get();
+        AuthFactory.currentUser = $resource('api/users/me').get();
       },
       function(err) {
         console.log(err);
@@ -34,17 +36,17 @@ angular.module('authFactory', [])
     };
 
     var getUser = function() {
-      return currentUser;
+      return AuthFactory.currentUser;
     };
 
     var logout = function() {
       $cookies.remove('PrivateTableToken');
-      currentUser = {};
+      AuthFactory.currentUser = {};
     };
 
     var isLoggedInAsync = function(callback) {
-      if(currentUser.hasOwnProperty('$promise')) {
-        currentUser.$promise.then(function() {
+      if(AuthFactory.currentUser.hasOwnProperty('$promise')) {
+        AuthFactory.currentUser.$promise.then(function() {
           callback(true);
         }).catch(function() {
           callback(false);
@@ -54,14 +56,16 @@ angular.module('authFactory', [])
       }
     };
 
-    return {
-
+    var AuthFactory = {
       login: login,
       logout: logout,
       createUser: createUser,
       currentUser: currentUser,
       getUser: getUser,
-      isLoggedInAsync: isLoggedInAsync
+      isLoggedInAsync: isLoggedInAsync,
+      loggedIn: loggedIn
     };
+
+    return AuthFactory;
 
   }]);
