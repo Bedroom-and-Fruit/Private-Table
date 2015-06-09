@@ -117,14 +117,28 @@
         <p class="small-6 columns"><strong>MENU</strong></p>
       </div>
     </span>
-    <span ng-show="menuConfirmed" class="small-12 columns">
-    <div class="row">
-      <p class="small-12 columns"> Menu Name </p>
+    <div ng-hide="menuFinal">
+      <span id= "small-4 columns">
+         <div class="row">
+           <p class="small-6 columns dull">
+             {{checkoutMenu.checkoutMenu.name}}
+           </p>
+           <span class="small-6 columns">
+           </span>
+         </div>
+       </span>
+       </div>
+
+    <div ng-hide="menuName">
+    <span class="small-12 columns">
+      <div class="row text-center">
+        <h5 class="small-12 columns"> {{checkoutMenu.checkoutMenu.name}} </h5>
+      </div>
+      <div class="row text-center">
+        <h4 class="small-12 columns"> ${{(checkoutMenu.checkoutMenu.price * params.guests) | number: fractionSize}} </h4>
+      </div>
+    </span>
     </div>
-  <div class="row">
-    <p class="small-12 columns"> {{params.menu}} </p>
-  </div>
-</span>
 </div>
 
 
@@ -148,12 +162,43 @@
     <hr>
     <p class="text-center"><strong>Summary</strong></p>
     <div class="row">
-      <div class="small-8 columns">
+      <p class="small-8 columns">
       Menu
-      </div>
-      <div class="small-4 columns">
-      $199
-      </div>
+      </p>
+      <p class="small-4 columns">
+      ${{(checkoutMenu.checkoutMenu.price * params.guests) | number: fractionSize}}
+      </p>
+    </div>
+    <div class="row">
+      <p class="small-8 columns">
+      ${{checkoutMenu.checkoutMenu.price | number: fractionSize}} per guests x {{params.guests}} guests
+      </p>
+      <p class="small-4 columns">
+      </p>
+    </div>
+    <div class="row">
+      <p class="small-8 columns">
+      Total Taxes and Gratuity
+      </p>
+      <p class="small-4 columns">
+      {{((checkoutMenu.checkoutMenu.price * params.guests) * (checkoutMenu.currentRoom.autogratRate/100) + (checkoutMenu.checkoutMenu.price * params.guests) * (checkoutMenu.currentRoom.taxRate/100)) | currency}}
+      </p>
+    </div>
+    <hr>
+    <div class="row">
+      <h4 class="small-7 columns">
+      Total
+      </h4>
+      <h4 class="small-5 columns">
+      {{((checkoutMenu.checkoutMenu.price * params.guests) + (checkoutMenu.checkoutMenu.price * params.guests) * (checkoutMenu.currentRoom.autogratRate/100) + (checkoutMenu.checkoutMenu.price * params.guests) * (checkoutMenu.currentRoom.taxRate/100)) | currency}}
+      </h4>
+    </div>
+    <div class="row">
+      <p class="small-8 columns">
+      includes taxes and gratuity
+      </p>
+      <p class="small-4 columns">
+      </p>
     </div>
   </div>
 

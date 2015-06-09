@@ -8,7 +8,8 @@ angular.module('roomFactory', [])
   var allBookedTimes = [];
   var menus = [];
   var currentMenu;
-  var checkoutMenu;
+  var checkoutMenu = {};
+  checkoutMenu.price = 0;
 
   var viewRoom = function(room, url, callback, reroute) {
     var toUrl = url + room;
@@ -17,10 +18,9 @@ angular.module('roomFactory', [])
       url: toUrl
     })
     .then(function(response) {
-
       roomID = response.data.id;
-      currentRoom = response.data;
-      currentRoom.menuPrices = currentRoom.menuPrices.sort(function(a,b){return a-b;});
+      roomFactory.currentRoom = response.data;
+      roomFactory.currentRoom.menuPrices = roomFactory.currentRoom.menuPrices.sort(function(a,b){return a-b;});
       
       if (callback) {
         callback();
@@ -60,27 +60,19 @@ angular.module('roomFactory', [])
   };
 
   var getRoom = function() {
-    return currentRoom;
+    return roomFactory.currentRoom;
   };
 
   var getAllBookedTimes = function() {
-    return allBookedTimes;
+    return roomFactory.allBookedTimes;
   };
 
   var getCurrentMenu = function() {
-    return currentMenu;
+    return roomFactory.currentMenu;
   };
 
   var chooseMenu = function(menu) {
-    checkoutMenu = menu;
-  };
-
-  var getStartTimes = function() {
-    return bookedStartTimes;
-  };
-
-  var getEndTimes = function() {
-    return bookedEndTimes;
+    roomFactory.checkoutMenu = menu;
   };
   
   var viewMenus = function(room, eventType, callback) {
@@ -91,11 +83,11 @@ angular.module('roomFactory', [])
       params: {roomID: room, eventType: eventType}
     })
     .then(function(response){
-      menus.splice(0, menus.length);
+      roomFactory.menus.splice(0, roomFactory.menus.length);
       response.data.forEach(function(menu) {
-        menus.push(menu);
+        roomFactory.menus.push(menu);
       }); 
-      viewCourses(menus[0].id);   
+      roomFactory.viewCourses(roomFactory.menus[0].id);   
        if (callback) {
         callback();
       }
@@ -110,14 +102,14 @@ angular.module('roomFactory', [])
     params: {menuID: menuID}
   })
   .then(function(response){
-    currentMenu = response.data;
+    roomFactory.currentMenu = response.data;
     if (callback) {
       callback();
     }
     });
   };
 
-  return {
+  var roomFactory = {
     menus: menus,
     viewCourses: viewCourses,
     viewMenus: viewMenus,
@@ -133,5 +125,7 @@ angular.module('roomFactory', [])
     findAvailableTimes: findAvailableTimes,
     checkoutMenu: checkoutMenu
   };
+
+  return roomFactory;
 
 }]);

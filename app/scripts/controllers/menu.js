@@ -7,9 +7,11 @@ angular.module('privateTableApp')
 
     $scope.firstMenu = true;
     $scope.lastMenu = false;
-    $scope.menus = roomData.menus || [];
+    $scope.menus = roomData.menus;
     $scope.menuNumber = 0;
     $scope.menuTitle = $scope.menus[$scope.menuNumber].name;
+    $scope.checkoutMenu = roomData;
+
     $scope.prevMenu = function() {
       $scope.menuNumber --;
       roomData.viewCourses($scope.menus[$scope.menuNumber].id, function() {
@@ -35,8 +37,8 @@ angular.module('privateTableApp')
     };
 
     $scope.chooseMenu = function() {
-      //henry to resume here on sunday
-      roomData.chooseMenu($scope.menus[$scope.menuNumber]);
+      var menuOfMenuNumber = $scope.menus[$scope.menuNumber];
+      roomData.chooseMenu(menuOfMenuNumber);
     };
 
     $scope.init = function () {

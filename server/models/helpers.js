@@ -342,13 +342,13 @@ module.exports.serveMenus = function(params, response){
       for (var i = 0; i < menusOffered.length; i++) {
         if (params.eventType === "Banquet") {
           Menu.find({where: {id: menusOffered[i].dataValues.menu_ID, banquet: true}})
-          .then(formatMenuReturn)
+          .then(formatMenuReturn);
         } else if (params.eventType === "Reception") {
           Menu.find({where: {id: menusOffered[i].dataValues.menu_ID, reception: true}})
-          .then(formatMenuReturn)
+          .then(formatMenuReturn);
         } else {
           Menu.find({where: {id: menusOffered[i].dataValues.menu_ID}})
-          .then(formatMenuReturn)
+          .then(formatMenuReturn);
         }
       }
     } else {
