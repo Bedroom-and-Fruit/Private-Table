@@ -6,6 +6,7 @@ var Menu = require('./menus.js');
 var CoursesInMenu = db.define('CoursesInMenu',
   {
     courseCombination_ID: Sequelize.INTEGER,
+    courseOrder: Sequelize.INTEGER,
     menu_ID: Sequelize.INTEGER
   }
 );

@@ -295,28 +295,7 @@ module.exports.searchOrMake = function(username, email, password, response, secr
         };
         console.log("User created");
         response.json({token: jwt.sign(profile, secret, {expiresInMinutes: 60 * 5})});
-      });
-    }
-  });
-};
-
-module.exports.findDates = function(room, startTime, endTime, response) {
-  //can also add in this all dates before the current date to disable bookings for the past
-  Room.find({where: {id: room}, include: [{model: Booking, where: {$and: [{end: {$lte: endTime}}, {start: {$gte: startTime}}]}}]}).then(function(roomsWithBookings) {
-    if (roomsWithBookings) {
-      var bookingsArray = roomsWithBookings.dataValues.Bookings;
-      var allTimeBlocks = [];
-      for (var i = 0; i < bookingsArray.length; i++) {
-        allTimeBlocks.push({start: bookingsArray[i].dataValues.start, end: bookingsArray[i].dataValues.end});
-      }
-      console.log(allTimeBlocks);
-      var bookedTimes = {
-        allTimeBlocks: allTimeBlocks
-      };
-      response.json(bookedTimes);
-    } else {
-      var bookedTimes = {allTimeBlocks: []};
-      response.json(bookedTimes);
+      })
     }
   });
 };
@@ -346,7 +325,6 @@ module.exports.findAllInfo = function(username, response) {
 // [course (3), course (3), course(3) ]
 
 module.exports.serveMenus = function(params, response){
-  var eventType = params.eventType || "Banquet";
   MenusOffered.findAll({where: {room_ID: params.roomID}, include: [Menu]}).then(function(menusOffered){
     if(menusOffered) {
       var allMenusOffered = [];
@@ -362,10 +340,10 @@ module.exports.serveMenus = function(params, response){
             }
           };
       for (var i = 0; i < menusOffered.length; i++) {
-        if (eventType === "Banquet") {
+        if (params.eventType === "Banquet") {
           Menu.find({where: {id: menusOffered[i].dataValues.menu_ID, banquet: true}})
           .then(formatMenuReturn)
-        } else if (eventType === "Reception") {
+        } else if (params.eventType === "Reception") {
           Menu.find({where: {id: menusOffered[i].dataValues.menu_ID, reception: true}})
           .then(formatMenuReturn)
         } else {
@@ -386,6 +364,7 @@ module.exports.serveCourses = function (menuID, response) {
       var finalCourseOfferings = [];
       var courseOfferings = {};
       for (var i = 0; i < coursesInMenu.length; i++) { 
+        var courseOrder = coursesInMenu[i].dataValues.courseOrder;
         CourseCombination.findAll({where: {id: coursesInMenu[i].dataValues.courseCombination_ID}}).then(function(combos) {
         if(combos){
           var menuItemCounter = 0;
@@ -401,6 +380,7 @@ module.exports.serveCourses = function (menuID, response) {
             if (!courseOfferings[courseName]){
               courseOfferings[courseName] = {name: courseName};
               courseOfferings[courseName].menuItems = [];
+              courseOfferings[courseName].courseOrder = this;
             }
             MenuItem.find({where: {id: menuItemID}}).then(function(menuItem) {
               if (menuItem) {
@@ -416,14 +396,12 @@ module.exports.serveCourses = function (menuID, response) {
               }
               //when all courses have been added, console log the finalArray of courses
               if (finalCourseOfferings.length === coursesInMenu.length) {
-                console.log(JSON.stringify(courseOfferings));
-                console.log(JSON.stringify(finalCourseOfferings));
                 response.json(courseOfferings);
               }
             });
           }
         } 
-        });
+        }.bind(courseOrder));
       }
     }
   });
@@ -441,4 +419,8 @@ module.exports.deleteFavorite = function () {
 module.exports.viewBookings = function () {
 
 };
+
+
+
+
 
