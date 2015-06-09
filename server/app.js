@@ -86,8 +86,8 @@ app.post('/api/users/favorites/removefavorites', function(req, res){
 });
 
 //path for viewing a user's bookings
-app.get('/api/users/bookings', function(req, res){
-  helper.viewBookings(req,res);
+app.get('/api/users/:userID/bookings', function(req, res){
+  helper.getBookings(req.params.userID,res);
 });
 
 //path for processing payments
@@ -103,6 +103,7 @@ app.post('/api/payments', function(req, res){
       console.log(JSON.stringify(err, null, 2));
     }
   });
+  helper.createBooking(req,res);
   res.send(201);
 });
 

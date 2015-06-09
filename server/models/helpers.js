@@ -371,6 +371,7 @@ module.exports.serveMenus = function(params, response){
   });
 };
 
+
 module.exports.serveCourses = function (menuID, response) {
   CoursesInMenu.findAll({where: {menu_ID: menuID}}).then(function(coursesInMenu) {
     if (coursesInMenu) {
@@ -486,8 +487,45 @@ module.exports.deleteFavorite = function (username, roomId, response) {
   })
 };
 
-module.exports.viewBookings = function () {
 
+module.exports.createBooking = function (userId, roomId, startTime, endTime, response) {
+  Booking.create({booker: userId, room: roomId, start: startTime, end: endTime}).then(function(){
+      response.send(201, "Booking complete");
+    })
+};
+
+
+module.exports.getBookings = function (userId, response) {
+  Booking.findAll({where: {booker: userId}}).then(function(bookings) {
+  if (bookings){
+    var bookingsToClient = [];
+    var sendLength = bookings.length;
+    bookings.forEach(function(booking){
+      Room.find({where: {id: booking.room}, include: [Venue]}).then(function(roomData) {
+            if(roomData) {
+              bookingsToClient.push({
+                bookingStartTime: booking.dataValues.start,
+                bookingEndTime: booking.dataValues.end,
+                contactFullName: roomData.dataValues.Venue.dataValues.contactFirstName + ' ' + roomData.dataValues.Venue.dataValues.contactLastName,
+                contactTitle: roomData.dataValues.Venue.dataValues.contactTitle,
+                venue: roomData.dataValues.Venue.dataValues.venueName,
+                room: roomData.dataValues.roomName,
+                roomID: roomData.dataValues.id,
+                roomImage: roomData.dataValues.heroImage,
+                contactImage: roomData.dataValues.Venue.dataValues.contactImage
+              });
+            } else {
+              response.send(501, "No bookings found");
+            }
+            if (bookingsToClient.length === sendLength) {
+              response.json(bookingsToClient);
+            }
+          });
+        })
+    } else {
+      response.send(501, "Bookings not found");
+    }
+  });
 };
 
 
