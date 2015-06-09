@@ -32,7 +32,7 @@ app.post('/api/users', function(req, res){
 
 //path for user's profile
 app.get('/api/users/me', function(req, res){
-  var decoded = jwt.decode(req.headers.authorization);
+  var decoded = jwt.decode(req.headers.authorization.slice(7));
   helper.findAllInfo(decoded.username, res);
 });
 
@@ -67,19 +67,22 @@ app.get('/api/dates?', function(req, res){
 });
 
 //path for adding a room to favorites
-app.post('/api/users/addfavorites', function(req, res){
-  helper.addFavorite(req.params.userID, req.params.roomID, res);
+app.post('/api/users/favorites/addfavorites', function(req, res){
+  var decoded = jwt.decode(req.headers.authorization.slice(7));
+  helper.addFavorite(decoded.username, req.body.roomID, res);
 });
 
 //path for fetching a user's favorites
-app.post('/api/users/:userID/favorites', function(req, res){
-  helper.getFavorites(req.params.userID, res);
+app.get('/api/users/favorites', function(req, res){
+  var decoded = jwt.decode(req.headers.authorization.slice(7));
+  console.log(decoded);
+  helper.getFavorites(decoded.username, res);
 });
 
 //path for deleting a room from favorites
-app.post('/api/users/deletefavorites', function(req, res){
-  var decoded = jwt.decode(req.headers.authorization);
-  helper.deleteFavorite(decoded.userID, req.params.roomID, res);
+app.post('/api/users/favorites/removefavorites', function(req, res){
+  var decoded = jwt.decode(req.headers.authorization.slice(7));
+  helper.deleteFavorite(decoded.username, req.body.roomID, res);
 });
 
 //path for viewing a user's bookings

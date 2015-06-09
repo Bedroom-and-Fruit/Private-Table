@@ -6,7 +6,19 @@ angular.module('favoriteFactory', [])
   var favorites = [];
 
   var getFavorites = function() {
-    return SearchResults.getResults(params, reroute, 'api/favoriteResults', '/favorites', favorites);
+    var url = '/api/users/favorites';
+    $http.get(url)
+    .success(function(data, status, headers, config) {
+      favorites.splice(0, favorites.length);
+      data.forEach(function(val){
+        favorites.push(val);
+      });
+      console.log(favorites);
+    })
+    .error(function(data, status, headers, config) {
+      console.log(data);
+      console.log('There was an error');
+    });
   };
     
   var isFavorite = function (room) {
@@ -18,11 +30,11 @@ angular.module('favoriteFactory', [])
   };
 
   var addFavorite = function (room) {
-    var url = '/api/users/addfavorites';
-    $http.post(url, {roomID: room.roomID})
+    var url = '/api/users/favorites/addfavorites';
+    console.log(room);
+    $http.post(url, {roomID: room})
     .success(function(data, status, headers, config) {
-      console.log(data);
-      FavoritesFactory.favorites.push(room);
+      FavoritesFactory.getFavorites();
     })
     .error(function(data, status, headers, config) {
       console.log(data);
@@ -31,8 +43,8 @@ angular.module('favoriteFactory', [])
   };
 
   var removeFavorite = function (room) {
-    var url = '/api/users/deletefavorites';
-    $http.post(url, {roomID: room.roomID})
+    var url = '/api/users/favorites/deletefavorites';
+    $http.post(url, {roomID: room})
     .success(function(data, status, headers, config) {
       FavoritesFactory.favorites.splice(room,1);
     })

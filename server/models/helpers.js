@@ -421,59 +421,68 @@ module.exports.serveCourses = function (menuID, response) {
 };
 
 
-module.exports.addFavorite = function(userId, roomId, response) {
-  Favorite.find({where: {user_ID: userId, room_ID: roomId}}).then(function(room_ID) {
-  if (room_ID){
-    response.send(201, "You already added this room to favorites");
-  }else{
-    Favorite.create({user_ID: userId, room_ID: roomId}).then(function(){
-      response.send(201, "Room favorited");
+module.exports.addFavorite = function(username, roomId, response) {
+  User.find({where: {username: username}}).then(function(user) {
+    var userId = user.dataValues.id;
+    Favorite.find({where: {user_ID: userId, room_ID: roomId}}).then(function(room_ID) {
+      if (room_ID){
+        response.send(201, "You already added this room to favorites");
+      } else {
+        Favorite.create({user_ID: userId, room_ID: roomId}).then(function(){
+          response.send(201, "Room favorited");
+        })
+      }
     })
-  }
-})
+  })
 };
 
-module.exports.getFavorites = function(userId, response) {
-  Favorite.findAll({where: {user_ID: userId}}).then(function(rooms) {
-  if (rooms){
-    var roomsToClient = [];
-    var sendLength = rooms.length;
-    rooms.forEach(function(room){
-      Room.find({where: {id: room.room_ID}, include: [Venue]}).then(function(roomData) {
-            if(roomData) {
-              roomsToClient.push({
-                contactFullName: roomData.dataValues.Venue.dataValues.contactFirstName + ' ' + roomData.dataValues.Venue.dataValues.contactLastName,
-                contactTitle: roomData.dataValues.Venue.dataValues.contactTitle,
-                venue: roomData.dataValues.Venue.dataValues.venueName,
-                room: roomData.dataValues.roomName,
-                roomID: roomData.dataValues.id,
-                roomImage: roomData.dataValues.heroImage,
-                contactImage: roomData.dataValues.Venue.dataValues.contactImage
-              });
-            } else {
-              response.send(501, "Favorite not found");
-            }
-            if (roomsToClient.length === sendLength) {
-              response.json(roomsToClient);
-            }
-          });
-        })
-    } else {
-      response.send(501, "Favorites not found");
-    }
+module.exports.getFavorites = function(username, response) {
+  User.find({where: {username: username}}).then(function(user) {
+    var userId = user.dataValues.id;
+    Favorite.findAll({where: {user_ID: userId}}).then(function(rooms) {
+    if (rooms){
+      var roomsToClient = [];
+      var sendLength = rooms.length;
+      rooms.forEach(function(room){
+        Room.find({where: {id: room.room_ID}, include: [Venue]}).then(function(roomData) {
+              if(roomData) {
+                roomsToClient.push({
+                  contactFullName: roomData.dataValues.Venue.dataValues.contactFirstName + ' ' + roomData.dataValues.Venue.dataValues.contactLastName,
+                  contactTitle: roomData.dataValues.Venue.dataValues.contactTitle,
+                  venue: roomData.dataValues.Venue.dataValues.venueName,
+                  room: roomData.dataValues.roomName,
+                  roomID: roomData.dataValues.id,
+                  roomImage: roomData.dataValues.heroImage,
+                  contactImage: roomData.dataValues.Venue.dataValues.contactImage
+                });
+              } else {
+                response.send(501, "Favorite not found");
+              }
+              if (roomsToClient.length === sendLength) {
+                response.json(roomsToClient);
+              }
+            });
+          })
+      } else {
+        response.send(501, "Favorites not found");
+      }
+    });
   });
 };
 
 
-module.exports.deleteFavorite = function (userId, roomId, response) {
-  Favorite.find({where: {user_ID: userId, room_ID: roomId}}).then(function(room_ID) {
-  if (room_ID){
-    Favorite.destroy({user_ID: userId, room_ID: roomId}).then(function(){
-      response.send(201, "Favorite deleted");
+module.exports.deleteFavorite = function (username, roomId, response) {
+  User.find({where: {username: username}}).then(function(user) {
+    var userId = user.dataValues.id;
+    Favorite.find({where: {user_ID: userId, room_ID: roomId}}).then(function(room_ID) {
+      if (room_ID) {
+        Favorite.destroy({user_ID: userId, room_ID: roomId}).then(function(){
+          response.send(201, "Favorite deleted");
+        })
+      } else {
+          response.send(201, "This room was not a favorite");
+        }
     })
-  }else{
-      response.send(201, "This room was not a favorite");
-    }
   })
 };
 

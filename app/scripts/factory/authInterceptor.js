@@ -6,7 +6,7 @@ angular.module('authInterceptorFactory', [])
     var request = function(config) {
       config.headers = config.headers || {};
       if ($cookies.get('PrivateTableToken')){
-        config.headers.Authorization = $cookies.get('PrivateTableToken');
+        config.headers.Authorization = 'Bearer ' + $cookies.get('PrivateTableToken');
       }
       return config;
     };
