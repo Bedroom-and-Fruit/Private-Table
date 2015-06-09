@@ -504,6 +504,8 @@ module.exports.getBookings = function (userId, response) {
       Room.find({where: {id: booking.room}, include: [Venue]}).then(function(roomData) {
             if(roomData) {
               bookingsToClient.push({
+                bookingStartTime: booking.dataValues.start,
+                bookingEndTime: booking.dataValues.end,
                 contactFullName: roomData.dataValues.Venue.dataValues.contactFirstName + ' ' + roomData.dataValues.Venue.dataValues.contactLastName,
                 contactTitle: roomData.dataValues.Venue.dataValues.contactTitle,
                 venue: roomData.dataValues.Venue.dataValues.venueName,
@@ -513,19 +515,17 @@ module.exports.getBookings = function (userId, response) {
                 contactImage: roomData.dataValues.Venue.dataValues.contactImage
               });
             } else {
-              response.send(501, "Favorite not found");
+              response.send(501, "No bookings found");
             }
-            if (roomsToClient.length === sendLength) {
-              response.json(roomsToClient);
+            if (bookingsToClient.length === sendLength) {
+              response.json(bookingsToClient);
             }
           });
         })
     } else {
-      response.send(501, "Favorites not found");
+      response.send(501, "Bookings not found");
     }
   });
-
-
 };
 
 
