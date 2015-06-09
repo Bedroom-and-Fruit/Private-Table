@@ -337,13 +337,6 @@ module.exports.findAllInfo = function(username, response) {
   });
 };
 
-//include: [{model: Room, where: {minSpend: {$lte: params.budget}
-
-// menusOffered [menu, menu, menu]
-// price / name 
-// ============================
-// //menu[0] .. menu[1] .. 
-// [course (3), course (3), course(3) ]
 
 module.exports.serveMenus = function(params, response){
   MenusOffered.findAll({where: {room_ID: params.roomID}, include: [Menu]}).then(function(menusOffered){
@@ -356,7 +349,6 @@ module.exports.serveMenus = function(params, response){
             menu.id = menuFound.dataValues.id;
             allMenusOffered.push(menu);
             if (allMenusOffered.length === menusOffered.length) {
-              console.log('ALL MENUS OFFERED', allMenusOffered);
               response.json(allMenusOffered);
             }
           };
