@@ -21,19 +21,18 @@ angular.module('privateTableApp')
     };
 
     $scope.addFavorite = function(room) {
-      console.log(room);
-      Favorite.addFavorite(room.roomID);
+      Favorites.addFavorite(room.roomID);
     };
 
-    $scope.addFavorite = function(room) {
+    $scope.removeFavorite = function(room) {
       console.log(room);
-      Favorite.removeFavorite(room.roomID);
+      Favorites.removeFavorite(room.roomID);
     };
 
     $scope.init = function() {
       $scope.checkLoggedIn();
       if ($scope.Auth.loggedIn) {
-        $scope.Favorite.getFavorites();
+        $scope.Favorites.getFavorites();
       }
     };
 
