@@ -10,31 +10,6 @@ angular.module('authFactory', [])
     }
 
     var login = function(credentials) {
-      // var deferred = $q.defer();
-      // $http.post('auth/local', credentials)
-      // .success(function(data) {
-      //   $cookies.put('PrivateTableToken', data.token);
-      //   $http.get('api/users/me')
-      //   .success(function(data){
-      //     console.log(data);
-      //     currentUser = data;
-      //   })
-      //   .error(function(err) {
-      //     console.log(err);
-      //   })
-      //   //   console.log(data);
-      //   //   currentUser = data;
-      //   //   deferred.resolve(data);
-      //   //   console.log(currentUser);
-      //   // })
-      // })
-      // .error(function(err) {
-      //   console.log(err);
-      // }.bind(this));
-
-      // return deferred.promise;
-       
-
       return $resource('auth/local/').save(credentials, function(data) {
         $cookies.put('PrivateTableToken', data.token);
         //if returned a token, find the user based on that token and set current user to the return value

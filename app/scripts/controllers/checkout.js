@@ -4,22 +4,13 @@ angular.module('privateTableApp')
   .controller('checkoutController', ['$scope', '$location', 'SearchBar', 'SearchResults', 'CheckoutOptions', '$http', 'roomData', '$stateParams', function($scope, $location, SearchBar, SearchResults, CheckoutOptions, $http, roomData, $stateParams) {
     $scope.params = {};
     $scope.room;
-    //this is what i envision storing all our available dates that should be from our roomFactory
-    $scope.allBookedTimes;
     $scope.eventConfirmed = false;
     $scope.menuConfirmed = true;
     $scope.menuLabel = true;
     $scope.showSummary = true;
     $scope.available = false;
-    $scope.totalCost;
-
-    //henry to resume here on sunday. trying to get checkoutcontroller to talk to menucontroller
-
-    if (roomData.checkout && $scope.params.guests) {
-      $scope.totalCost = roomData.checkout.price * $scope.params.guests;
-    } else {
-      $scope.totalCost = '$0';
-    }
+    $scope.menuFinal = true;
+    $scope.checkoutMenu = roomData;
 
     $scope.toMenu = function() {
       CheckoutOptions.setEventParams($scope.params);
@@ -27,12 +18,16 @@ angular.module('privateTableApp')
       $scope.eventConfirmed = true;
       $scope.menuLabel = false;
       $scope.menuConfirmed = false;
+      console.log(roomData);
+      console.log($scope.checkoutMenu);
       roomData.reroute('/checkout/menu');
     };
 
     $scope.toPay = function() {
       CheckoutOptions.setMenuParams(roomData.currentMenu);
       $location.path('/checkout/payments');
+      $scope.menuName = true;
+      $scope.menuFinal = false;
       $scope.menuConfirmed = true;
       $scope.showSummary = false;
     };

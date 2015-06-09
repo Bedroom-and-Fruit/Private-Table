@@ -300,6 +300,27 @@ module.exports.searchOrMake = function(username, email, password, response, secr
   });
 };
 
+module.exports.findDates = function(room, startTime, endTime, response) {   
+  //can also add in this all dates before the current date to disable bookings for the past    
+  Room.find({where: {id: room}, include: [{model: Booking, where: {$and: [{end: {$lte: endTime}}, {start: {$gte: startTime}}]}}]}).then(function(roomsWithBookings) {    
+    if (roomsWithBookings) {   
+      var bookingsArray = roomsWithBookings.dataValues.Bookings;   
+      var allTimeBlocks = [];    
+      for (var i = 0; i < bookingsArray.length; i++) {   
+        allTimeBlocks.push({start: bookingsArray[i].dataValues.start, end: bookingsArray[i].dataValues.end});    
+      }    
+      console.log(allTimeBlocks);    
+      var bookedTimes = {    
+        allTimeBlocks: allTimeBlocks   
+      };   
+      response.json(bookedTimes);    
+    } else {   
+      var bookedTimes = {allTimeBlocks: []};   
+      response.json(bookedTimes);    
+    }        
+  });      
+};
+
 module.exports.findAllInfo = function(username, response) {
   User.find({where: {username: username}}).then(function(user) {
     if(user) {
@@ -342,13 +363,13 @@ module.exports.serveMenus = function(params, response){
       for (var i = 0; i < menusOffered.length; i++) {
         if (params.eventType === "Banquet") {
           Menu.find({where: {id: menusOffered[i].dataValues.menu_ID, banquet: true}})
-          .then(formatMenuReturn)
+          .then(formatMenuReturn);
         } else if (params.eventType === "Reception") {
           Menu.find({where: {id: menusOffered[i].dataValues.menu_ID, reception: true}})
-          .then(formatMenuReturn)
+          .then(formatMenuReturn);
         } else {
           Menu.find({where: {id: menusOffered[i].dataValues.menu_ID}})
-          .then(formatMenuReturn)
+          .then(formatMenuReturn);
         }
       }
     } else {

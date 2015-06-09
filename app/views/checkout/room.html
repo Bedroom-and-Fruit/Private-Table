@@ -16,7 +16,7 @@
           <ul>
             <li> Size: {{room.size}}</li>
             <li> Room Type: {{room.type}}</li>
-            <li> Minimum Spend: ${{room.minSpend}}</li> 
+            <li> Minimum Spend: ${{room.minSpend | number: fractionSize}}</li> 
             <li> Time Included: {{room.eventDuration}} hours</li>
           </ul>
        </div>
