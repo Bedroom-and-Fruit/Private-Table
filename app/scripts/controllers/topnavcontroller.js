@@ -4,12 +4,12 @@
 angular.module('privateTableApp')
   .controller('navController', ['$scope', '$location', 'SearchResults', 'Auth', function($scope, $location, SearchResults, Auth) {
     $scope.currentUser; 
+    $scope.Auth = Auth;
     
     $scope.init = function () {
       $scope.currentUser = Auth.getUser();
     };
 
-    
     //login
     $scope.loginCredentials = {};
     $scope.errors = {};
@@ -29,7 +29,7 @@ angular.module('privateTableApp')
           // Logged in, redirect to user's dashboard
           $scope.currentUser = Auth.getUser();
           $scope.toggleLogin();
-          $location.path('/bookings');
+          $scope.Auth.loggedIn = true;
         })
         .catch(function(err) {
           $scope.errors.other = err.message;
@@ -56,7 +56,7 @@ angular.module('privateTableApp')
           // Account created, redirect to user's dashboard
           $scope.currentUser = Auth.getUser();
           $scope.toggleSignUp();
-          $location.path('/bookings');
+          $scope.Auth.loggedIn = true;
           
         })
         .catch(function(err) {
