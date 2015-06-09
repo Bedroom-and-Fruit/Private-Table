@@ -433,9 +433,16 @@ module.exports.addFavorite = function(userId, roomId, response) {
 })
 };
 
-
-module.exports.deleteFavorite = function () {
-
+module.exports.deleteFavorite = function (userId, roomId, response) {
+  Favorite.find({where: {user_ID: userId, room_ID: roomId}}).then(function(room_ID) {
+  if (room_ID){
+    Favorite.destroy({user_ID: userId, room_ID: roomId}).then(function(){
+      response.send(201, "Favorite deleted");
+    })
+  }else{
+      response.send(201, "This room was not a favorite");
+    }
+  })
 };
 
 module.exports.viewBookings = function () {

@@ -67,13 +67,19 @@ app.get('/api/dates?', function(req, res){
 });
 
 //path for adding a room to favorites
-app.post('/api/users/favorites', function(req, res){
-  helper.addFavorite(req, res);
+app.post('/api/users/addfavorites', function(req, res){
+  helper.addFavorite(req.params.userID, req.params.roomID, res);
+});
+
+//path for fetching a user's favorites
+app.post('/api/users/:userID/favorites', function(req, res){
+  helper.getFavorites(req.params.userID, res);
 });
 
 //path for deleting a room from favorites
-app.post('/api/users/favorites', function(req, res){
-  helper.deleteFavorite(req,res);
+app.post('/api/users/deletefavorites', function(req, res){
+  var decoded = jwt.decode(req.headers.authorization);
+  helper.deleteFavorite(decoded.userID, req.params.roomID, res);
 });
 
 //path for viewing a user's bookings
