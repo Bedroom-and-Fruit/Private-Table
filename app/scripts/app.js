@@ -99,7 +99,14 @@ angular
       })
       .state('confirmation', {
         url: '/confirmation',
-        templateUrl: 'views/confirmation.html'
+        views: {
+          '': {
+            templateUrl: 'views/confirmation.html'
+          },
+          'checkoutbox@checkout': {
+            templateUrl: 'views/checkout/checkoutbox.html'
+          }
+        }
       });
 
     })
