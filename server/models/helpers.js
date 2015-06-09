@@ -324,8 +324,8 @@ module.exports.findAllInfo = function(username, response) {
 // //menu[0] .. menu[1] .. 
 // [course (3), course (3), course(3) ]
 
-module.exports.serveMenus = function(room, eventType, response){
-  MenusOffered.findAll({where: {room_ID: room}, include: [Menu]}).then(function(menusOffered){
+module.exports.serveMenus = function(params, response){
+  MenusOffered.findAll({where: {room_ID: params.roomID}, include: [Menu]}).then(function(menusOffered){
     if(menusOffered) {
       var allMenusOffered = [];
       var formatMenuReturn = function (menuFound) {
@@ -340,10 +340,10 @@ module.exports.serveMenus = function(room, eventType, response){
             }
           };
       for (var i = 0; i < menusOffered.length; i++) {
-        if (eventType === "banquet") {
+        if (params.eventType === "Banquet") {
           Menu.find({where: {id: menusOffered[i].dataValues.menu_ID, banquet: true}})
           .then(formatMenuReturn)
-        } else if (eventType === "reception") {
+        } else if (params.eventType === "Reception") {
           Menu.find({where: {id: menusOffered[i].dataValues.menu_ID, reception: true}})
           .then(formatMenuReturn)
         } else {
@@ -380,7 +380,7 @@ module.exports.serveCourses = function (menuID, response) {
             if (!courseOfferings[courseName]){
               courseOfferings[courseName] = {name: courseName};
               courseOfferings[courseName].menuItems = [];
-              courseOfferings[courseName].courseOrder = courseOrder;
+              courseOfferings[courseName].courseOrder = this;
             }
             MenuItem.find({where: {id: menuItemID}}).then(function(menuItem) {
               if (menuItem) {
@@ -396,14 +396,12 @@ module.exports.serveCourses = function (menuID, response) {
               }
               //when all courses have been added, console log the finalArray of courses
               if (finalCourseOfferings.length === coursesInMenu.length) {
-                console.log(JSON.stringify(courseOfferings));
-                //console.log(JSON.stringify(finalCourseOfferings));
                 response.json(courseOfferings);
               }
             });
           }
         } 
-        });
+        }.bind(courseOrder));
       }
     }
   });
@@ -421,4 +419,8 @@ module.exports.deleteFavorite = function () {
 module.exports.viewBookings = function () {
 
 };
+
+
+
+
 
