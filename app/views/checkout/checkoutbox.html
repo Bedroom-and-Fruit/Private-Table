@@ -73,7 +73,7 @@
 <form name="dateForm" ng-hide="eventConfirmed">
   <span class="small-2 columns" id="changepadding">
     <label> Guests </label>
-    <input type="number" ng-model="params.guests" name="guests" ng-min="room.banquetCapacity" ng-max="room.receptionCapacity+20" required>
+    <input type="number" ng-model="params.guests" name="guests" ng-max="room.receptionCapacity" required>
   </span>
 
   <span class="small-4 columns" id="changepadding">
@@ -98,9 +98,9 @@
   <div class="text-center">
     <p ng-show="dateForm.guests.$error.max" class="help-block">This room cannot accommodate that many guests!</p>
   </div>
-  <div class="text-center">
+<!--   <div class="text-center">
     <p ng-show="dateForm.guests.$error.min" class="help-block">You need more guests for this room!</p>
-  </div>
+  </div> -->
   <div class="text-center">
     <p ng-show="dateForm.guests.$invalid || dateForm.date.$invalid || dateForm.startTime.$invalid || dateForm.endTime.$invalid " class="help-block"> Please complete the above before proceeding. </p>
     <button type="submit" class="button changepadding" ng-disabled="dateForm.$invalid || available" ng-click="toMenu()">Next</button>
@@ -171,7 +171,7 @@
     </div>
     <div class="row">
       <p class="small-8 columns">
-      ${{checkoutMenu.checkoutMenu.price | number: fractionSize}} per guests x {{params.guests}} guests
+      ${{checkoutMenu.checkoutMenu.price | number: fractionSize}} per guest x {{params.guests}} guests
       </p>
       <p class="small-4 columns">
       </p>

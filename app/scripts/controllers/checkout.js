@@ -18,8 +18,6 @@ angular.module('privateTableApp')
       $scope.eventConfirmed = true;
       $scope.menuLabel = false;
       $scope.menuConfirmed = false;
-      console.log(roomData);
-      console.log($scope.checkoutMenu);
       roomData.reroute('/checkout/menu');
     };
 
