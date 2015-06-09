@@ -433,6 +433,38 @@ module.exports.addFavorite = function(userId, roomId, response) {
 })
 };
 
+module.exports.getFavorites = function(userId, response) {
+  Favorite.findAll({where: {user_ID: userId}}).then(function(rooms) {
+  if (rooms){
+    var roomsToClient = [];
+    var sendLength = rooms.length;
+    rooms.forEach(function(room){
+      Room.find({where: {id: room.room_ID}, include: [Venue]}).then(function(roomData) {
+            if(roomData) {
+              roomsToClient.push({
+                contactFullName: roomData.dataValues.Venue.dataValues.contactFirstName + ' ' + roomData.dataValues.Venue.dataValues.contactLastName,
+                contactTitle: roomData.dataValues.Venue.dataValues.contactTitle,
+                venue: roomData.dataValues.Venue.dataValues.venueName,
+                room: roomData.dataValues.roomName,
+                roomID: roomData.dataValues.id,
+                roomImage: roomData.dataValues.heroImage,
+                contactImage: roomData.dataValues.Venue.dataValues.contactImage
+              });
+            } else {
+              response.send(501, "Favorite not found");
+            }
+            if (roomsToClient.length === sendLength) {
+              response.json(roomsToClient);
+            }
+          });
+        })
+    } else {
+      response.send(501, "Favorites not found");
+    }
+  });
+};
+
+
 module.exports.deleteFavorite = function (userId, roomId, response) {
   Favorite.find({where: {user_ID: userId, room_ID: roomId}}).then(function(room_ID) {
   if (room_ID){
