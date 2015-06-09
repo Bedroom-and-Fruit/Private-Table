@@ -337,13 +337,6 @@ module.exports.findAllInfo = function(username, response) {
   });
 };
 
-//include: [{model: Room, where: {minSpend: {$lte: params.budget}
-
-// menusOffered [menu, menu, menu]
-// price / name 
-// ============================
-// //menu[0] .. menu[1] .. 
-// [course (3), course (3), course(3) ]
 
 module.exports.serveMenus = function(params, response){
   MenusOffered.findAll({where: {room_ID: params.roomID}, include: [Menu]}).then(function(menusOffered){
@@ -356,7 +349,6 @@ module.exports.serveMenus = function(params, response){
             menu.id = menuFound.dataValues.id;
             allMenusOffered.push(menu);
             if (allMenusOffered.length === menusOffered.length) {
-              console.log('ALL MENUS OFFERED', allMenusOffered);
               response.json(allMenusOffered);
             }
           };
@@ -429,9 +421,18 @@ module.exports.serveCourses = function (menuID, response) {
 };
 
 
-module.exports.addFavorite = function () {
-
+module.exports.addFavorite = function(userId, roomId, response) {
+  Favorite.find({where: {user_ID: userId, room_ID: roomId}}).then(function(room_ID) {
+  if (room_ID){
+    response.send(201, "You already added this room to favorites");
+  }else{
+    Favorite.create({user_ID: userId, room_ID: roomId}).then(function(){
+      response.send(201, "Room favorited");
+    })
+  }
+})
 };
+
 
 module.exports.deleteFavorite = function () {
 
