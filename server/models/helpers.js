@@ -421,9 +421,18 @@ module.exports.serveCourses = function (menuID, response) {
 };
 
 
-module.exports.addFavorite = function () {
-
+module.exports.addFavorite = function(userId, roomId, response) {
+  Favorite.find({where: {user_ID: userId, room_ID: roomId}}).then(function(room_ID) {
+  if (room_ID){
+    response.send(201, "You already added this room to favorites");
+  }else{
+    Favorite.create({user_ID: userId, room_ID: roomId}).then(function(){
+      response.send(201, "Room favorited");
+    })
+  }
+})
 };
+
 
 module.exports.deleteFavorite = function () {
 
