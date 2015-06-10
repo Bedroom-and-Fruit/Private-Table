@@ -40,13 +40,14 @@
       </div>
     </div>
   </div>
-</div>
-<div class="sticky">    
+  <div>    
     <dl class="sub-nav">
-    <dd class="active"><a ui-sref="checkout.room" id="room" ng-click="select()" target="_self">Room</a></dd>
-    <dd><a ui-sref="checkout.menu" id="menu" ng-click="select()" target="_self">Menu</a></dd>
+    <dd id="roomtab" class="active" ><a id="room" ng-click="toRoom()">Room</a></dd>
+    <dd id="menutab"><a id="menu" ng-click="toMenu()">Menu</a></dd>
     </dl>  
 </div>
+</div>
+
 
 
 <div class="row">
