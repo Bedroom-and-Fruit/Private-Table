@@ -18,11 +18,21 @@ angular.module('privateTableApp')
       $scope.eventConfirmed = true;
       $scope.menuLabel = false;
       $scope.menuConfirmed = false;
+      $('#roomtab').removeClass('active');
+      $('#menutab').addClass('active');
       roomData.reroute('/checkout/menu');
+      console.log('toMenu was called');
     };
+
+    $scope.toRoom = function () {
+      $('#roomtab').addClass('active');
+      $('#menutab').removeClass('active');
+      roomData.reroute('/checkout/room/'+$scope.room.id);
+    }
 
     $scope.toPay = function() {
       CheckoutOptions.setMenuParams(roomData.currentMenu);
+      $('.active').removeClass('active');
       $location.path('/checkout/payments');
       $scope.menuName = true;
       $scope.menuFinal = false;
