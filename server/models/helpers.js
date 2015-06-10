@@ -477,12 +477,12 @@ module.exports.deleteFavorite = function (username, roomId, response) {
     var userId = user.dataValues.id;
     Favorite.find({where: {user_ID: userId, room_ID: roomId}}).then(function(room_ID) {
       if (room_ID) {
-        Favorite.destroy({user_ID: userId, room_ID: roomId}).then(function(){
+        Favorite.destroy({where: {user_ID: userId, room_ID: roomId}}).then(function(){
           response.send(201, "Favorite deleted");
         })
       } else {
           response.send(201, "This room was not a favorite");
-        }
+      }
     })
   })
 };

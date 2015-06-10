@@ -13,6 +13,7 @@ angular.module('roomFactory', [])
 
   var viewRoom = function(room, url, callback, reroute) {
     var toUrl = url + room;
+    console.log(toUrl);
     return $http({
       method: 'GET',
       url: toUrl

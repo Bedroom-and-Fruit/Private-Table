@@ -80,7 +80,7 @@ app.get('/api/users/favorites', function(req, res){
 });
 
 //path for deleting a room from favorites
-app.post('/api/users/favorites/removefavorites', function(req, res){
+app.post('/api/users/favorites/deletefavorites', function(req, res){
   var decoded = jwt.decode(req.headers.authorization.slice(7));
   helper.deleteFavorite(decoded.username, req.body.roomID, res);
 });
