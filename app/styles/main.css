@@ -182,3 +182,23 @@ input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none; 
   margin: 0; 
 }
+
+.coimage {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 5px;
+}
+
+.cotext {
+  text-align: center;
+  margin-top: 5px;
+}
+
+.coreceipt {
+  background-color: #ffffff;
+  width: 95%;
+  height: 100%;
+  margin-right: auto;
+  margin-left: auto;
+}
