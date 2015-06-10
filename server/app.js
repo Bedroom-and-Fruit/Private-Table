@@ -92,19 +92,19 @@ app.get('/api/users/:userID/bookings', function(req, res){
 
 //path for processing payments
 app.post('/api/payments', function(req, res){
+  var decoded = jwt.decode(req.headers.authorization.slice(7));
   var stripeToken = req.body;
   var charge = stripe.charges.create({
-    amount: 1000,
+    amount: stripeToken.price,
     currency: "usd",
-    source: stripeToken,
+    source: stripeToken.result,
     description: "Payment for venue booking"
   }, function(err, charge) {
     if (err && err.type === 'StripeCardError') {
       console.log(JSON.stringify(err, null, 2));
     }
   });
-  // helper.createBooking(req,res);
-  res.send(201);
+  helper.createBooking(decoded.username, req.body.roomID, req.body.menuID, req.body.startTime, req.body.endTime, req.body.eventType, req.body.guests, res);
 });
 
 app.listen(port);

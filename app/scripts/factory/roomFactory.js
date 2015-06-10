@@ -13,7 +13,6 @@ angular.module('roomFactory', [])
 
   var viewRoom = function(room, url, callback, reroute) {
     var toUrl = url + room;
-    console.log(toUrl);
     return $http({
       method: 'GET',
       url: toUrl
@@ -41,9 +40,9 @@ angular.module('roomFactory', [])
       params: {roomID: roomID, startTime: startTime, endTime: endTime}
     })
     .then(function(response) {
-      allBookedTimes.splice(0, allBookedTimes.length);
+      roomFactory.allBookedTimes.splice(0, roomFactory.allBookedTimes.length);
       response.data.allTimeBlocks.forEach(function(val){
-        allBookedTimes.push(val);
+        roomFactory.allBookedTimes.push(val);
       });
       if (callback) {
         callback();
@@ -74,6 +73,7 @@ angular.module('roomFactory', [])
 
   var chooseMenu = function(menu) {
     roomFactory.checkoutMenu = menu;
+    console.log(roomFactory.checkoutMenu);
   };
   
   var viewMenus = function(room, eventType, callback) {
@@ -119,7 +119,7 @@ angular.module('roomFactory', [])
     getRoom: getRoom,
     allBookedTimes: allBookedTimes,
     reroute: reroute,
-    getAllBookedTimes,
+    getAllBookedTimes: getAllBookedTimes,
     getCurrentMenu: getCurrentMenu,
     chooseMenu: chooseMenu,
     currentMenu: currentMenu,

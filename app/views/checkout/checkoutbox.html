@@ -45,7 +45,7 @@
  <span id= "small-4 columns">
     <div class="row">
       <p class="small-6 columns dull">
-        {{params.eventType}}
+        {{params.searchParams.eventType}}
       </p>
       <span class="small-6 columns">
       </span>
@@ -65,7 +65,7 @@
 
 <span ng-show="eventConfirmed" class="small-12 columns">
   <div class="row">
-    <p class="small-12 columns"> Your event is reserved for {{params.date}} from {{params.startTime}} to {{params.endTime}} for {{params.guests}} guests</p>
+    <p class="small-12 columns"> Your event is reserved for {{params.searchParams.date}} from {{params.searchParams.startTime}} to {{params.searchParams.endTime}} for {{params.searchParams.guests}} guests</p>
   </div>
 </span>
 
@@ -73,22 +73,22 @@
 <form name="dateForm" ng-hide="eventConfirmed">
   <span class="small-2 columns" id="changepadding">
     <label> Guests </label>
-    <input type="number" ng-model="params.guests" name="guests" ng-max="room.receptionCapacity" required>
+    <input type="number" ng-model="params.searchParams.guests" name="guests" ng-max="room.receptionCapacity" required>
   </span>
 
   <span class="small-4 columns" id="changepadding">
     <label> Date </label>
-    <input id="datepicker" placeholder="Date" type="text" ng-model="params.date" ng-change="dateSearch()" name="date" required>
+    <input id="datepicker" placeholder="Date" type="text" ng-model="params.searchParams.date" ng-change="dateSearch()" name="date" required>
   </span>
 
   <span class= "small-3 columns" id="changepadding">
     <label> Start Time </label>
-    <input class="timepicker" placeholder="Time" type="text" ng-change="setMinEndTime(); checkTime(params.startTime, params.endTime)" ng-model="params.startTime" name="startTime" required>
+    <input class="timepicker" placeholder="Time" type="text" ng-change="setMinEndTime(); checkTime(params.searchParams.startTime, params.searchParams.endTime)" ng-model="params.searchParams.startTime" name="startTime" required>
   </span>
 
   <span class= "small-3 columns" id="changepadding">
     <label> End Time </label>
-    <input class="timepicker" id="eventend" placeholder="Time" type="text" ng-model="params.endTime" ng-change="checkTime(params.startTime, params.endTime)" name="endTime" required>
+    <input class="timepicker" id="eventend" placeholder="Time" type="text" ng-model="params.searchParams.endTime" ng-change="checkTime(params.searchParams.startTime, params.searchParams.endTime)" name="endTime" required>
   </span>
 
 <!-- event part of panel end -->
@@ -135,7 +135,7 @@
         <h5 class="small-12 columns"> {{checkoutMenu.checkoutMenu.name}} </h5>
       </div>
       <div class="row text-center">
-        <h4 class="small-12 columns"> ${{(checkoutMenu.checkoutMenu.price * params.guests) | number: fractionSize}} </h4>
+        <h4 class="small-12 columns"> {{(checkoutMenu.checkoutMenu.price * params.searchParams.guests) | currency}} </h4>
       </div>
     </span>
     </div>
@@ -151,10 +151,10 @@
         </span>
       </div>
     </span>
-
-    <div class="text-center">{{totalCost}}</div>
     <div class="text-center">
-      <button type="submit" class="button" ng-click="toPay()">Reserve</button>
+      <p ng-show="!roomData.checkoutMenu.name" class="help-block">Please select a menu before proceeding.</p>
+      <button type="submit" class="button" ng-disabled="!Auth.loggedIn || !roomData.checkoutMenu.name" ng-click="toPay()">Reserve</button>
+      <p ng-show="!Auth.loggedIn" class="help-block">Please Sign Up or Log In!</p>
     </div>
   </div>
 
@@ -166,12 +166,12 @@
       Menu
       </p>
       <p class="small-4 columns">
-      ${{(checkoutMenu.checkoutMenu.price * params.guests) | number: fractionSize}}
+      {{(checkoutMenu.checkoutMenu.price * params.searchParams.guests) | currency}}
       </p>
     </div>
     <div class="row">
       <p class="small-8 columns">
-      ${{checkoutMenu.checkoutMenu.price | number: fractionSize}} per guest x {{params.guests}} guests
+      {{checkoutMenu.checkoutMenu.price | currency}} per guest x {{params.searchParams.guests}} guests
       </p>
       <p class="small-4 columns">
       </p>
@@ -181,7 +181,7 @@
       Total Taxes and Gratuity
       </p>
       <p class="small-4 columns">
-      {{((checkoutMenu.checkoutMenu.price * params.guests) * (checkoutMenu.currentRoom.autogratRate/100) + (checkoutMenu.checkoutMenu.price * params.guests) * (checkoutMenu.currentRoom.taxRate/100)) | currency}}
+      {{((checkoutMenu.checkoutMenu.price * params.searchParams.guests) * (checkoutMenu.currentRoom.autogratRate/100) + (checkoutMenu.checkoutMenu.price * params.searchParams.guests) * (checkoutMenu.currentRoom.taxRate/100)) | currency}}
       </p>
     </div>
     <hr>
@@ -190,7 +190,7 @@
       Total
       </h4>
       <h4 class="small-5 columns">
-      {{((checkoutMenu.checkoutMenu.price * params.guests) + (checkoutMenu.checkoutMenu.price * params.guests) * (checkoutMenu.currentRoom.autogratRate/100) + (checkoutMenu.checkoutMenu.price * params.guests) * (checkoutMenu.currentRoom.taxRate/100)) | currency}}
+      {{((checkoutMenu.checkoutMenu.price * params.searchParams.guests) + (checkoutMenu.checkoutMenu.price * params.searchParams.guests) * (checkoutMenu.currentRoom.autogratRate/100) + (checkoutMenu.checkoutMenu.price * params.searchParams.guests) * (checkoutMenu.currentRoom.taxRate/100)) | currency}}
       </h4>
     </div>
     <div class="row">

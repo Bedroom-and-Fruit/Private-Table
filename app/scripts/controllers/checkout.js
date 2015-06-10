@@ -1,9 +1,10 @@
 'use strict';
 
 angular.module('privateTableApp')
-  .controller('checkoutController', ['$scope', '$location', 'SearchBar', 'SearchResults', 'CheckoutOptions', '$http', 'roomData', '$stateParams', function($scope, $location, SearchBar, SearchResults, CheckoutOptions, $http, roomData, $stateParams) {
-    $scope.params = {};
+  .controller('checkoutController', ['$scope', '$location', 'SearchBar', 'SearchResults', 'CheckoutOptions', '$http', 'roomData', '$stateParams', 'Auth', function($scope, $location, SearchBar, SearchResults, CheckoutOptions, $http, roomData, $stateParams, Auth) {
+    $scope.params = SearchBar
     $scope.room;
+    $scope.allBookedTimes;
     $scope.eventConfirmed = false;
     $scope.menuConfirmed = true;
     $scope.menuLabel = true;
@@ -11,10 +12,12 @@ angular.module('privateTableApp')
     $scope.available = false;
     $scope.menuFinal = true;
     $scope.checkoutMenu = roomData;
+    $scope.Auth = Auth;
+    $scope.roomData = roomData;
 
     $scope.toMenu = function() {
-      CheckoutOptions.setEventParams($scope.params);
-      $scope.params = CheckoutOptions.getEventParams();
+      // CheckoutOptions.setEventParams($scope.params);
+      // $scope.params = CheckoutOptions.getEventParams();
       $scope.eventConfirmed = true;
       $scope.menuLabel = false;
       $scope.menuConfirmed = false;
@@ -31,8 +34,8 @@ angular.module('privateTableApp')
     }
 
     $scope.toPay = function() {
-      CheckoutOptions.setMenuParams(roomData.currentMenu);
       $('.active').removeClass('active');
+      // CheckoutOptions.setMenuParams(roomData.currentMenu);
       $location.path('/checkout/payments');
       $scope.menuName = true;
       $scope.menuFinal = false;
@@ -43,7 +46,7 @@ angular.module('privateTableApp')
 
     $scope.dateInit = function() {
       SearchBar.searchFormInit();
-      $scope.params = CheckoutOptions.getEventParams();
+      // $scope.params = CheckoutOptions.getEventParams();
       if (typeof parseInt($stateParams.roomID) === 'number') {
         roomData.viewRoom($stateParams.roomID, 'api/room/', function() {
           $scope.room = roomData.getRoom();
@@ -58,14 +61,14 @@ angular.module('privateTableApp')
       var startTimeStamp = "";
       var endTimeStamp = "";
       //time format: YYYY-MM-DD HH:MM:SS
-      startTimeStamp = SearchResults.createDate($scope.params.date, startTimeStamp);
-      endTimeStamp = SearchResults.createDate($scope.params.date, endTimeStamp);
+      startTimeStamp = SearchResults.createDate($scope.params.searchParams.date, startTimeStamp);
+      endTimeStamp = SearchResults.createDate($scope.params.searchParams.date, endTimeStamp);
       startTimeStamp +=' 00:00:00';
       endTimeStamp +=' 23:59:59';
       roomData.findAvailableTimes($scope.room.id, 'api/dates', startTimeStamp, endTimeStamp, function() {
         $scope.allBookedTimes = roomData.getAllBookedTimes();
-        if ($scope.params.endTime && $scope.params.startTime) {
-          $scope.checkTime($scope.params.startTime, $scope.params.endTime);
+        if ($scope.params.searchParams.endTime && $scope.params.searchParams.startTime) {
+          $scope.checkTime($scope.params.searchParams.startTime, $scope.params.searchParams.endTime);
         }
       });
       
@@ -89,10 +92,11 @@ angular.module('privateTableApp')
     };
 
     $scope.setMinEndTime = function () {
-      var minEndTime = SearchBar.endTimeAdjuster(this.params.startTime);
+      var minEndTime = SearchBar.endTimeAdjuster($scope.params.searchParams.startTime);
       $('#eventend').datetimepicker({datepicker:false, format: 'g:i A', formatTime: 'g:i A', step: 30, minTime: minEndTime});
     };
 
     $scope.dateInit();
+    $scope.Auth.checkLoggedIn();
 
   }]);
