@@ -101,10 +101,12 @@ angular
         url: '/confirmation',
         views: {
           '': {
-            templateUrl: 'views/confirmation.html'
+            templateUrl: 'views/confirmation.html',
+            controller: 'roomController'
           },
-          'checkoutbox@checkout': {
-            templateUrl: 'views/checkout/checkoutbox.html'
+          'checkoutbox@confirmation': {
+            templateUrl: 'views/checkout/checkoutbox.html',
+            controller: 'checkoutController'
           }
         }
       });
