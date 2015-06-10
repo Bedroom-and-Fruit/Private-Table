@@ -97,9 +97,9 @@ angular
         url: '/payments',
         templateUrl: 'views/checkout/payments.html'
       })
-      .state('confirmation', {
+      .state('checkout.confirmation', {
         url: '/confirmation',
-        templateUrl: 'views/confirmation.html'
+        templateUrl: 'views/checkout/confirmation.html'
       });
 
     })
