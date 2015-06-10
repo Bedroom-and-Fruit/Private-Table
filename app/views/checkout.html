@@ -14,29 +14,29 @@
     </div>
     <div class="row">
       <div class="medium-12 columns">
-        <div>{{room.venueName}}</div>
+        <div><p>{{room.venueName}}</p></div>
       </div>
     </div>
     <div class="row">
       <div class="medium-1 columns center">
-        <img src="/images/doorhandle.png"><br />
-        {{room.type}}
+        <img class="coimage"src="/images/doorhandle.png">
+        <p class="cotext">{{room.type}}</p>
       </div>
       <div class="medium-1 columns">
-        <img src="/images/users.png"><br />
-        {{room.receptionCapacity}} Guests
+        <img class="coimage" src="/images/users.png">
+        <p class="cotext">{{room.receptionCapacity}} Guests</p>
       </div>
       <div class="medium-1 columns">
-        <img src="/images/bank-cards-32.png"><br /> 
-        Minimum: ${{room.minSpend | number: fractionSize}} 
+        <img class="coimage" src="/images/bank-cards-32.png">
+        <p class="cotext">Minimum: ${{room.minSpend | number: fractionSize}} </p>
       </div>
       <div class="medium-1 columns">
-        <img src="/images/time.png"><br />
-        {{room.eventDuration}} Hours
+        <img class="coimage" src="/images/time.png">
+        <p class="cotext">{{room.eventDuration}} Hours</p>
       </div>
       <div class="medium-1 columns end">
-        <img src="/images/tableround.png"><br />
-        {{room.layouts}} Layouts
+        <img class="coimage" src="/images/tableround.png">
+        <p class="cotext">{{room.layouts}} Layouts</p>
       </div>
     </div>
   </div>
