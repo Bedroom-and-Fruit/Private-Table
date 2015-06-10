@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('privateTableApp')
-  .controller('paymentsController', ['$scope', '$location', '$http', function($scope, $location, $http) {
+  .controller('paymentsController', ['$scope', '$location', '$state', '$http', function($scope, $location, $state, $http) {
 
     $scope.stripeCallback = function (code, result) {
       result.email = $scope.email;
@@ -15,7 +15,7 @@ angular.module('privateTableApp')
           data: result
         })
         .then(function(response){
-          $location.path('/confirmation');
+          $state.go('checkout.confirmation');
         });
       }
     };

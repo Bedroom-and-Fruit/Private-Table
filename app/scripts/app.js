@@ -97,18 +97,9 @@ angular
         url: '/payments',
         templateUrl: 'views/checkout/payments.html'
       })
-      .state('confirmation', {
+      .state('checkout.confirmation', {
         url: '/confirmation',
-        views: {
-          '': {
-            templateUrl: 'views/confirmation.html',
-            controller: 'roomController'
-          },
-          'checkoutbox@confirmation': {
-            templateUrl: 'views/checkout/checkoutbox.html',
-            controller: 'checkoutController'
-          }
-        }
+        templateUrl: 'views/checkout/confirmation.html'
       });
 
     })

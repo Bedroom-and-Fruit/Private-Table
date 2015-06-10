@@ -103,7 +103,7 @@ app.post('/api/payments', function(req, res){
       console.log(JSON.stringify(err, null, 2));
     }
   });
-  helper.createBooking(req,res);
+  // helper.createBooking(req,res);
   res.send(201);
 });
 
