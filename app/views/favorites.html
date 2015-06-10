@@ -1,4 +1,32 @@
-<!-- navbar start -->
-<!-- <div ng-controller="favoritesController" class="fixed">  -->
-<div> hello </div>
-<!-- </div> -->
+<div class="resultscontainer">
+  <div class="medium-6 columns roomsummary" ng-repeat="room in Favorites.favorites">
+  <!--     | filter: bookingType(room)"> -->
+
+      <!-- define styles for preview-image-container, preview-image-container a, and for contact assets below -->
+    <panel>
+      <div class="row">
+        <div class="medium-6 columns">
+          <h6><a href="{{room.url}}">{{room.venue}}</a></h6>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="medium-12 columns">
+          <div><a href="{{room.url}}"><em>{{room.room}}</em></a></div>
+        </div>
+        
+      </div>
+    </panel>
+    <div class="roomimage" ng-style="{'background-image':'url(' + room.roomImage + ')'}" >
+     <div ng-if="Auth.loggedIn" class="favoriteresult">
+        <img ng-if="!Favorites.isFavorite(room)" ng-click="Favorites.addFavorite(room.roomID)" src="/../images/favorite-fff.png">
+        <img ng-if="Favorites.isFavorite(room)" ng-click="Favorites.removeFavorite(room.roomID)" src="/../images/favorite-f77.png">
+      </div>
+      <button class="small viewurl" ng-click="viewRoom(room)">VIEW</button>
+      <img class="centercircle" src="{{room.contactImage}}">
+    </div>
+    <div class="spacer"></div>
+        <h6 class="text-center"><strong>{{room.contactFullName}}</strong></h6>
+        <h6 class="text-center">{{room.contactTitle}}</h6> 
+  </div>
+</div>

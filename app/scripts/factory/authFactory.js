@@ -41,6 +41,7 @@ angular.module('authFactory', [])
 
     var logout = function() {
       $cookies.remove('PrivateTableToken');
+      AuthFactory.loggedIn = false;
       AuthFactory.currentUser = {};
     };
 
@@ -56,6 +57,12 @@ angular.module('authFactory', [])
       }
     };
 
+    var checkLoggedIn = function() {
+      if ($cookies.get('PrivateTableToken')) {
+        AuthFactory.loggedIn = true;
+      };
+    };
+
     var AuthFactory = {
       login: login,
       logout: logout,
@@ -63,7 +70,8 @@ angular.module('authFactory', [])
       currentUser: currentUser,
       getUser: getUser,
       isLoggedInAsync: isLoggedInAsync,
-      loggedIn: loggedIn
+      loggedIn: loggedIn,
+      checkLoggedIn: checkLoggedIn
     };
 
     return AuthFactory;

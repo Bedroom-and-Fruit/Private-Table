@@ -22,11 +22,13 @@ angular.module('favoriteFactory', [])
   };
     
   var isFavorite = function (room) {
-    if (FavoritesFactory.favorites.contains(room)) {
-      return true;
-    } else {
-      return false;
-    }
+    var result = false;
+    favorites.forEach(function(roomInArray) {
+      if (roomInArray.roomID === room.roomID) {
+        result = true;
+      }
+    });
+    return result;
   };
 
   var addFavorite = function (room) {
@@ -46,7 +48,7 @@ angular.module('favoriteFactory', [])
     var url = '/api/users/favorites/deletefavorites';
     $http.post(url, {roomID: room})
     .success(function(data, status, headers, config) {
-      FavoritesFactory.favorites.splice(room,1);
+      FavoritesFactory.getFavorites();
     })
     .error(function(data, status, headers, config) {
       console.log(data);
@@ -55,6 +57,7 @@ angular.module('favoriteFactory', [])
   };
 
   var FavoritesFactory = {
+    favorites: favorites,
     removeFavorite: removeFavorite,
     addFavorite: addFavorite,
     isFavorite: isFavorite,

@@ -20,8 +20,8 @@
       </panel>
       <div class="roomimage" ng-style="{'background-image':'url(' + room.roomImage + ')'}" >
        <div ng-if="Auth.loggedIn" class="favoriteresult">
-          <img ng-show="!Favorite.isFavorite(room)" ng-click="addFavorite(room)" src="/../../images/favorite-fff.png">
-          <img ng-show="Favorite.isFavorite(room)" ng-click="removeFavorite(room)" src="/../../images/favorite-f77.png">
+          <img ng-if="!Favorites.isFavorite(room)" ng-click="addFavorite(room)" src="/../../images/favorite-fff.png">
+          <img ng-if="Favorites.isFavorite(room)" ng-click="removeFavorite(room)" src="/../../images/favorite-f77.png">
         </div>
         <button class="small viewurl" ng-click="viewRoom(room)">VIEW</button>
         <img class="centercircle" src="{{room.contactImage}}">
