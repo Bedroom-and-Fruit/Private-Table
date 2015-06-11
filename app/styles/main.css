@@ -203,3 +203,7 @@ input[type=number]::-webkit-outer-spin-button {
   margin-left: auto;
   padding: 10%;
 }
+
+#payment {
+margin-top: 10px;
+}
