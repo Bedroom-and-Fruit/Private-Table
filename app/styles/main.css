@@ -126,6 +126,17 @@ form h2 {
   border: 2px solid white;
 }
 
+.circle {
+  border-radius: 30px;
+  height: 50px;
+  width: 50px;
+  border: 2px solid white;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
 .spacer {
   height: 75px;
 }
@@ -204,6 +215,25 @@ input[type=number]::-webkit-outer-spin-button {
   padding: 10%;
 }
 
+
 #payment {
 margin-top: 10px;
 }
+
+.bookingscontainer {
+  background-color: #ffffff;
+  width: 80%;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 3%;
+  margin-top:1%;
+}
+
+br {
+  line-height: 10px;
+}
+
+.bookingcontact div {
+  border: 1px solid gray;
+}
+
