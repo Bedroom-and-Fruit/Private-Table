@@ -237,3 +237,18 @@ br {
   border: 1px solid gray;
 }
 
+#favoriteheader {
+  padding: 2%;
+}
+
+.paymentheight {
+  height: 35px;
+}
+
+#creditcardnumber {
+  width: 300px;
+}
+
+#creditcardsecurity {
+  width: 75px;
+}

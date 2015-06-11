@@ -1,4 +1,7 @@
+<div class="spacer"></div>
+<div class="spacer"></div>
 <div class="resultscontainer">
+<h3 class="text-center subheader" id="favoriteheader"> FAVORITE ROOMS </h3>
   <div class="medium-6 columns roomsummary" ng-repeat="room in Favorites.favorites">
   <!--     | filter: bookingType(room)"> -->
 
@@ -6,13 +9,13 @@
     <panel>
       <div class="row">
         <div class="medium-6 columns">
-          <h6><a href="{{room.url}}">{{room.venue}}</a></h6>
+          <h6>{{room.venue}}</h6>
         </div>
       </div>
 
       <div class="row">
         <div class="medium-12 columns">
-          <div><a href="{{room.url}}"><em>{{room.room}}</em></a></div>
+          <div><em>{{room.room}}</em></div>
         </div>
         
       </div>
