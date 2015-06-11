@@ -13,7 +13,6 @@ angular.module('favoriteFactory', [])
       data.forEach(function(val){
         favorites.push(val);
       });
-      console.log(favorites);
     })
     .error(function(data, status, headers, config) {
       console.log(data);

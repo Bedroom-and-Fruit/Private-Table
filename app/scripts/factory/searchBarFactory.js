@@ -6,17 +6,17 @@ angular.module('searchBarFactory', [])
   // Your code here
   var searchParams;
   var setSearchParams = function (params, callback, dest) {
-    searchParams = params;
-    CheckoutOptions.setEventParams(searchParams);
+    searchBarFactory.searchParams = params;
+    CheckoutOptions.setEventParams(searchBarFactory.searchParams);
     if (callback) {
-      SearchResults.getSearchResults(searchParams, callback, dest);
+      SearchResults.getSearchResults(searchBarFactory.searchParams, callback, dest);
     } else {
-      SearchResults.getSearchResults(searchParams);
+      SearchResults.getSearchResults(searchBarFactory.searchParams);
     }
   };
 
   var getSearchParams = function() {
-    return searchParams;
+    return searchBarFactory.searchParams;
   };
 
   var searchFormInit = function () {
@@ -49,12 +49,14 @@ angular.module('searchBarFactory', [])
 
     
 
-  return {
+  var searchBarFactory = {
     endTimeAdjuster: endTimeAdjuster,
     searchParams: searchParams,
     searchFormInit: searchFormInit,
     getSearchParams: getSearchParams,
     setSearchParams: setSearchParams
   };
+
+  return searchBarFactory;
 
 }]);
