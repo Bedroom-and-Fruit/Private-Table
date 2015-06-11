@@ -5,9 +5,6 @@
         <label> Credit Card Number </label>
         <input ng-model="number" payments-format="card" payments-validate="card"/>
         <img src="/../../images/bank-cards-32.png">
-        <img src="/../../images/bank-cards-32.png">
-        <img src="/../../images/bank-cards-32.png">
-        <img src="/../../images/bank-cards-32.png">
       </div>
     </div>
 
@@ -27,22 +24,22 @@
   
 
   <div class="row">
-    <div class = "small-6 columns">
+    <div class = "small-3 columns">
       <label> Full Name </label>
       <input ng-model="name"/>
     </div>
-    <div class = "small-6 columns">
+    <div class = "small-9 columns">
       <label> Email </label>
       <input ng-model="email"/>
     </div>
   </div>
 
   <div class="row">
-    <div class = "small-8 columns">
+    <div class = "small-3 columns">
       <label> Street Address </label>
       <input ng-model="address_line1" placeholder="Address"/>
     </div>
-    <div class = "small-4 columns">
+    <div class = "small-9 columns">
       <label> Apt # </label>
       <input ng-model="apt"/>
     </div>
@@ -66,22 +63,22 @@
       <input ng-model="address_zip" placeholder="Zip Code"/>
     </div>
   </div>
-  <div class="row text-center">
-    <div class="small-12 columns">
-      <input type="checkbox"> I agree to the Cancellation Policy, House Rules and Terms of Service
+  <div id="payment" class="row text-center">
+    <div id="payment" class="small-12 columns">
+      <input type="checkbox" ng-model="checked1"> I agree to the Cancellation Policy, House Rules and Terms of Service
     </div>
   </div>
-  <div class="row text-center">
+  <div id="payment" class="row text-center">
     <div class="small-12 columns">
-      <input type="checkbox"> pay the entire amount
+      <input type="checkbox" ng-model="checked2" ng-disabled="checked3"> pay the entire amount
     </div>
   </div>
-  <div class="row text-center">
+  <div id="payment" class="row text-center">
     <div class="small-12 columns">
-      <input type="checkbox"> pay 50% deposit + balance 7 days prior to event
+      <input type="checkbox" ng-model="checked3" ng-disabled="checked2"> pay 50% deposit + balance 7 days prior to event
     </div>
   </div>
-  <div class="text-center">
-    <button type="submit">Reserve Now</button>
+  <div id="payment" class="text-center">
+    <button type="submit" ng-disabled="!checked1 || !checked2 && !checked3">Reserve Now</button>
   </div>
 </form>
