@@ -23,7 +23,8 @@ if (process.env.S1_SECRET) {
 //refactor this to explicitly protect certain routes
 app.use('/api/users/bookings', expressJwt({secret: secret}));
 app.use('/api/users/favorites', expressJwt({secret: secret}));
-
+app.use('/api/users/bookings', expressJwt({secret: secret}));
+app.use('/api/payments', expressJwt({secret: secret}));
 
 //path for when users are created
 app.post('/api/users', function(req, res){
@@ -86,8 +87,9 @@ app.post('/api/users/favorites/deletefavorites', function(req, res){
 });
 
 //path for viewing a user's bookings
-app.get('/api/users/:userID/bookings', function(req, res){
-  helper.getBookings(req.params.userID,res);
+app.get('/api/users/bookings', function(req, res){
+  var decoded = jwt.decode(req.headers.authorization.slice(7));
+  helper.getBookings(decoded.username, res);
 });
 
 //path for processing payments
