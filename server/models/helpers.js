@@ -490,7 +490,7 @@ module.exports.deleteFavorite = function (username, roomId, response) {
 
 module.exports.createBooking = function (username, roomId, menuId, startTime, endTime, eventType, guests, response) {
   User.find({where: {username: username}}).then(function(user) {
-    
+    var userId = user.dataValues.id;
     Booking.create({booker: userId, room: roomId, start: startTime, end: endTime}).then(function(){
         response.send(201, "Booking complete");
     })
