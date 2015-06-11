@@ -3,19 +3,18 @@
     <div class="row">
       <div class = "small-12 columns">
         <label> Credit Card Number </label>
-        <input ng-model="number" payments-format="card" payments-validate="card"/>
-        <img src="/../../images/bank-cards-32.png">
+        <input ng-model="number" id="creditcardnumber" payments-format="card" class="paymentheight" payments-validate="card"/>
       </div>
     </div>
 
     <div class="row">
       <div class = "small-2 columns">
         <label> Expires on </label>
-        <input ng-model="expiry" placeholder="MM/YY" payments-format="expiry" payments-validate="expiry"/>
+        <input ng-model="expiry" placeholder="MM/YY" id="creditcardsecurity" payments-format="expiry" class="paymentheight" payments-validate="expiry"/>
       </div>
-      <div class = "small-9 columns">
+      <div class = "small-2 columns end">
         <label> Security Code </label>
-        <input ng-model="cvc" placeholder="CVC" payments-format="cvc" payments-validate="cvc"/>
+        <input ng-model="cvc" placeholder="CVC" id="creditcardsecurity" class="paymentheight" payments-format="cvc" payments-validate="cvc"/>
       </div>
     </div>
 
@@ -26,45 +25,45 @@
   <div class="row">
     <div class = "small-3 columns">
       <label> Full Name </label>
-      <input ng-model="name"/>
+      <input class="paymentheight" ng-model="name"/>
     </div>
     <div class = "small-9 columns">
       <label> Email </label>
-      <input ng-model="email"/>
+      <input class="paymentheight" ng-model="email"/>
     </div>
   </div>
 
   <div class="row">
     <div class = "small-3 columns">
       <label> Street Address </label>
-      <input ng-model="address_line1" placeholder="Address"/>
+      <input class="paymentheight" ng-model="address_line1"/>
     </div>
     <div class = "small-9 columns">
       <label> Apt # </label>
-      <input ng-model="apt"/>
+      <input class="paymentheight" ng-model="apt"/>
     </div>
   </div>
 
   <div class="row">
     <div class = "small-3 columns">
       <label> City </label>
-      <input ng-model="address_city" placeholder="City"/>
+      <input class="paymentheight" ng-model="address_city"/>
     </div>
     <div class = "small-3 columns">
       <label> State </label>
-      <input ng-model="address_state" placeholder="State"/>
+      <input class="paymentheight" ng-model="address_state"/>
     </div>
     <div class = "small-3 columns">
       <label> Country </label>
-      <input ng-model="address_country" placeholder="Country"/>
+      <input class="paymentheight" ng-model="address_country"/>
     </div>
     <div class = "small-3 columns">
       <label> Postal Code </label>
-      <input ng-model="address_zip" placeholder="Zip Code"/>
+      <input class="paymentheight" ng-model="address_zip"/>
     </div>
   </div>
   <div id="payment" class="row text-center">
-    <div id="payment" class="small-12 columns">
+    <div class="small-12 columns">
       <input type="checkbox" ng-model="checked1"> I agree to the Cancellation Policy, House Rules and Terms of Service
     </div>
   </div>

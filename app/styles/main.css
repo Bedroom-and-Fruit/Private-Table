@@ -217,6 +217,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 
 #payment {
+<<<<<<< HEAD
 margin-top: 10px;
 }
 
@@ -235,5 +236,22 @@ br {
 
 .bookingcontact div {
   border: 1px solid gray;
+  padding: 3px;
+}
+
+#favoriteheader {
+  padding: 2%;
+}
+
+.paymentheight {
+  height: 35px;
+}
+
+#creditcardnumber {
+  width: 300px;
+}
+
+#creditcardsecurity {
+  width: 75px;
 }
 

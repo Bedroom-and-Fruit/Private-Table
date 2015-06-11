@@ -2,7 +2,7 @@
 
 angular.module('privateTableApp')
   .controller('checkoutController', ['$scope', '$location', 'SearchBar', 'SearchResults', 'CheckoutOptions', '$http', 'roomData', '$stateParams', 'Auth', function($scope, $location, SearchBar, SearchResults, CheckoutOptions, $http, roomData, $stateParams, Auth) {
-    $scope.params = SearchBar
+    $scope.params = SearchBar;
     $scope.room;
     $scope.allBookedTimes;
     $scope.eventConfirmed = false;
@@ -31,7 +31,7 @@ angular.module('privateTableApp')
       $('#roomtab').addClass('active');
       $('#menutab').removeClass('active');
       roomData.reroute('/checkout/room/'+$scope.room.id);
-    }
+    };
 
     $scope.toPay = function() {
       $('.active').removeClass('active');

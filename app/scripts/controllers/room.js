@@ -2,12 +2,13 @@
 
 
 angular.module('privateTableApp')
-  .controller('roomController', ['$scope', 'SearchBar', 'SearchResults', 'roomData', '$stateParams', function($scope, SearchBar, SearchResults, roomData, $stateParams) {
+  .controller('roomController', ['$scope', 'SearchBar', 'SearchResults', 'roomData', '$stateParams', '$state', function($scope, SearchBar, SearchResults, roomData, $stateParams, $state) {
 
     $scope.room = roomData.currentRoom;
     $scope.amenityMore = true;
     $scope.feeMore = true;
     $scope.roomID = $stateParams;
+    $scope.SearchBar = SearchBar;
     $scope.searchParams = SearchBar.getSearchParams();
 
     //FEES View Limit & Full Display methods/properties
@@ -17,7 +18,9 @@ angular.module('privateTableApp')
       this.liftLimit(this.feeLimit, this.fees, 'feeMore');
     };
 
-
+    $scope.toBookings = function() {
+      $state.go('bookings');
+    };
     //AMENITIES View Limit & Full Display methods/properties
     //$scope.amenities = $scope.room.amenities;
     $scope.amenityLimit = 4;
