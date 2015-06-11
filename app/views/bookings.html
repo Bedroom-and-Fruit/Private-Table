@@ -1,5 +1,35 @@
-<div ng-controller="bookingsController"> 
-  <div class="row">
+  <div ng-controller="bookingsController" class='bookingscontainer'> 
+  <h2>Your Bookings</h2>
+  <accordion class="bookingsaccordian">
+    <accordion-group ng-repeat="booking in Bookings.bookings" is-open="isopen" ng-click="toggleChevron">
+        <accordion-heading>
+            {{booking.room}} at {{booking.venue}} <span class="right">{{booking.bookingStartTime | date: 'fullDate'}}  <img src="/images/chevron-right.png"> </span>
+        </accordion-heading>
+         <div class="row">
+           <div class="medium-6 columns"> 
+              <div class="roomimage" ng-style="{'background-image':'url(' + booking.roomImage + ')'}" >
+              </div>
+           </div>
+          <div class="medium-6 columns"> 
+             <p class="text-center">Your booking for the</p>
+             <h4 class="text-center"> {{booking.room}} </h4>
+             <p class="text-center"> at the {{booking.venue}} is confirmed for:<br>
+              {{booking.bookingStartTime | date: 'fullDate'}} <br>
+              from {{booking.bookingStartTime | date: 'h:mm a'}} to {{booking.bookingEndTime | date: 'h:mm a'}} </p>
+              <hr >
+              <div class="bookingcontact">
+                <img class="circle" src="{{booking.contactImage}}">
+                <p class="text-center">
+                {{booking.contactFullName}} <br>
+                {{booking.contactTitle}} </p>
+              </div>
+         </div>
+    </div>
+    </accordion-group>
+  </accordion>
+</div>
+<!-- <div ng-controller="bookingsController" > 
+  <div class="row" class="bookings">
     <div class="small-6 columns">
       <div class="row">
         <div class="small-3 columns">
@@ -15,22 +45,24 @@
           <h4 class="text-center"> Title </h4>
         </div>
       </div>
-      <div ng-repeat="booking in Bookings.bookings" ng-click="showDetails(booking)">
+      <div ng-repeat="booking in Bookings.bookings">
           <hr>
           <div class="small-3 columns">
-            <p class="text-center"> {{booking.venue}} </p>
+            <p ng-click="showDetails(booking)" class="text-center"> {{booking.venue}} </p>
           </div>
           <div class="small-3 columns">
-            <p class="text-center"> {{booking.room}} </p>
+            <p ng-click="showDetails(booking)" class="text-center"> {{booking.room}} </p>
           </div>
           <div class="small-3 columns">
-            <p class="text-center"> {{booking.contactFullName}} </p>
+            <p ng-click="showDetails(booking)" class="text-center"> {{booking.contactFullName}} </p>
           </div>
-          <div class="small-3 columns">
-            <p class="text-center"> {{booking.contactTitle}} </p>
+          <div ng-class="fa fa-chevron-right" class="small-3 columns">
+            <p ng-click="showDetails(booking)" class="text-center"> {{booking.contactTitle}} </p>
           </div>
       </div>
     </div>
+
+
     <div class="small-6 columns" ng-show="detailsReveal">
        <p class="text-center"> {{Bookings.currentBooking.venue}} </p>
        <p class="text-center"> {{Bookings.currentBooking.room}} </p>
@@ -43,4 +75,4 @@
        </div>
     </div>
   </div>
-</div>
+</div> -->
