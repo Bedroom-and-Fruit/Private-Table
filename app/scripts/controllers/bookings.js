@@ -1,16 +1,19 @@
 angular.module('privateTableApp')
-  .controller('bookingsController', ['$scope', 'Bookings', function($scope, Bookings) {
+  .controller('bookingsController', ['$scope', 'SearchResults', function( $scope, SearchResults) {
     //This controller determines how the ngRepeat in searchResults view is filtered.
-    $scope.Bookings = Bookings;
-    $scope.detailsReveal = false;
-
-    $scope.showDetails = function(booking) {
-      $scope.Bookings.currentBooking = booking;
-      $scope.detailsReveal = true;
+    $scope.init = function () {
+      this.showAll();
+      //searchBar.get
+    };
+    $scope.showAll = function () {
+      SearchResults.showAll();
+    };
+    $scope.showPurchased = function () {
+      SearchResults.showPurchased();
     };
 
-    $scope.init = function () {
-      Bookings.getAllBookings();
+    $scope.showPlanning = function () {
+      SearchResults.showPlanning();
     };
 
     $scope.init();
