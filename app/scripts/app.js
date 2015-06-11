@@ -29,8 +29,7 @@ angular
     'ngModal',
     'authFactory',
     'favoriteFactory',
-    'authInterceptorFactory',
-    'bookingsFactory'
+    'authInterceptorFactory'
   ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
     $urlRouterProvider.otherwise('/');

@@ -498,40 +498,37 @@ module.exports.createBooking = function (username, roomId, menuId, startTime, en
 };
 
 
-module.exports.getBookings = function (username, response) {
-  User.find({where: {username: username}}).then(function(user) {
-  var userId = user.dataValues.id;
-    Booking.findAll({where: {booker: userId}}).then(function(bookings) {
-    if (bookings){
-      var bookingsToClient = [];
-      var sendLength = bookings.length;
-      bookings.forEach(function(booking){
-        Room.find({where: {id: booking.room}, include: [Venue]}).then(function(roomData) {
-              if(roomData) {
-                bookingsToClient.push({
-                  bookingStartTime: booking.dataValues.start,
-                  bookingEndTime: booking.dataValues.end,
-                  contactFullName: roomData.dataValues.Venue.dataValues.contactFirstName + ' ' + roomData.dataValues.Venue.dataValues.contactLastName,
-                  contactTitle: roomData.dataValues.Venue.dataValues.contactTitle,
-                  venue: roomData.dataValues.Venue.dataValues.venueName,
-                  room: roomData.dataValues.roomName,
-                  roomID: roomData.dataValues.id,
-                  roomImage: roomData.dataValues.heroImage,
-                  contactImage: roomData.dataValues.Venue.dataValues.contactImage
-                });
-              } else {
-                response.send(501, "No bookings found");
-              }
-              if (bookingsToClient.length === sendLength) {
-                response.json(bookingsToClient);
-              }
-            });
-          })
-      } else {
-        response.send(501, "Bookings not found");
-      }
-    });
-  })
+module.exports.getBookings = function (userId, response) {
+  Booking.findAll({where: {booker: userId}}).then(function(bookings) {
+  if (bookings){
+    var bookingsToClient = [];
+    var sendLength = bookings.length;
+    bookings.forEach(function(booking){
+      Room.find({where: {id: booking.room}, include: [Venue]}).then(function(roomData) {
+            if(roomData) {
+              bookingsToClient.push({
+                bookingStartTime: booking.dataValues.start,
+                bookingEndTime: booking.dataValues.end,
+                contactFullName: roomData.dataValues.Venue.dataValues.contactFirstName + ' ' + roomData.dataValues.Venue.dataValues.contactLastName,
+                contactTitle: roomData.dataValues.Venue.dataValues.contactTitle,
+                venue: roomData.dataValues.Venue.dataValues.venueName,
+                room: roomData.dataValues.roomName,
+                roomID: roomData.dataValues.id,
+                roomImage: roomData.dataValues.heroImage,
+                contactImage: roomData.dataValues.Venue.dataValues.contactImage
+              });
+            } else {
+              response.send(501, "No bookings found");
+            }
+            if (bookingsToClient.length === sendLength) {
+              response.json(bookingsToClient);
+            }
+          });
+        })
+    } else {
+      response.send(501, "Bookings not found");
+    }
+  });
 };
 
 
