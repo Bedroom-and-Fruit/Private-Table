@@ -1,12 +1,28 @@
-# private-table
+# PrivateTable
 
-This project is generated with [yo angular generator](https://github.com/yeoman/generator-angular)
+![PT HomePage](repo_assets/pthomepage.png "PrivateTable Homepage")
+
+> An AirBnB for Event Spaces
+
+Visit our live site at [PrivateTable.io](http://www.privatetable.io/)
+This project is built on Angular, Node, and Express, with a PostgreSQL database and Sequelize for the ORM. 
+
+Baseline scaffolding was generated with [yo angular generator](https://github.com/yeoman/generator-angular)
 version 0.11.1.
 
-## Build & development
+## Team
 
-Run `grunt` for building and `grunt serve` for preview.
+  - __Product Owner__: Craig Smith
+  - __Scrum Master__: Lindsay Pond
+  - __Development Team Members__: Henry Ng
 
-## Testing
+## Build & Development
 
-Running `grunt test` will run the unit tests with karma.
+__To Build:__ After forking and cloning this repo, run `npm install` from within the root directory. This will install both npm and bower dependencies.
+__To Run:__ Run `node server/app.js` for preview.
+
+### Database Schema
+
+![db Schema](repo_assets/schema.png "Database Schema")
+
+
