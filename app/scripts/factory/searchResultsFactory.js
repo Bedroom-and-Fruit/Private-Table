@@ -4,6 +4,7 @@ angular.module('searchResultsFactory', [])
 
 .factory('SearchResults', ['$location', '$http', function($location, $http) {
   var reroute = function(params, dest) {
+    console.log(params);
     $location.path(dest).search(params);
   };
   //searchResults can be an array based on a query for search, a user's bookings, or a users favorites
@@ -141,7 +142,7 @@ angular.module('searchResultsFactory', [])
     //the time we get back from our DB looks like this:
     //"2015-06-23T15:00:00.000Z" so we need to split by the T and "."
     return ((time.split('T'))[1]).split('.')[0];
-  }
+  };
 
   return {
     getFavoriteResults: getFavoriteResults,

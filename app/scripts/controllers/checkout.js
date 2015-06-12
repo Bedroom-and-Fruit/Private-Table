@@ -24,7 +24,6 @@ angular.module('privateTableApp')
       $('#roomtab').removeClass('active');
       $('#menutab').addClass('active');
       roomData.reroute('/checkout/menu');
-      console.log('toMenu was called');
     };
 
     $scope.toRoom = function () {

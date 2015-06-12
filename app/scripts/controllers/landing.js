@@ -1,11 +1,11 @@
 'use strict';
 
 angular.module('privateTableApp')
-  .controller('landingController', ['$scope', '$location', 'SearchBar', 'SearchResults', function($scope, $location, SearchBar, SearchResults) {
+  .controller('landingController', ['$scope', '$location', 'SearchBar', 'SearchResults', '$state', function($scope, $location, SearchBar, SearchResults, $state) {
     $scope.params = {};
     $scope.submitSearch = function() {
       //check that all forms are filled before initiating request
-      SearchBar.setSearchParams(this.params, SearchResults.reroute, '/searchbar');
+      SearchBar.setSearchParams($scope.params, SearchResults.reroute, '/searchbar');
     };
     $scope.init = function () {
       SearchBar.searchFormInit();

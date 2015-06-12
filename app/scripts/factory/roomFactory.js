@@ -73,7 +73,6 @@ angular.module('roomFactory', [])
 
   var chooseMenu = function(menu) {
     roomFactory.checkoutMenu = menu;
-    console.log(roomFactory.checkoutMenu);
   };
   
   var viewMenus = function(room, eventType, callback) {
