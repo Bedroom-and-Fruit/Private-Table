@@ -10,7 +10,6 @@ angular.module('bookingsFactory', [])
     var url = '/api/users/bookings';
     $http.get(url)
     .success(function(data, status, headers, config) {
-      console.log(data);
       bookings.splice(0, bookings.length);
       data.forEach(function(val){
         bookings.push(val);
