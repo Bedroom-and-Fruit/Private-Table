@@ -2,12 +2,20 @@
 
 
 angular.module('privateTableApp')
-  .controller('navController', ['$scope', '$location', 'SearchResults', 'Auth', function($scope, $location, SearchResults, Auth) {
+  .controller('navController', ['$scope', '$location', 'SearchBar', 'Auth', '$state', 'SearchResults', function($scope, $location, SearchBar, Auth, $state, SearchResults) {
     $scope.currentUser; 
     $scope.Auth = Auth;
+    $scope.SearchBar = SearchBar;
+    $scope.$state = $state;
+
     
     $scope.init = function () {
-      $scope.currentUser = Auth.getUser();
+      $scope.SearchResults = Auth.getUser();
+    };
+
+    $scope.backToSearch = function()  {
+      console.log(SearchBar.searchParams);
+      $location.path('/searchBar').search(SearchBar.searchParams);
     };
 
     //login

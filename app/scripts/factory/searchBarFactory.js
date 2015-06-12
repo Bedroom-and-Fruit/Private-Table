@@ -2,7 +2,7 @@
 
 angular.module('searchBarFactory', [])
 
-.factory('SearchBar', ['SearchResults', '$location', 'CheckoutOptions', function(SearchResults, $location, CheckoutOptions) {
+.factory('SearchBar', ['SearchResults', '$location', 'CheckoutOptions', '$state', function(SearchResults, $location, CheckoutOptions, $state) {
   // Your code here
   var searchParams;
   var setSearchParams = function (params, callback, dest) {
@@ -29,9 +29,9 @@ angular.module('searchBarFactory', [])
     var amPmSwitch = function (minAmPm) {
       minAmPm.split(" ");
       if (minAmPm[1].indexOf('AM') > -1) {
-        minAmPm[1] = 'PM'
+        minAmPm[1] = 'PM';
       } else {
-        minAmPm[1] = 'AM'
+        minAmPm[1] = 'AM';
       }
       minAmPm.join(" ");
     };
@@ -46,9 +46,7 @@ angular.module('searchBarFactory', [])
     }
     return hhMmA.join(":");
   };
-
     
-
   var searchBarFactory = {
     endTimeAdjuster: endTimeAdjuster,
     searchParams: searchParams,
