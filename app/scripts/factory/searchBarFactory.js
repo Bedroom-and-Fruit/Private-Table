@@ -5,19 +5,6 @@ angular.module('searchBarFactory', [])
 .factory('SearchBar', ['SearchResults', '$location', 'CheckoutOptions', '$state', function(SearchResults, $location, CheckoutOptions, $state) {
   // Your code here
   var searchParams;
-  var setSearchParams = function (params, callback, dest) {
-    searchBarFactory.searchParams = params;
-    CheckoutOptions.setEventParams(searchBarFactory.searchParams);
-    if (callback) {
-      SearchResults.getSearchResults(searchBarFactory.searchParams, callback, dest);
-    } else {
-      SearchResults.getSearchResults(searchBarFactory.searchParams);
-    }
-  };
-
-  var getSearchParams = function() {
-    return searchBarFactory.searchParams;
-  };
 
   var searchFormInit = function () {
     $('.timepicker').datetimepicker({datepicker:false, format: 'g:i A', formatTime: 'g:i A', step: 30});
@@ -50,9 +37,7 @@ angular.module('searchBarFactory', [])
   var searchBarFactory = {
     endTimeAdjuster: endTimeAdjuster,
     searchParams: searchParams,
-    searchFormInit: searchFormInit,
-    getSearchParams: getSearchParams,
-    setSearchParams: setSearchParams
+    searchFormInit: searchFormInit
   };
 
   return searchBarFactory;

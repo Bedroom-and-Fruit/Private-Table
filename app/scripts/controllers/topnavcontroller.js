@@ -14,8 +14,7 @@ angular.module('privateTableApp')
     };
 
     $scope.backToSearch = function()  {
-      console.log(SearchBar.searchParams);
-      $location.path('/searchBar').search(SearchBar.searchParams);
+      $state.go('searchBar', $scope.SearchBar.searchParams);
     };
 
     //login
@@ -77,11 +76,9 @@ angular.module('privateTableApp')
     };
 
     $scope.logout = function () {
-      console.log('logout called');
       Auth.logout();
       $scope.currentUser = Auth.getUser();
-      console.log($scope.currentUser);
-      $location.path('/');
+      $state.go('landing');
     }
     $scope.init();
   }]);

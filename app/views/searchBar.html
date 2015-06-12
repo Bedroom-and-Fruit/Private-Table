@@ -4,23 +4,23 @@
   <div data-magellan-expedition="fixed">    
     <form class="sub-nav" name="searchForm" id="form1" ng-submit="newSearch()" novalidate>
         <div class="medium-2 columns">
-          <input type="text" placeholder="Location" class="form-control" id="string" name="string" required ng-model="params.location" ng-change="newSearch()" ng-model="chosenPlace" googleplace>
+          <input type="text" placeholder="Location" class="form-control" id="string" name="string" required ng-model="SearchBar.searchParams.location" ng-change="newSearch()" ng-model="chosenPlace" googleplace>
         </div>
 
         <div class="medium-1 columns">
-          <input ng-change="newSearch()" id="datepicker" placeholder="Date" type="text" ng-model="params.date">
+          <input ng-change="newSearch()" id="datepicker" placeholder="Date" type="text" ng-model="SearchBar.searchParams.date">
         </div>
 
         <div class="medium-1 columns">
-          <input id="starttimepicker" class="timepicker" ng-change="newSearch(); setMinEndTime()" placeholder="Start Time" type="text" ng-model="params.startTime">
+          <input id="starttimepicker" class="timepicker" ng-change="newSearch(); setMinEndTime()" placeholder="Start Time" type="text" ng-model="SearchBar.searchParams.startTime">
         </div>
 
         <div class="medium-1 columns">
-          <input id="endtimepicker" class="timepicker" ng-change="newSearch()" placeholder="End Time" type="text" ng-model="params.endTime">
+          <input id="endtimepicker" class="timepicker" ng-change="newSearch()" placeholder="End Time" type="text" ng-model="SearchBar.searchParams.endTime">
         </div>
 
         <div class="medium-2 columns">
-          <select ng-model="params.eventType" ng-change="newSearch()">
+          <select ng-model="SearchBar.searchParams.eventType" ng-change="newSearch()">
             <option value="" selected disabled>Select Event Type</option>
             <option value="Reception">Reception</option>
             <option value="Banquet">Banquet</option>
@@ -28,10 +28,10 @@
           </select>
         </div>
         <div class="medium-1 columns">
-            <input type="number" ng-change="newSearch()" placeholder="Guests" ng-model="params.guests">
+            <input type="number" ng-change="newSearch()" placeholder="Guests" ng-model="SearchBar.searchParams.guests">
         </div>
         <div class="medium-1 columns end">
-            <input type="text" ng-change="newSearch()" placeholder="Budget" ng-model="params.budget">
+            <input type="text" ng-change="newSearch()" placeholder="Budget" ng-model="SearchBar.searchParams.budget">
         </div>
     </form>
   </div>

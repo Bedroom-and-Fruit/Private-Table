@@ -43,7 +43,7 @@ angular
         templateUrl: 'views/landing.html'
       })
       .state('searchBar', {
-        url: '/searchbar?startTimeStamp&endTimeStamp&lng&lat&city&state&country&guests&budget',
+        url: '/searchbar?location&date&startTime&endTime&eventType&guests&budget',
         views: {
           '': {templateUrl: 'views/searchBar.html'},
           'searchResults@searchBar': {

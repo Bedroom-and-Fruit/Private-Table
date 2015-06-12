@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('privateTableApp')
-  .controller('searchResultsController', ['$scope', '$http','$location', 'SearchResults', 'roomData', '$cookies', 'Auth', 'Favorites', '$state', function($scope, $http, $location, SearchResults, roomData, $cookies, Auth, Favorites, $state) {
+  .controller('searchResultsController', ['$scope', '$http','$location', 'SearchResults', 'roomData', '$cookies', 'Auth', 'Favorites', function($scope, $http, $location, SearchResults, roomData, $cookies, Auth, Favorites) {
     $scope.roomResults = SearchResults.searchResults;
     $scope.Auth = Auth;
     $scope.Favorites = Favorites;
