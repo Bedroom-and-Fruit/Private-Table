@@ -17,11 +17,12 @@ if (process.env.DATABASE_URL) {
   var username = String(fs.readFileSync(__dirname + '/databaseusername'));
   var password = String(fs.readFileSync(__dirname + '/databasepassword'));
   var databaseName = String(fs.readFileSync(__dirname + '/databasename'));
+  var host = String(fs.readFileSync(__dirname + '/host'));
   var sequelize = new Sequelize(databaseName, username, password, {
     dialect: 'postgres',
     protocol: 'postgres',
     port: '5432',
-    host:'ec2-23-23-81-221.compute-1.amazonaws.com',
+    host: host,
     logging: console.log,
     dialectOptions: {
       ssl: true

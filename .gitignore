@@ -6,6 +6,7 @@ bower_components
 .floo
 .flooignore
 app/bower_components
+.DS_Store
 
 #databse name
 /server/config/databasename

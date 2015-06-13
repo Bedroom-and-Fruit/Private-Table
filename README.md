@@ -18,9 +18,10 @@ version 0.11.1.
 - Install [Node](https://angularjs.org/) and [Bower](http://http://bower.io/).
 - Run `npm install` from your CLI to install both npm and Bower dependencies.
 - Rename `/server/config/dbConfig.example.js` to be `dbConfig.js`.
-- Edit `dbConfig.js` to point to a valid relational database supported by Sequelize, and update `dbConfig.js` to match your database's security parameters. This product was originally designed using PostgreSQL.
+- Edit `dbConfig.js` to point to a valid relational database supported by Sequelize, and update `dbConfig.js` to match your database's security parameters. This product was originally designed using PostgreSQL and deployed on Heroku.
 - Configure your database, per the [schema](#database-schema).
-- Rename `/server/config/secret.example` to `secret` and replace the content with a new secret string.
+- Data within our database is not available so you will need to load your own data in your database.
+- The app uses token-based authentication so you will need to create a secret key (any text file is fine) in `/server/config`, name it `secret` and replace the content with a new secret string.
 
 ###Run
 - Run `node server/app.js` to preview locally.
