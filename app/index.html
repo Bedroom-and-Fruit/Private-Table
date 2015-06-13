@@ -48,7 +48,8 @@
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
-    <script src="bower_components/modernizr/modernizr.js"></script>
+
+   <script src="bower_components/modernizr/modernizr.js"></script>
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="//js.stripe.com/v2/"></script>
     <script src="bower_components/angular/angular.js"></script>
@@ -68,14 +69,17 @@
     <script src="bower_components/foundation/js/foundation.js"></script>
     <script src="bower_components/ngModal/dist/ng-modal.js"></script>
     <script>$(document).foundation('clearing', 'reflow');</script>
-    <script src="bower_components/datetimepicker/jquery.datetimepicker.js"></script>
-    <!-- endbower -->
+    <script src="bower_components/datetimepicker/jquery.datetimepicker.js"></script>wer -->
     <!-- endbuild -->
 
+    
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
-        <script src="scripts/app.js"></script>
 
-        <!--factories -->
+    <script src="build/production.min.js"></script>
+       
+
+      <!--
+        <script src="scripts/app.js"></script>
         <script src="scripts/factory/searchBarFactory.js"></script>
         <script src="scripts/factory/searchResultsFactory.js"></script>
         <script src="scripts/factory/roomFactory.js"></script>
@@ -85,7 +89,7 @@
         <script src="scripts/factory/authInterceptor.js"></script>
         <script src="scripts/factory/bookingsFactory.js"></script>
 
-        <!--controllers -->
+    
         <script src="scripts/controllers/topnavcontroller.js"></script>
         <script src="scripts/controllers/landing.js"></script>
         <script src="scripts/controllers/searchBar.js"></script>
@@ -97,9 +101,9 @@
         <script src="scripts/controllers/favoritescontroller.js"></script>
         <script src="scripts/controllers/bookings.js"></script>
 
-        <!--directives -->
+     
         <script src="scripts/directives/landing.js"></script>
 
-        <!-- endbuild -->
+        endbuild -->
 </body>
 </html>
