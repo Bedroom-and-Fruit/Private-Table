@@ -3,25 +3,25 @@
 angular.module('privateTableApp')
   .controller('searchBarController', ['$scope', '$location', 'SearchBar', 'SearchResults', '$stateParams', function($scope, $location, SearchBar, SearchResults, $stateParams) {
    
-    $scope.params;
+    $scope.SearchBar = SearchBar;
 
     $scope.newSearch = function() {
-      SearchBar.setSearchParams(this.params);
+      SearchResults.getSearchResults($scope.SearchBar.searchParams);
     };
 
     $scope.init = function () {
       SearchBar.searchFormInit();
       if ($stateParams) {
-        SearchResults.getResults($stateParams, 'api/searchresults');
+        SearchResults.getSearchResults($stateParams);
+      } else {
+      SearchResults.getSearchResults($scope.SearchBar.searchParams);
       }
-      $scope.params = SearchBar.getSearchParams();
       SearchResults.showAll();
     };
 
     $scope.setMinEndTime = function () {
       
-      var minEndTime = SearchBar.endTimeAdjuster($scope.params.startTime);
-      console.log('THIS IS MINEND', minEndTime);
+      var minEndTime = SearchBar.endTimeAdjuster($scope.SearchBar.searchParams.startTime);
       $('#endtimepicker').datetimepicker({datepicker:false, format: 'g:i A', formatTime: 'g:i A', step: 30, minTime: minEndTime});
       $('#starttimepicker').datetimepicker({datepicker:false, format: 'g:i A', formatTime: 'g:i A', step: 30, minTime: '12:00 AM'});
     };

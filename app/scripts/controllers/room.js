@@ -9,7 +9,7 @@ angular.module('privateTableApp')
     $scope.feeMore = true;
     $scope.roomID = $stateParams;
     $scope.SearchBar = SearchBar;
-    $scope.searchParams = SearchBar.getSearchParams();
+    $scope.searchParams = SearchBar.searchParams;
 
     //FEES View Limit & Full Display methods/properties
     $scope.feeLimit = 4;

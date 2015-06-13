@@ -8,22 +8,22 @@
   <form name="searchForm" id="form1" class="searchbox" novalidate>
     <div><h2>Plan your next event:</h2></div>
     <div class="large-2 columns">
-      <input type="text" placeholder="Location" class="form-control" id="string" name="string" required ng-model="params.location" ng-model="chosenPlace" googleplace>
+      <input type="text" placeholder="Location" class="form-control" id="string" name="string" required ng-model="SearchBar.searchParams.location" ng-model="chosenPlace" googleplace>
     </div>
     <div class="large-1 columns">
-    <input id="datepicker" placeholder="Date" type="text" ng-model="params.date"/>
+    <input id="datepicker" placeholder="Date" type="text" ng-model="SearchBar.searchParams.date"/>
     </div>
 
     <div class="large-2 columns">
-      <input id="endtimepick" class="timepicker" placeholder="Start Time" type="text" ng-change="setMinEndTime()" ng-model="params.startTime">
+      <input id="endtimepick" class="timepicker" placeholder="Start Time" type="text" ng-change="setMinEndTime()" ng-model="SearchBar.searchParams.startTime">
     </div>
 
     <div class="large-2 columns">
-      <input id="endtimepick" class="timepicker" id="endtime" placeholder="End Time" type="text" ng-model="params.endTime">
+      <input id="endtimepick" class="timepicker" id="endtime" placeholder="End Time" type="text" ng-model="SearchBar.searchParams.endTime">
     </div>
 
     <div class="large-2 columns">
-      <select ng-model="params.eventType">
+      <select ng-model="SearchBar.searchParams.eventType">
         <option value="" selected disabled>Select Event Type</option>
         <option value="Reception">Reception</option>
         <option value="Banquet">Banquet</option>
@@ -32,11 +32,11 @@
     </div>
 
     <div class="large-1 columns">
-        <input type="number" placeholder="Guests" ng-model="params.guests">
+        <input type="number" placeholder="Guests" ng-model="SearchBar.searchParams.guests">
     </div>
 
     <div class="large-1 columns">
-        <input type="text" placeholder="Budget" ng-model="params.budget">
+        <input type="text" placeholder="Budget" ng-model="SearchBar.searchParams.budget">
     </div>
     <div class="large-1 columns">
     <button type="submit" class="button tiny" ng-click="submitSearch()">Search</button>

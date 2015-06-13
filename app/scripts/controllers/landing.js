@@ -1,20 +1,20 @@
 'use strict';
 
 angular.module('privateTableApp')
-  .controller('landingController', ['$scope', '$location', 'SearchBar', 'SearchResults', '$state', function($scope, $location, SearchBar, SearchResults, $state) {
-    $scope.params = {};
+  .controller('landingController', ['$scope', '$location', 'SearchBar', 'SearchResults', function($scope, $location, SearchBar, SearchResults) {
+
+    $scope.SearchBar = SearchBar;
+
     $scope.submitSearch = function() {
-      //check that all forms are filled before initiating request
-      SearchBar.setSearchParams($scope.params, SearchResults.reroute, '/searchbar');
+      SearchResults.getSearchResults($scope.SearchBar.searchParams, SearchResults.reroute($scope.SearchBar.searchParams, '/searchbar'), '/searchBar');
     };
+
     $scope.init = function () {
       SearchBar.searchFormInit();
     };
 
     $scope.setMinEndTime = function () {
-      
-      var minEndTime = SearchBar.endTimeAdjuster($scope.params.startTime);
-      console.log('THIS IS MINEND', minEndTime);
+      var minEndTime = SearchBar.endTimeAdjuster($scope.SearchBar.startTime);
       $('#endtimepick').datetimepicker({datepicker:false, format: 'g:i A', formatTime: 'g:i A', step: 30, minTime: minEndTime});
       $('#starttimepick').datetimepicker({datepicker:false, format: 'g:i A', formatTime: 'g:i A', step: 30, minTime: '12:00 AM'});
     };

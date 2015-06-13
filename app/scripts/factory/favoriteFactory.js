@@ -32,7 +32,6 @@ angular.module('favoriteFactory', [])
 
   var addFavorite = function (room) {
     var url = '/api/users/favorites/addfavorites';
-    console.log(room);
     $http.post(url, {roomID: room})
     .success(function(data, status, headers, config) {
       FavoritesFactory.getFavorites();

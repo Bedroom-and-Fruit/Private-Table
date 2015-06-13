@@ -16,8 +16,6 @@ angular.module('privateTableApp')
     $scope.roomData = roomData;
 
     $scope.toMenu = function() {
-      // CheckoutOptions.setEventParams($scope.params);
-      // $scope.params = CheckoutOptions.getEventParams();
       $scope.eventConfirmed = true;
       $scope.menuLabel = false;
       $scope.menuConfirmed = false;
@@ -34,7 +32,6 @@ angular.module('privateTableApp')
 
     $scope.toPay = function() {
       $('.active').removeClass('active');
-      // CheckoutOptions.setMenuParams(roomData.currentMenu);
       $location.path('/checkout/payments');
       $scope.menuName = true;
       $scope.menuFinal = false;
@@ -45,7 +42,6 @@ angular.module('privateTableApp')
 
     $scope.dateInit = function() {
       SearchBar.searchFormInit();
-      // $scope.params = CheckoutOptions.getEventParams();
       if (typeof parseInt($stateParams.roomID) === 'number') {
         roomData.viewRoom($stateParams.roomID, 'api/room/', function() {
           $scope.room = roomData.getRoom();

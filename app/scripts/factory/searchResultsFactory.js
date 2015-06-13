@@ -3,8 +3,8 @@
 angular.module('searchResultsFactory', [])
 
 .factory('SearchResults', ['$location', '$http', function($location, $http) {
+
   var reroute = function(params, dest) {
-    console.log(params);
     $location.path(dest).search(params);
   };
   //searchResults can be an array based on a query for search, a user's bookings, or a users favorites
@@ -18,20 +18,20 @@ angular.module('searchResultsFactory', [])
       params: params
     })
     .then(function(response){
-      searchResults.splice(0, searchResults.length);
+      SearchResultsFactory.searchResults.splice(0, SearchResultsFactory.searchResults.length);
       response.data.forEach(function(val){
-        searchResults.push(val);
+        SearchResultsFactory.searchResults.push(val);
       });
       if (callback) { callback(params, dest); }
     });
   };
 
   var getFavoriteResults = function (params) {
-    return getResults(params,'api/favoriteResults', reroute, '/favorites');
+    return SearchResultsFactory.getResults(params,'api/favoriteResults', reroute, '/favorites');
   };
   
   var getBookingsResults = function (params, callback) {
-    return getResults(params, 'api/bookingsResults', reroute, '/bookings');
+    return SearchResultsFactory.getResults(params, 'api/bookingsResults', reroute, '/bookings');
   };
 
   // this is a helper function used adjusting time format in the query timestamp; it's not exported
@@ -108,7 +108,7 @@ angular.module('searchResultsFactory', [])
             data.country = addressTypes[i].long_name;
           }
         }
-        return getResults(data, 'api/searchresults', callback, dest);
+        return SearchResultsFactory.getResults(data, 'api/searchresults', callback, dest);
       } else {
         console.log('No location entered');
       }
@@ -144,7 +144,7 @@ angular.module('searchResultsFactory', [])
     return ((time.split('T'))[1]).split('.')[0];
   };
 
-  return {
+  var SearchResultsFactory = {
     getFavoriteResults: getFavoriteResults,
     searchResults: searchResults,
     getSearchResults: getSearchResults,
@@ -158,5 +158,7 @@ angular.module('searchResultsFactory', [])
     createDate: createDate,
     dbTimeConverter: dbTimeConverter
   };
+
+  return SearchResultsFactory;
 
 }]);
