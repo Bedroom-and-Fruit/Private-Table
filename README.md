@@ -1,12 +1,47 @@
-# private-table
+# PrivateTable
 
-This project is generated with [yo angular generator](https://github.com/yeoman/generator-angular)
+> The AirBnB for Event Spaces
+
+![PT HomePage](repo_assets/pthomepage.png "PrivateTable Homepage")
+
+Visit our live site at [PrivateTable.io](http://www.privatetable.io/).
+
+This project is built on [Angular](https://angularjs.org/), [Node](https://angularjs.org/), and [Express](http://expressjs.com/), with a [PostgreSQL](http://http://www.postgresql.org/) database and [Sequelize](http://docs.sequelizejs.com/en/latest/) for the ORM. 
+
+Baseline scaffolding was generated with [Yeoman](https://github.com/yeoman/generator-angular)
 version 0.11.1.
 
-## Build & development
+## Build & Development
 
-Run `grunt` for building and `grunt serve` for preview.
+###Build
+- Download and unzip the repository.
+- Install [Node](https://angularjs.org/) and [Bower](http://http://bower.io/).
+- Run `npm install` from your CLI to install both npm and Bower dependencies.
+- Rename `/server/config/dbConfig.example.js` to be `dbConfig.js`.
+- Edit `dbConfig.js` to point to a valid relational database supported by Sequelize, and update `dbConfig.js` to match your database's security parameters. This product was originally designed using PostgreSQL.
+- Configure your database, per the [schema](#database-schema).
+- Rename `/server/config/secret.example` to `secret` and replace the content with a new secret string.
 
-## Testing
+###Run
+- Run `node server/app.js` to preview locally.
+- Also compatible with [Nodemon](https://github.com/remy/nodemon), as `nodemon server/app.js`.
 
-Running `grunt test` will run the unit tests with karma.
+### Database Schema
+
+![db Schema](repo_assets/schema.png "Database Schema")
+
+## Product Roadmap
+
+![PT Roadmap](repo_assets/roadmap.png "PrivateTable Road Map")
+
+Our team plans to expands to extend PrivateTable with additional features that support selectable event layouts, premium services, and customizable menus.
+
+We will also expand the platform's CRM capabilities so that vendors can manage their properties and client relationships directly from PrivateTable.
+
+## Team
+
+  - __Product Owner__: Craig Smith
+  - __Scrum Master__: Lindsay Pond
+  - __Development Team Members__: Henry Ng
+
+
