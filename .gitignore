@@ -6,6 +6,7 @@ bower_components
 .floo
 .flooignore
 app/bower_components
+.DS_Store
 
 #databse name
 /server/config/databasename
@@ -16,8 +17,8 @@ app/bower_components
 #database username
 /server/config/databaseusername
 
-#dbConfig
-/server/config/dbConfig.js
+#host
+/server/config/host
 
 # Ignore actual authentication secret
 /server/config/secret
