@@ -48,36 +48,58 @@
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
-
-    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/modernizr/modernizr.js"></script>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="//js.stripe.com/v2/"></script>
     <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/angular-animate/angular-animate.min.js"></script>
-    <script src="bower_components/angular-aria/angular-aria.min.js"></script>
-    <script src="bower_components/angular-cookies/angular-cookies.min.js"></script>
-    <script src="bower_components/angular-messages/angular-messages.min.js"></script>
-    <script src="bower_components/angular-resource/angular-resource.min.js"></script>
-    <script src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
-    <script src="bower_components/angular-touch/angular-touch.min.js"></script>
-    <script src="bower_components/angular-foundation/mm-foundation-tpls.min.js"></script>
-    <script src="bower_components/angular-payments/lib/angular-payments.min.js"></script>
-    <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-aria/angular-aria.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-messages/angular-messages.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/angular-foundation/mm-foundation-tpls.js"></script>
+    <script src="bower_components/angular-payments/lib/angular-payments.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="bower_components/fastclick/lib/fastclick.js"></script>
     <script src="bower_components/jquery.cookie/jquery.cookie.js"></script>
     <script src="bower_components/jquery-placeholder/jquery.placeholder.js"></script>
-    <script src="bower_components/foundation/js/foundation.min.js"></script>
-    <script src="bower_components/ngModal/dist/ng-modal.min.js"></script>
+    <script src="bower_components/foundation/js/foundation.js"></script>
+    <script src="bower_components/ngModal/dist/ng-modal.js"></script>
     <script>$(document).foundation('clearing', 'reflow');</script>
     <script src="bower_components/datetimepicker/jquery.datetimepicker.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
-    
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <script src="scripts/app.js"></script>
 
-    <script src="build/production.min.js"></script>
-       
+        <!--factories -->
+        <script src="scripts/factory/searchBarFactory.js"></script>
+        <script src="scripts/factory/searchResultsFactory.js"></script>
+        <script src="scripts/factory/roomFactory.js"></script>
+        <script src="scripts/factory/checkoutFactory.js"></script>
+        <script src="scripts/factory/authFactory.js"></script>
+        <script src="scripts/factory/favoriteFactory.js"></script>
+        <script src="scripts/factory/authInterceptor.js"></script>
+        <script src="scripts/factory/bookingsFactory.js"></script>
 
-     
+        <!--controllers -->
+        <script src="scripts/controllers/topnavcontroller.js"></script>
+        <script src="scripts/controllers/landing.js"></script>
+        <script src="scripts/controllers/searchBar.js"></script>
+        <script src="scripts/controllers/room.js"></script>
+        <script src="scripts/controllers/menu.js"></script>
+        <script src="scripts/controllers/checkout.js"></script>
+        <script src="scripts/controllers/searchResultsController.js"></script>
+        <script src="scripts/controllers/payments.js"></script>
+        <script src="scripts/controllers/favoritescontroller.js"></script>
+        <script src="scripts/controllers/bookings.js"></script>
+
+        <!--directives -->
+        <script src="scripts/directives/landing.js"></script>
+
+        <!-- endbuild -->
 </body>
 </html>
