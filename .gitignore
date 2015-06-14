@@ -22,3 +22,7 @@ app/bower_components
 
 # Ignore actual authentication secret
 /server/config/secret
+
+/app/build/production.js
+
+/app/build/production.min.js
