@@ -4,7 +4,7 @@
 
 ![PT HomePage](repo_assets/pthomepage.png "PrivateTable Homepage")
 
-Visit our live site at [PrivateTable.io](http://www.privatetable.io/). Search "San Francisco" for the full effect.
+Visit our live site at [PrivateTable.io](http://www.privatetable.io/). Search "San Francisco" for the full effect or check out the [video demo.](https://youtu.be/6z-8uyu8i40)
 
 This project is built on [Angular](https://angularjs.org/), [Node](https://angularjs.org/), and [Express](http://expressjs.com/), with a [PostgreSQL](http://http://www.postgresql.org/) database and [Sequelize](http://docs.sequelizejs.com/en/latest/) for the ORM. 
 
