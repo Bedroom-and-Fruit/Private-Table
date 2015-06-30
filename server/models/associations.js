@@ -12,7 +12,6 @@ var Amenity = require('./amenities.js');
 var User = require('./users.js');
 var Favorite = require('./favorites.js');
 var Layout = require ('./layouts.js');
-var LayoutsOffered = require ('./layoutsOffered.js');
 var Service = require ('./services.js');
 var MenusOffered = require ('./menusOffered.js');
 
@@ -57,13 +56,9 @@ Booking.belongsTo(User, {foreignKey: 'booker'});
 Room.hasMany(Service, {foreignKey:'room_ID'});
 Service.belongsTo(Room, {foreignKey: 'room_ID'});
 
-// relationship between layoutsOffered and layout
-Layout.hasMany(LayoutsOffered, {foreignKey:'layout_ID'});
-LayoutsOffered.belongsTo(Layout, {foreignKey: 'layout_ID'});
-
-// relationship between layoutsOffered and room
-Room.hasMany(LayoutsOffered, {foreignKey:'room_ID'});
-LayoutsOffered.belongsTo(Room, {foreignKey: 'room_ID'});
+// relationship between layout and room
+Room.hasMany(Layout, {foreignKey:'room_ID'});
+Layout.belongsTo(Room, {foreignKey: 'room_ID'});
 
 // relationship between menusOffered and menu
 Menu.hasMany(MenusOffered, {foreignKey:'menu_ID'});
