@@ -11,7 +11,6 @@ var RoomAmenity = require('./roomAmenities.js');
 var Amenity = require('./amenities.js');
 var User = require('./users.js');
 var Layout = require('./layouts.js');
-var LayoutsOffered = require('./layoutsOffered.js');
 var Service = require('./services.js');
 var Favorite = require('./favorites.js');
 var MenusOffered = require ('./menusOffered.js');
